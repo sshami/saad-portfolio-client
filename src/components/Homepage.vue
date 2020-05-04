@@ -8,12 +8,25 @@
 <script>
 import HomeIntro from './homepage/HomeIntro.vue'
 import WorkTiles from './homepage/WorkTiles.vue'
+// import '../static/js/home-animations.js'
+
+import { initScrollMagicController, buildScrollMagicScenes, destroyScrollMagic } from '../static/js/homepage-scrollmagic.js'
+
 
 export default {
   name: 'Homepage',
   components: {
     HomeIntro,
     WorkTiles
+  },
+  mounted() {
+      /* Build ScrollMagic Scenes */
+      initScrollMagicController();
+      buildScrollMagicScenes();
+  },
+  destroyed() {
+      /* Destroy ScrollMagic Scenes */
+      destroyScrollMagic();
   }
 }
 </script>

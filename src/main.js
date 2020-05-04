@@ -7,7 +7,6 @@ import Web from './components/Web.vue'
 import 'popper.js'
 import 'bootstrap'
 import 'socicon'
-import './static/js/home-animations.js'
 
 Vue.config.productionTip = false
 

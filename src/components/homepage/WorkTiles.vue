@@ -46,6 +46,8 @@
 
 
 <script>
+import { initTileHoverTitles } from '../../static/js/homepage-tiles.js'
+
 export default {
     name: 'WorkTiles',
     data: function () {
@@ -60,6 +62,9 @@ export default {
 				photo: ''
 			}
         }
+    },
+    mounted() {
+        initTileHoverTitles();
     },
     methods: {
     /* Navigate to photography page */
