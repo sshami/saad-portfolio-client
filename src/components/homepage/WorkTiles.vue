@@ -1,6 +1,6 @@
 <template>
     <div id="work-tiles" class="row work-tiles">
-        <div id="web-tile" class="col-md-6 tile web-tile">
+        <div id="web-tile" class="col-md-6 tile web-tile" @click="webdevPage">
             <div id="tile-title-web" class="row tile-title web-dev">
                 <div class="col-1"></div>
                 <div class="col tile-title-line-web left"></div>
@@ -9,17 +9,17 @@
                 <div class="col-1"></div>
             </div>
             <div class="web-img mobile-lc">
-                <img src="../assets/home/web-mobile-lc.png" alt="Lauren Castle Mobile Website">
+                <img src="../../assets/home/web-mobile-lc.png" alt="Lauren Castle Mobile Website">
             </div>
             <div class="web-img mobile-ss">
-                <img src="../assets/home/web-mobile-ss2.png" alt="Saad Mobile Website">
+                <img src="../../assets/home/web-mobile-ss2.png" alt="Saad Mobile Website">
             </div>
             <div class="explore-btn">
                 <h2>Explore</h2>
-                <img src="../assets/icons/arrow.svg" alt="Arrow">
+                <img src="../../assets/icons/arrow.svg" alt="Arrow">
             </div>
         </div>
-        <div id="photography-tile" class="col-md-6 tile photography-tile">
+        <div id="photography-tile" class="col-md-6 tile photography-tile" @click="photographyPage">
             <div id="tile-title-photography" class="row tile-title photography">
                 <div class="col-1"></div>
                 <div class="col tile-title-line-photography left"></div>
@@ -28,18 +28,18 @@
                 <div class="col-1"></div>
             </div>
             <div class="photography-display">
-                <img src="../assets/home/1M5A4102-crop.jpg" alt="Photography Tile Image">
+                <img src="../../assets/home/1M5A4102-crop.jpg" alt="Photography Tile Image">
             </div>
             <div class="explore-btn">
                 <h2>Explore</h2>
-                <img src="../assets/icons/arrow.svg" alt="Arrow">
+                <img src="../../assets/icons/arrow.svg" alt="Arrow">
             </div>
         </div>
         <div id="tile-hover-title-web" class="tile-hover-title-web">
-            <img src="../assets/home/tiles/web-title.png" alt="Web Development">
+            <img src="../../assets/home/tiles/web-title.png" alt="Web Development">
         </div>
         <div id="tile-hover-title-photography" class="tile-hover-title-photography">
-            <img src="../assets/home/tiles/photography-title.png" alt="Photography">
+            <img src="../../assets/home/tiles/photography-title.png" alt="Photography">
         </div>
     </div>
 </template>
@@ -60,6 +60,16 @@ export default {
 				photo: ''
 			}
         }
+    },
+    methods: {
+    /* Navigate to photography page */
+    photographyPage() {
+        return this.$router.push('photography');
+    },
+    /* Navigate to web dev page */
+    webdevPage() {
+        return this.$router.push('web');
+    }
     }
 }
 </script>
@@ -272,7 +282,7 @@ export default {
     }
 
     #web-tile {
-    cursor: url("../assets/home/tiles/left-arrow.png") 0 0, auto;
+    cursor: url("../../assets/home/tiles/left-arrow.png") 0 0, auto;
 
     /* 1024px and down */
     @media only screen and (max-width: 1024px) {
@@ -282,7 +292,7 @@ export default {
     }
 
     #photography-tile {
-    cursor: url("../assets/home/tiles/right-arrow.png") 0 0, auto;
+    cursor: url("../../assets/home/tiles/right-arrow.png") 0 0, auto;
 
     /* 1024px and down */
     @media only screen and (max-width: 1024px) {

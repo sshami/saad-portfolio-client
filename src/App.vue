@@ -1,20 +1,13 @@
 <template>
   <div id="app">
-    <HomeIntro/>
-    <WorkTiles/>
+    <!-- This is where Vue JS renders the route component we're navigating to -->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HomeIntro from './components/HomeIntro.vue'
-import WorkTiles from './components/WorkTiles.vue'
-
 export default {
   name: 'App',
-  components: {
-    HomeIntro,
-    WorkTiles
-  }
 }
 </script>
 
