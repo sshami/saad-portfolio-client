@@ -52,12 +52,12 @@ export default {
         return {
 			web_tile: {
 				title: 'Web Development',
-				photo_left: 'static/assets/home/web-mobile-lc.png',
-				photo_right: 'static/assets/home/web-mobile-ss2.png'
+				photo_left: '',
+				photo_right: ''
 			},
 			photography_tile: {
 				title: 'Photogrpahy',
-				photo: 'static/assets/home/1M5A4102-crop.jpg'
+				photo: ''
 			}
         }
     }
@@ -67,6 +67,7 @@ export default {
 
 <style scoped lang="scss">
 
+    /* Colors */
     // TODO: Figure out how to make these global
     $base-cream: #FFFCF4;
     $violet-blue: #F4F6FD;
