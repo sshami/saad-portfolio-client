@@ -96,10 +96,11 @@ export default {
       }
     }
 
-    .transition-photography-title, .transition-web-title {
+    .transition-photography-title {
       position: relative;
+      width: 201px;
       top: 50%;
-      left: 44%;
+      margin: 0 auto;
       opacity: 0;
       transition: all 1s ease-in;
 
@@ -107,6 +108,20 @@ export default {
         opacity: 1;
       }
     }
+
+    .transition-web-title {
+      position: relative;
+      width: 271px;
+      top: 50%;
+      margin: 0 auto;
+      opacity: 0;
+      transition: all 1s ease-in;
+
+      &.show {
+        opacity: 1;
+      }
+    }
+
 
     .transition-photography-title-text .letter, .transition-web-title-text .letter {
       display: inline-block;
