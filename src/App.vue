@@ -1,9 +1,17 @@
 <template>
   <div id="app">
     <!-- Page Transition Overlays -->
-    <div id="transition-screen-photography-in" class="transition-screen-photography-in"></div>
+    <div id="transition-screen-photography-in" class="transition-screen-photography-in">
+      <div id="transition-photography-title" class="transition-photography-title">
+        <h1 class="transition-photography-title-text">Photography</h1>
+      </div>
+    </div>
     <div id="transition-screen-photography-out" class="transition-screen-photography-out"></div>
-    <div id="transition-screen-web-in" class="transition-screen-web-in"></div>
+    <div id="transition-screen-web-in" class="transition-screen-web-in">
+      <div id="transition-web-title" class="transition-web-title">
+        <h1 class="transition-web-title-text">Web Development</h1>
+      </div>
+    </div>
     <div id="transition-screen-web-out" class="transition-screen-web-out"></div>
     <!-- This is where Vue JS renders the route component we're navigating to -->
     <transition name="view"> 
@@ -86,6 +94,23 @@ export default {
       &.show {
         opacity: 1;
       }
+    }
+
+    .transition-photography-title, .transition-web-title {
+      position: relative;
+      top: 50%;
+      left: 44%;
+      opacity: 0;
+      transition: all 1s ease-in;
+
+      &.show {
+        opacity: 1;
+      }
+    }
+
+    .transition-photography-title-text .letter, .transition-web-title-text .letter {
+      display: inline-block;
+      line-height: 1em;
     }
 
     .transition-screen-web-in {

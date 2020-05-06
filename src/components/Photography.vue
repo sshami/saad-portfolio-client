@@ -16,12 +16,15 @@
 
 <script>
 import $ from 'jquery'
+import { animateText } from '../static/js/anime-animations.js'
 
 export default {
   name: 'Photography',
   beforeMount() {
       /* animate opening swipe-in transition */
       $("#transition-screen-photography-in").addClass("swipe");
+      $("#transition-photography-title").addClass("show");
+      animateText('rise', '.transition-photography-title-text');
   },
   mounted() {
       this.openingTransition();
@@ -38,6 +41,7 @@ export default {
         }, 900);
         /* hide opening swipe-in transition */
         setTimeout(function(){ 
+            $("#transition-photography-title").removeClass("show");
             $("#transition-screen-photography-in").addClass("hide");
         }, 1200);
         /* animate opening swipe-out transition */
