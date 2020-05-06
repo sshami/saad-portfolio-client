@@ -1,7 +1,12 @@
 <template>
   <div id="app">
+    <!-- Page Transition Overlays -->
+    <div id="transition-screen-photography-in" class="transition-screen-photography-in"></div>
+    <div id="transition-screen-photography-out" class="transition-screen-photography-out"></div>
     <!-- This is where Vue JS renders the route component we're navigating to -->
-    <router-view></router-view>
+    <transition name="view"> 
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -34,6 +39,71 @@ export default {
       line-height: 2;
       margin:0;
       padding:0;
+    }
+
+    .transition-screen-photography-in {
+      position: fixed;
+      pointer-events: none;
+      background: linear-gradient(to right, transparent 50%, $neutral-pink 50%);
+      background-size: 200% 100%;
+      background-position: left bottom;
+      //opacity: 0.8;
+      width: 100%;
+      height: 100%;
+      top: 0px;
+      left: 0px;
+      z-index: 5;
+      transition: all 1s ease;
+
+      &.swipe {
+          background-position: right bottom;
+      }
+
+      &.hide {
+        opacity: 0;
+      }
+    }
+
+    .transition-screen-photography-out {
+      position: fixed;
+      pointer-events: none;
+      background: linear-gradient(to right, $neutral-pink 50%,  transparent 50%);
+      background-size: 200% 100%;
+      background-position: left bottom;
+      //opacity: 0.8;
+      width: 100%;
+      height: 100%;
+      top: 0px;
+      left: 0px;
+      z-index: 5;
+      transition: all 1s ease;
+      opacity: 0;
+
+      &.swipe {
+          background-position: right bottom;
+      }
+
+      &.show {
+        opacity: 1;
+      }
+
+    }
+
+    .view-enter-active, .view-leave-active {
+      transition: opacity 1.5s ease-in-out, transform 1.5s ease;
+    }
+
+    .view-enter-active {
+      transition-delay: 1.3s;
+    }
+
+    .view-enter, .view-leave-to {
+      opacity: 0;
+
+    }
+
+    .view-enter-to, .view-leave {
+      opacity: 1;
     }
 
     h1 {
