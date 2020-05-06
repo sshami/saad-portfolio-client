@@ -3,6 +3,8 @@
     <!-- Page Transition Overlays -->
     <div id="transition-screen-photography-in" class="transition-screen-photography-in"></div>
     <div id="transition-screen-photography-out" class="transition-screen-photography-out"></div>
+    <div id="transition-screen-web-in" class="transition-screen-web-in"></div>
+    <div id="transition-screen-web-out" class="transition-screen-web-out"></div>
     <!-- This is where Vue JS renders the route component we're navigating to -->
     <transition name="view"> 
       <router-view></router-view>
@@ -47,7 +49,6 @@ export default {
       background: linear-gradient(to right, transparent 50%, $neutral-pink 50%);
       background-size: 200% 100%;
       background-position: left bottom;
-      //opacity: 0.8;
       width: 100%;
       height: 100%;
       top: 0px;
@@ -70,7 +71,6 @@ export default {
       background: linear-gradient(to right, $neutral-pink 50%,  transparent 50%);
       background-size: 200% 100%;
       background-position: left bottom;
-      //opacity: 0.8;
       width: 100%;
       height: 100%;
       top: 0px;
@@ -86,7 +86,51 @@ export default {
       &.show {
         opacity: 1;
       }
+    }
 
+    .transition-screen-web-in {
+      position: fixed;
+      pointer-events: none;
+      background: linear-gradient(to left, transparent 50%, $violet-blue 50%);
+      background-size: 200% 100%;
+      background-position: right bottom;
+      width: 100%;
+      height: 100%;
+      top: 0px;
+      left: 0px;
+      z-index: 5;
+      transition: all 1s ease;
+
+      &.swipe {
+          background-position: left bottom;
+      }
+
+      &.hide {
+        opacity: 0;
+      }
+    }
+
+    .transition-screen-web-out {
+      position: fixed;
+      pointer-events: none;
+      background: linear-gradient(to left, $violet-blue 50%, transparent 50%);
+      background-size: 200% 100%;
+      background-position: right bottom;
+      width: 100%;
+      height: 100%;
+      top: 0px;
+      left: 0px;
+      z-index: 5;
+      transition: all 1s ease;
+      opacity: 0;
+
+      &.swipe {
+          background-position: left bottom;
+      }
+
+      &.show {
+        opacity: 1;
+      }
     }
 
     .view-enter-active, .view-leave-active {

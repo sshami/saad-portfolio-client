@@ -89,7 +89,7 @@ export default {
         transform: rotate(-90deg);
     }
 
-    .tile-title-line-photography, .tile-title-line-web  {
+    .tile-title-line-photography  {
     left: 0;
     height: 1px;
     width: 100%;
