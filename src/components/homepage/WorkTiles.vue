@@ -119,7 +119,6 @@ export default {
 
         .tile-title-text {
             margin-top: 14px;
-            padding: 0px 5px 0px 5px;
         }
 
         .tile-title-line-photography, .tile-title-line-web  {
