@@ -8,10 +8,10 @@
                 <div class="col tile-title-line-web right"></div>
                 <div class="col-1"></div>
             </div>
-            <div class="web-img mobile-lc">
+            <div id="mobile-lc" class="web-img mobile-lc">
                 <img src="../../assets/home/web-mobile-lc.png" alt="Lauren Castle Mobile Website">
             </div>
-            <div class="web-img mobile-ss">
+            <div id="mobile-ss" class="web-img mobile-ss">
                 <img src="../../assets/home/web-mobile-ss2.png" alt="Saad Mobile Website">
             </div>
             <div class="explore-btn">
@@ -27,7 +27,7 @@
                 <div class="col tile-title-line-photography right"></div>
                 <div class="col-1"></div>
             </div>
-            <div class="photography-display">
+            <div id="photography-display" class="photography-display">
                 <img src="../../assets/home/1M5A4102-tile.jpg" alt="Photography Tile Image">
             </div>
             <div class="explore-btn">
@@ -177,7 +177,8 @@ export default {
     }
 
     > .mobile-lc {
-        top: 7%;
+        top: 12%;
+        transition:all 4s ease;
 
         img {
             width: 38%;
@@ -189,10 +190,15 @@ export default {
             transform: translateY(15px)
         }
 
+        &.shift {
+            transform: translateY(100px);
+        }
+
     }
 
     > .mobile-ss {
-        top: 15%;
+        top: 17%;
+        transition:all 4s ease;
 
         img {
             width: 38%;
@@ -205,13 +211,17 @@ export default {
             transform: translateY(25px)
         }
 
+        &.shift {
+            transform: translateY(-30px);
+        }
+
     }
 
     > .photography-display {
         position: absolute;
         top: 0;
         left: 0;
-        transition:all 2s ease;
+        transition:all 4s ease;
         opacity: 0%;
 
         img {
@@ -221,6 +231,11 @@ export default {
         &.fade-in {
             opacity: 100%;
         }
+
+        &.shift {
+            top: -30px;
+        }
+
     }
 
     }
