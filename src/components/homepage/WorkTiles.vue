@@ -171,7 +171,7 @@ export default {
 
     > .web-img {
         position: absolute;
-        transition:all 2s ease;
+        transition:all 2s ease-in;
         opacity: 0%;
     }
 
@@ -190,7 +190,7 @@ export default {
         }
 
         &.shift {
-            transform: translateY(40px);
+            transform: translateY(40px) rotate(5deg);
         }
 
     }
@@ -211,7 +211,7 @@ export default {
         }
 
         &.shift {
-            transform: translateY(-5px);
+            transform: rotate(-5deg);
         }
 
     }
