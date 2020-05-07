@@ -16,7 +16,7 @@
 
 <script>
 import $ from 'jquery'
-import { animateText } from '../static/js/anime-animations.js'
+import { animateText, animateLine } from '../static/js/anime-animations.js'
 
 export default {
   name: 'Photography',
@@ -47,6 +47,7 @@ export default {
         /* animate opening swipe-out transition */
         setTimeout(function(){ 
             $("#transition-screen-photography-out").addClass("swipe");
+            animateLine('.tile-title-line-photography');
         }, 1500);
     },
     /* Opening Transition */

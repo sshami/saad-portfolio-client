@@ -13,7 +13,7 @@
 
 <script>
 import $ from 'jquery'
-import { animateText } from '../static/js/anime-animations.js'
+import { animateText, animateLine } from '../static/js/anime-animations.js'
 
 export default {
   name: 'WebDevelopment',
@@ -44,6 +44,7 @@ export default {
         /* animate opening swipe-out transition */
         setTimeout(function(){ 
             $("#transition-screen-web-out").addClass("swipe");
+            animateLine('.tile-title-line-web');
         }, 1500);
     },
     /* Opening Transition */
