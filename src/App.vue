@@ -31,6 +31,7 @@ export default {
     /* Import Vendor Stylings */
     @import '~bootstrap/dist/css/bootstrap.css';
     @import '~socicon/css/socicon.css';
+    @import '~animate.css/animate.css';
 
     /* Colors */
     // TODO: Figure out how to make these global
