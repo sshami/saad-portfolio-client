@@ -28,7 +28,7 @@
                 <div class="col-1"></div>
             </div>
             <div class="photography-display">
-                <img src="../../assets/home/1M5A4102-crop.jpg" alt="Photography Tile Image">
+                <img src="../../assets/home/1M5A4102-tile.jpg" alt="Photography Tile Image">
             </div>
             <div class="explore-btn">
                 <h2>Explore</h2>
@@ -99,9 +99,9 @@ export default {
     > .tile-title {
         position: absolute;
         top: 0;
-        left: 0;
         right: 0;
         bottom: 0;
+        width: 122%;
         z-index: 2;
         text-align: center;
         text-transform: uppercase;
@@ -110,6 +110,7 @@ export default {
 
         &.web-dev {
             transform: rotate(-90deg);
+            left: 0;
         }
 
         &.photography {
@@ -274,7 +275,7 @@ export default {
 
     .web-tile {
         background-color: $violet-blue; 
-        @include aspect-ratio(16, 16);
+        @include aspect-ratio(16, 19);
         overflow: hidden;
         background: linear-gradient(to right, $base-cream 50%, $violet-blue 50%);
         background-size: 200% 100%;
@@ -310,7 +311,7 @@ export default {
         background: linear-gradient(to left, $base-cream 50%, $neutral-pink 50%);
         background-size: 200% 100%;
         background-position: right bottom;
-        @include aspect-ratio(16, 16);
+        @include aspect-ratio(16, 19);
         overflow:hidden;
         transition:all 1.5s ease;
 
