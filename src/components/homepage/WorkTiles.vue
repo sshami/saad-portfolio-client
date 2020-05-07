@@ -9,10 +9,10 @@
                 <div class="col-1"></div>
             </div>
             <div id="mobile-lc" class="web-img mobile-lc">
-                <img src="../../assets/home/web-mobile-lc.png" alt="Lauren Castle Mobile Website">
+                <img src="../../assets/home/web-mobile-lc3d.png" alt="Lauren Castle Mobile Website">
             </div>
             <div id="mobile-ss" class="web-img mobile-ss">
-                <img src="../../assets/home/web-mobile-ss2.png" alt="Saad Mobile Website">
+                <img src="../../assets/home/web-mobile-ss3d.png" alt="Saad Mobile Website">
             </div>
             <div class="explore-btn">
                 <h2>Explore</h2>
@@ -176,11 +176,11 @@ export default {
     }
 
     > .mobile-lc {
-        top: 12%;
+        top: 25%;
         transition:all 4s ease;
 
         img {
-            width: 38%;
+            width: 48%;
             margin-left: 12%;
         }
 
@@ -190,19 +190,19 @@ export default {
         }
 
         &.shift {
-            transform: translateY(100px);
+            transform: translateY(40px);
         }
 
     }
 
     > .mobile-ss {
-        top: 17%;
+        top: 10%;
         transition:all 4s ease;
 
         img {
-            width: 38%;
+            width: 56%;
             float: right;
-            margin-right: 10%;
+            margin-right: 9%;
         }
 
         &.fade-in {
@@ -211,7 +211,7 @@ export default {
         }
 
         &.shift {
-            transform: translateY(-30px);
+            transform: translateY(-5px);
         }
 
     }
