@@ -245,7 +245,7 @@ export default {
 
     .tile-hover-title-web {
     position: absolute;
-    top: 78%;
+    top: 88%;
     left: 8%;
     opacity: 0;
     transition: all 1s ease;
@@ -254,7 +254,8 @@ export default {
         width: 70%;
     }
 
-    &.show {
+    &.reveal {
+        top: 78%;
         opacity: 100;
     }
 
@@ -267,7 +268,7 @@ export default {
 
     .tile-hover-title-photography {
     position: absolute;
-    top: 78%;
+    top: 88%;
     left: 35.5%;
     opacity: 0;
     transition: all 1s ease;
@@ -276,7 +277,8 @@ export default {
         width: 81%;
     }
 
-    &.show {
+    &.reveal {
+        top: 78%;
         opacity: 100;
     }
 
