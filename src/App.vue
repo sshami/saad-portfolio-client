@@ -37,7 +37,7 @@ export default {
     // TODO: Figure out how to make these global
     $base-cream: #FFFCF4;
     $violet-blue: #F4F6FD;
-    $neutral-pink: #ECD2D1;
+    $neutral-pink: #fddecc;
 
     html, body {
       font-family: 'Lato', sans-serif;

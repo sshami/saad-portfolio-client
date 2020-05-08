@@ -70,7 +70,7 @@ export default {
 
 <style scoped lang="scss">
 
-    $neutral-pink: #ECD2D1;
+    $neutral-pink: #fddecc;
 
     .page {
         height: 100vh;

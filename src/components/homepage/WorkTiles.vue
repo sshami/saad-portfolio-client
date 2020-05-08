@@ -28,7 +28,7 @@
                 <div class="col-1"></div>
             </div>
             <div id="photography-display" class="photography-display">
-                <img src="../../assets/home/1M5A4102-tile.jpg" alt="Photography Tile Image">
+                <img src="../../assets/home/1M5A4102-tile-peach.jpg" alt="Photography Tile Image">
             </div>
             <div class="explore-btn">
                 <h2>Explore</h2>
@@ -86,7 +86,7 @@ export default {
     // TODO: Figure out how to make these global
     $base-cream: #FFFCF4;
     $violet-blue: #F4F6FD;
-    $neutral-pink: #ECD2D1;
+    $neutral-pink: #fddecc;
 
     @mixin aspect-ratio($width, $height) {
     position: relative;
