@@ -56,7 +56,7 @@
 <script>
 import $ from 'jquery'
 import { animateText, animateLine } from '../static/js/anime-animations.js'
-import { initScrollMagicControllerAndTimeline, createPhotographySlideScene, destroyScrollMagic } from '../static/js/photography.js'
+import { resetScrollMagicTween, initScrollMagicControllerAndTimeline, createPhotographySlideScene, destroyScrollMagic } from '../static/js/photography.js'
 
 export default {
   name: 'Photography',
@@ -82,7 +82,7 @@ export default {
   },
   destroyed() {
       this.closingTransition();
-      destroyScrollMagic();
+      destroyScrollMagic(false);
   },
   methods: {
     /* Opening Transition */
@@ -122,11 +122,12 @@ export default {
     /* Window resize event -  need to recalculate sizing for photo slide */
     onResize(event) {
         console.log('window has been resized', event) ;
-        destroyScrollMagic();
-        setTimeout(function(){ 
-            initScrollMagicControllerAndTimeline();
-            createPhotographySlideScene();
-        }, 800);
+        resetScrollMagicTween();
+        //destroyScrollMagic(false);
+        // setTimeout(function(){ 
+        //     initScrollMagicControllerAndTimeline();
+        //     createPhotographySlideScene();
+        // }, 800);
     }
   }
 }

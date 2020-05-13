@@ -18,6 +18,12 @@ function getPhotoWidths() {
 // ScrollMagic Controller
 var photographyScrollMagicController = null;
 var horizontalSlideTimeLine = null;
+// Create scene to pin
+var scene = new ScrollMagic.Scene({
+    triggerElement: "#js-wrapper",
+    triggerHook: "onLeave",
+    duration: "400%"
+  })
 
 /*  Initialize Scroll Magic Controller */
 export function initScrollMagicControllerAndTimeline() {
@@ -41,21 +47,30 @@ export function initScrollMagicControllerAndTimeline() {
 
 export function createPhotographySlideScene() {
 
-  // create scene to pin and link animation
-  new ScrollMagic.Scene({
-    triggerElement: "#js-wrapper",
-    triggerHook: "onLeave",
-    duration: "400%"
-  })
-    .setPin("#js-wrapper")
-    .setTween(horizontalSlideTimeLine)
+  // Link animation to scene
+  scene
+  .setPin("#js-wrapper")
+  .setTween(horizontalSlideTimeLine)
     //.addIndicators() // add indicators (requires plugin)
     .addTo(photographyScrollMagicController);
 }
 
+export function resetScrollMagicTween() {
+    var photoWidths = getPhotoWidths();
+    var x_translate = ((photoWidths) - $(window).width()) / $("#js-slideContainer").width();
+    var slideEndSpace = 0.09;
+    var x_translate_percentage = (x_translate + slideEndSpace) * 100;
+
+    console.log("SETTING X-TRANSLATE: " + x_translate_percentage);
+    var newHorizontalSlideTimeLine = new TimelineMax()
+    .to("#js-slideContainer", 1,   {x: "-" + x_translate_percentage + "%"})
+
+    scene.setTween(newHorizontalSlideTimeLine);
+}
+
 
 /* Destroys ScrollMagic Controller and Scenes */
-export function destroyScrollMagic(){
-    photographyScrollMagicController.destroy();
+export function destroyScrollMagic(reset){
+    photographyScrollMagicController.destroy(reset);
 }
 
