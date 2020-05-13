@@ -7,6 +7,9 @@
                 <div class="col tile-title-line-photography right"></div>
             </div>
         </div>
+        <div class="homepage-link" @click="homePage">
+            <span>SAAD</span>
+        </div>
         <!-- <div class="photos">
             <img src="https://66.media.tumblr.com/0a82fa7ce59404e7a713ded2fd5aa81d/tumblr_pkf8ro270V1v57djwo1_1280.jpg" /> 
         </div> -->
@@ -47,7 +50,7 @@
 <script>
 import $ from 'jquery'
 import { animateText, animateLine } from '../static/js/anime-animations.js'
-import { createPhotographySlide } from '../static/js/photography.js'
+import { initScrollMagicControllerAndTimeline, createPhotographySlideScene, destroyScrollMagic } from '../static/js/photography.js'
 
 export default {
   name: 'Photography',
@@ -59,10 +62,13 @@ export default {
   },
   mounted() {
       this.openingTransition();
-      createPhotographySlide();
+      //document.body.scrollTop = document.documentElement.scrollTop = 0;
+      initScrollMagicControllerAndTimeline();
+      createPhotographySlideScene();
   },
   destroyed() {
-      this.closingTransition()
+      this.closingTransition();
+      destroyScrollMagic();
   },
   methods: {
     /* Opening Transition */
@@ -94,6 +100,10 @@ export default {
         setTimeout(function(){ 
             $("#transition-screen-photography-in").removeClass("swipe");
         }, 1500);
+    },
+    /* Navigate to home page */
+    homePage() {
+        return this.$router.push('/');
     }
   }
 }
@@ -108,6 +118,7 @@ export default {
         height: 100%;
         /* fixed position so it doesn't jitter when loading new route/page */
         //position: fixed;
+        width: 100%;
     }
 
     .photography-page-title-container {
@@ -156,6 +167,14 @@ export default {
         }
     }
 
+    .homepage-link {
+        position: fixed;
+        top: 0px;
+        left: 55px;
+        z-index: 5;
+
+    }
+
 
     // ---------- SCROLLING STYLES ---------- //
 
@@ -171,7 +190,7 @@ export default {
     }
 
     // .sections {
-    //     width: 600%;
+    //     position: fixed;
     // }
 
     .section {

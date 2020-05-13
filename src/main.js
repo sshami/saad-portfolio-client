@@ -20,7 +20,28 @@ const routes = [
 
 const router = new VueRouter({
   routes: routes,
-  mode: 'history'
+  mode: 'history',
+  scrollBehavior (to, from, savedPosition) {
+    console.log(to);
+    console.log(from);
+    console.log(savedPosition);
+    if (savedPosition) {
+      // scroll to saved position when using browser nav
+      // TODO: Fix issue with page scrolling jitter when navigating via browser arrows
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(savedPosition)
+        }, 800)
+      })
+    } else {
+      // scroll to top when navigating within app
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({ x: 0, y: 0 });
+        }, 800)
+      })
+    }
+  }
 });
 
 new Vue({
