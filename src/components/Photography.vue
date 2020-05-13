@@ -16,7 +16,7 @@
 
         <div class="wrapper" id="js-wrapper">
             <div class="sections" id="js-slideContainer">
-                <section class="section">
+                <!-- <section class="section">
                     <span class="section__title" id="title1">Section One</span>
                 <span id="trigger--title1"></span>
                 </section>
@@ -39,7 +39,13 @@
                 <section class="section">
                     <span class="section__title" id="title6">Section Six</span>
                 <span id="trigger--title6"></span>
-                </section>
+                </section> -->
+                <div class="photos-container">
+                    <img class="photo" src="https://66.media.tumblr.com/0a82fa7ce59404e7a713ded2fd5aa81d/tumblr_pkf8ro270V1v57djwo1_1280.jpg" />
+                    <img class="photo" src="https://66.media.tumblr.com/1d87611e8ffffe6701377dc2b58b1638/tumblr_pf48obYBwN1v57djwo1_1280.jpg" />
+                    <img class="photo" src="https://66.media.tumblr.com/ac9b62f320dee8a607f09078629a2c82/tumblr_pf48pwtn2v1v57djwo1_1280.jpg" />
+                    <img class="photo" src="https://66.media.tumblr.com/e16bdff3d9aedd32991e7efcf2f10468/tumblr_pehq47jW131v57djwo1_1280.jpg" />
+                </div>
             </div>
         </div>
 
@@ -61,10 +67,18 @@ export default {
       animateText('rise', '.transition-photography-title-text');
   },
   mounted() {
-      this.openingTransition();
-      //document.body.scrollTop = document.documentElement.scrollTop = 0;
-      initScrollMagicControllerAndTimeline();
-      createPhotographySlideScene();
+    // Register an event listener when the Vue component is ready
+    window.addEventListener('resize', this.onResize)
+    this.openingTransition();
+    /* Setup photo slide - need to give it some time to get accurate photo widths */
+    setTimeout(function(){
+        initScrollMagicControllerAndTimeline();
+        createPhotographySlideScene();
+    }, 500);
+  },
+  beforeDestroy(){
+    // Unregister the event listener before destroying this Vue instance
+    window.removeEventListener('resize', this.onResize)
   },
   destroyed() {
       this.closingTransition();
@@ -104,6 +118,15 @@ export default {
     /* Navigate to home page */
     homePage() {
         return this.$router.push('/');
+    },
+    /* Window resize event -  need to recalculate sizing for photo slide */
+    onResize(event) {
+        console.log('window has been resized', event) ;
+        destroyScrollMagic();
+        setTimeout(function(){ 
+            initScrollMagicControllerAndTimeline();
+            createPhotographySlideScene();
+        }, 800);
     }
   }
 }
@@ -186,12 +209,24 @@ export default {
         overflow: hidden;
         perspective: 1000;
         margin-left: 50px;
-        background-color: gray;
+        //background-color: gray;
     }
 
     // .sections {
     //     position: fixed;
     // }
+
+    .photos-container {
+        height: 100%;
+    }
+
+    .photo {
+        float: left;
+        margin-left: 80px;
+        height: 100%;
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
 
     .section {
     & {
