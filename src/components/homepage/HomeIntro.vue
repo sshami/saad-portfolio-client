@@ -170,7 +170,7 @@ export default {
             -webkit-perspective: 1000;
 
             &.shift {
-                top: -55%;
+                transform: translateY(-55%);
             }
         }
 
@@ -185,13 +185,11 @@ export default {
             transition: all 1.5s ease-out;
 
             &.shift {
-                right: 78%;
-                top: 30%;
-                transform: rotate(20deg);
+                transform: translateX(-70%) rotate(20deg);
 
                 /* 767px and down */
                 @media only screen and (max-width: 767px) {
-                    left: -40%;
+                    transform: translateX(-300%);
                 }
             }
         }
@@ -207,13 +205,11 @@ export default {
             transition: all 1.5s ease-out;
 
             &.shift {
-                left: 75%;
-                top: 54%;
-                transform: rotate(10deg);
+                transform: translateX(70%) translateY(50%) rotate(10deg);
 
                 /* 767px and down */
                 @media only screen and (max-width: 767px) {
-                    right: -40%;
+                    transform: translateX(300%);
                 }
 
             }
@@ -230,13 +226,11 @@ export default {
             transition: all 1s ease-out;
 
             &.shift {
-                left: 70%;
-                top: 32%;
-                transform: rotate(280deg);
+                transform: translateX(70%) translateY(32%) rotate(280deg);
 
                 /* 767px and down */
                 @media only screen and (max-width: 767px) {
-                    right: -40%;
+                    transform: translateX(300%);
                 }
 
             }

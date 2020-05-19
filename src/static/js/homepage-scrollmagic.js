@@ -30,7 +30,7 @@ export function buildScrollMagicScenes() {
             if (scrollDirection == 'FORWARD'){
                 // TODO: Needed to comment out other animations due to browser lag - investigate
                 //animateText('rise', '.rising-bio-title');
-                animateLine('.animated-line');
+                //animateLine('.animated-line');
                 // animateText('left-shift', '.rising-bio-text-p1');
                 // animateText('left-shift', '.rising-bio-text-p2');
             }
