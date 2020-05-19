@@ -4,10 +4,10 @@
         <div class="col-lg-12 header-splash">
             <div id="flatlay-container" class="flatlay-container">
                 <div id="flatlay-items" class="flatlay-items">
-                    <img src="../../assets/home/intro-head/laptop.jpg" alt="Laptop" id="laptop" class="flatlay laptop" >
+                    <img src="../../assets/home/intro-head/laptop-md.jpg" alt="Laptop" id="laptop" class="flatlay laptop" >
                     <img src="../../assets/home/intro-head/camera.jpg" alt="Camera" id="camera" class="flatlay camera">
                     <img src="../../assets/home/intro-head/coffee.jpg" alt="Coffee" id="coffee" class="flatlay coffee">
-                    <img src="../../assets/home/intro-head/plant.jpg" alt="Plant" id="plant" class="flatlay plant">
+                    <img src="../../assets/home/intro-head/plant.png" alt="Plant" id="plant" class="flatlay plant">
                 </div>
             </div>
             <div id="flatlay-bio" class="row flatlay-bio flatlay">
@@ -109,7 +109,7 @@ export default {
             width: 70%;
             max-width: 600px;
             opacity: 0;
-            transition: all 1s ease-out;
+            transition: all 1.4s ease-out;
 
             /* 767px and down */
             @media only screen and (max-width: 767px) {
@@ -160,7 +160,7 @@ export default {
             right: 0;
             top: 0;
             width: 50%;
-            transition: all 1s ease-out;
+            transition: all 1.3s ease-out;
 
             /* antialiasing */
             //outline: 1px solid transparent;
@@ -226,7 +226,7 @@ export default {
             transition: all 1s ease-out;
 
             &.shift {
-                transform: translateX(70%) translateY(32%) rotate(280deg);
+                transform: translateX(70%) translateY(32%) rotate(140deg);
 
                 /* 767px and down */
                 @media only screen and (max-width: 767px) {
