@@ -230,6 +230,48 @@ export default {
     }
 
 
+
+    .draw-line {
+      height:0px;
+      width:1px;
+      border-bottom:1px solid #000;
+      margin-top: 6px;
+
+      &.left {
+        float: right;
+      }
+      
+      &.draw {
+        -webkit-animation: increase 2s;
+        -moz-animation:    increase 2s; 
+        -o-animation:      increase 2s; 
+        animation:         increase 2s; 
+        animation-fill-mode: forwards;
+      }
+
+      &.undraw {
+        -webkit-animation: decrease 2s;
+        -moz-animation:    decrease 2s; 
+        -o-animation:      decrease 2s; 
+        animation:         decrease 2s; 
+        animation-fill-mode: forwards;
+      }
+
+      @keyframes increase {
+          100% {
+              width: 100%;
+          }
+      }
+
+      @keyframes decrease {
+          0% {
+              width: 1px;
+          }
+      }
+
+    }
+
+
     [class^="socicon-"], [class*=" socicon-"] {
       font-family: 'Socicon' !important;
       speak: none;

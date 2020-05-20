@@ -26,13 +26,17 @@ export function buildScrollMagicScenes() {
     .setClassToggle('.flatlay', 'shift')
     .on('start', function (event) {
             var scrollDirection = event.scrollDirection;
+            console.log(scrollDirection);
 
             if (scrollDirection == 'FORWARD'){
                 // TODO: Needed to comment out other animations due to browser lag - investigate
                 //animateText('rise', '.rising-bio-title');
-                //animateLine('.animated-line');
                 // animateText('left-shift', '.rising-bio-text-p1');
                 // animateText('left-shift', '.rising-bio-text-p2');
+                $("#draw-line-bio-l").addClass("draw");
+                $("#draw-line-bio-r").addClass("draw");
+            } else if (scrollDirection == "REVERSE"){
+                // TODO: Add reverse animations for bio text and line draw?
             }
     })
     // .addIndicators({
