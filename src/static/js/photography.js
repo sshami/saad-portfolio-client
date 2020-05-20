@@ -36,7 +36,8 @@ export function initScrollMagicControllerAndTimeline() {
     var x_translate_percentage = (x_translate + slideEndSpace) * 100;
 
     horizontalSlideTimeLine = new TimelineMax()
-    .to("#js-slideContainer", 1,   {x: "-" + x_translate_percentage + "%", rotation: 0.01})
+    // note: need to add rotation for Firefox
+    .to("#js-slideContainer", 1,   {x: "-" + x_translate_percentage + "%", rotation: 0.05})
 }
 
 export function createPhotographySlideScene() {
