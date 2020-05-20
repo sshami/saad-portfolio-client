@@ -96,8 +96,7 @@ export default {
         return this.$router.push('/');
     },
     /* Window resize event -  need to reset scrollmagic and timeline to recalculate sizing for photo slide */
-    onResize(event) {
-        console.log('window has been resized', event) ;
+    onResize() {
         window.scrollTo(0, 0);
         resetTimeline();
         destroyScrollMagic();
