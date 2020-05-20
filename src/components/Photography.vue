@@ -2,9 +2,9 @@
     <div class="page">
         <div id="photography-page-title"  class="photography-page-title-container">
             <div class="row photography-page-title">
-                <div class="col tile-title-line-photography left"></div>
+                <div class="col" style="padding: 0px; margin-top: 6px;"><div id="draw-line-page-pl" class="draw-line left"></div></div>
                 <div class="col-auto"><h1>Photography</h1></div>
-                <div class="col tile-title-line-photography right"></div>
+                <div class="col" style="padding: 0px; margin-top: 6px;"><div id="draw-line-page-pr" class="draw-line"></div></div>
             </div>
         </div>
         <div class="homepage-link" @click="homePage">
@@ -56,7 +56,7 @@
 
 <script>
 import $ from 'jquery'
-import { animateText, animateLine } from '../static/js/anime-animations.js'
+import { animateText } from '../static/js/anime-animations.js'
 import { initScrollMagicControllerAndTimeline, createPhotographySlideScene, destroyScrollMagic } from '../static/js/photography.js'
 
 export default {
@@ -100,7 +100,8 @@ export default {
         /* animate opening swipe-out transition */
         setTimeout(function(){ 
             $("#transition-screen-photography-out").addClass("swipe");
-            animateLine('.tile-title-line-photography');
+            $("#draw-line-page-pl").addClass("draw");
+            $("#draw-line-page-pr").addClass("draw");
         }, 1500);
     },
     /* Opening Transition */
@@ -159,23 +160,6 @@ export default {
         width: 400px;
         text-transform: uppercase;
         transform: rotate(-90deg);
-    }
-
-    .tile-title-line-photography  {
-    left: 0;
-    height: 1px;
-    width: 100%;
-    background-color: black;
-    top: 7px;
-    //opacity: 0;
-
-    &.left {
-        transform-origin: 100% 100%;
-    }
-
-    &.right {
-        transform-origin: 0% 0%;
-    }
     }
 
     .photos {

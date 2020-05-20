@@ -2,9 +2,9 @@
     <div class="page">
         <div id="web-page-title"  class="web-page-title-container">
             <div class="row web-page-title">
-                <div class="col tile-title-line-web left"></div>
+                <div class="col" style="padding: 0px; margin-top: 6px;"><div id="draw-line-page-wl" class="draw-line left"></div></div>
                 <div class="col-auto"><h1>Web Development</h1></div>
-                <div class="col tile-title-line-web right"></div>
+                <div class="col" style="padding: 0px; margin-top: 6px;"><div id="draw-line-page-wr" class="draw-line"></div></div>
             </div>
         </div>
     </div>
@@ -13,7 +13,7 @@
 
 <script>
 import $ from 'jquery'
-import { animateText, animateLine } from '../static/js/anime-animations.js'
+import { animateText } from '../static/js/anime-animations.js'
 
 export default {
   name: 'WebDevelopment',
@@ -44,7 +44,8 @@ export default {
         /* animate opening swipe-out transition */
         setTimeout(function(){ 
             $("#transition-screen-web-out").addClass("swipe");
-            animateLine('.tile-title-line-web');
+            $("#draw-line-page-wl").addClass("draw");
+            $("#draw-line-page-wr").addClass("draw");
         }, 1500);
     },
     /* Opening Transition */
@@ -90,20 +91,4 @@ export default {
         transform: rotate(-270deg);
     }
 
-    .tile-title-line-web  {
-    left: 0;
-    height: 1px;
-    width: 100%;
-    background-color: black;
-    top: 7px;
-    //opacity: 0;
-
-    &.left {
-        transform-origin: 100% 100%;
-    }
-
-    &.right {
-        transform-origin: 0% 0%;
-    }
-    }
 </style>
