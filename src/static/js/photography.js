@@ -36,7 +36,7 @@ export function initScrollMagicControllerAndTimeline() {
     var x_translate_percentage = (x_translate + slideEndSpace) * 100;
 
     horizontalSlideTimeLine = new TimelineMax()
-    .to("#js-slideContainer", 1,   {x: "-" + x_translate_percentage + "%"})
+    .to("#js-slideContainer", 1,   {x: "-" + x_translate_percentage + "%", rotation: 0.01})
 }
 
 export function createPhotographySlideScene() {
@@ -45,7 +45,7 @@ export function createPhotographySlideScene() {
   new ScrollMagic.Scene({
     triggerElement: "#js-wrapper",
     triggerHook: "onLeave",
-    duration: "400%"
+    duration: "800%"
   })
     .setPin("#js-wrapper")
     .setTween(horizontalSlideTimeLine)
