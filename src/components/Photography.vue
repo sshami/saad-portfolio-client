@@ -10,36 +10,9 @@
         <div class="homepage-link" @click="homePage">
             <span>SAAD</span>
         </div>
-        <!-- <div class="photos">
-            <img src="https://66.media.tumblr.com/0a82fa7ce59404e7a713ded2fd5aa81d/tumblr_pkf8ro270V1v57djwo1_1280.jpg" /> 
-        </div> -->
 
         <div class="wrapper" id="js-wrapper">
             <div class="sections" id="js-slideContainer">
-                <!-- <section class="section">
-                    <span class="section__title" id="title1">Section One</span>
-                <span id="trigger--title1"></span>
-                </section>
-                <section class="section">
-                    <span class="section__title" id="title2">Section Two</span>
-                <span id="trigger--title2"></span>
-                </section>
-                <section class="section">
-                    <span class="section__title" id="title3">Section Three</span>
-                <span id="trigger--title3"></span>
-                </section>
-                <section class="section">
-                    <span class="section__title" id="title4">Section Four</span>
-                <span id="trigger--title4"></span>
-                </section>
-                <section class="section">
-                    <span class="section__title" id="title5">Section Five</span>
-                <span id="trigger--title5"></span>
-                </section>
-                <section class="section">
-                    <span class="section__title" id="title6">Section Six</span>
-                <span id="trigger--title6"></span>
-                </section> -->
                 <div class="photos-container">
                     <img class="photo" src="https://66.media.tumblr.com/0a82fa7ce59404e7a713ded2fd5aa81d/tumblr_pkf8ro270V1v57djwo1_1280.jpg" />
                     <img class="photo" src="https://66.media.tumblr.com/1d87611e8ffffe6701377dc2b58b1638/tumblr_pf48obYBwN1v57djwo1_1280.jpg" />
@@ -57,7 +30,7 @@
 <script>
 import $ from 'jquery'
 import { animateText } from '../static/js/anime-animations.js'
-import { initScrollMagicControllerAndTimeline, createPhotographySlideScene, destroyScrollMagic } from '../static/js/photography.js'
+import { initScrollMagicControllerAndTimeline, createPhotographySlideScene, removeScrollMagicDom, destroyScrollMagic } from '../static/js/photography.js'
 
 export default {
   name: 'Photography',
@@ -124,11 +97,14 @@ export default {
     /* Window resize event -  need to recalculate sizing for photo slide */
     onResize(event) {
         console.log('window has been resized', event) ;
+        //window.scrollTo(0, 0);
+        //$("#js-slideContainer").css("transform", "translate(0px, 0px)");
         destroyScrollMagic();
-        setTimeout(function(){ 
-            initScrollMagicControllerAndTimeline();
-            createPhotographySlideScene();
-        }, 800);
+        removeScrollMagicDom();
+        $("#js-wrapper").css("width", "100%");
+        initScrollMagicControllerAndTimeline();
+        createPhotographySlideScene();
+
     }
   }
 }
@@ -151,6 +127,7 @@ export default {
         background-color: $neutral-pink;
         height: 100%;
         width: 40px;
+        z-index: 10;
     }
 
     .photography-page-title {
@@ -179,7 +156,7 @@ export default {
         position: fixed;
         top: 0px;
         left: 55px;
-        z-index: 5;
+        z-index: 10;
 
     }
 

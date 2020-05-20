@@ -60,3 +60,8 @@ export function destroyScrollMagic(){
     photographyScrollMagicController.destroy();
 }
 
+export function removeScrollMagicDom(){
+    var cnt = $(".scrollmagic-pin-spacer").contents();
+    $(".scrollmagic-pin-spacer").replaceWith(cnt);
+}
+
