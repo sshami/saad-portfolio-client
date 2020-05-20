@@ -215,7 +215,7 @@ export default {
         }
 
         &.shift {
-            top: -30px;
+            transform: translateY(-30px)
         }
 
     }
@@ -238,7 +238,7 @@ export default {
     }
 
     &.reveal {
-        top: 78%;
+        transform: translateY(-78%);
         opacity: 100;
     }
 
@@ -261,7 +261,7 @@ export default {
     }
 
     &.reveal {
-        top: 78%;
+        transform: translateY(-78%);
         opacity: 100;
     }
 
