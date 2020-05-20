@@ -1,6 +1,5 @@
 import $ from 'jquery'
 import ScrollMagic from 'scrollmagic'
-import { animateLine } from './anime-animations.js'
 
 
 // ScrollMagic Controller
@@ -26,7 +25,6 @@ export function buildScrollMagicScenes() {
     .setClassToggle('.flatlay', 'shift')
     .on('start', function (event) {
             var scrollDirection = event.scrollDirection;
-            console.log(scrollDirection);
 
             if (scrollDirection == 'FORWARD'){
                 // TODO: Needed to comment out other animations due to browser lag - investigate
@@ -65,7 +63,8 @@ export function buildScrollMagicScenes() {
                 $(".web-img").addClass("fade-in");
                 //$(".tile-title").css({"opacity":"100%"});
                 $("#tile-title-web").css({"opacity":"100%"});
-                animateLine('.tile-title-line-web');
+                $("#draw-line-tile-wl").addClass("draw");
+                $("#draw-line-tile-wr").addClass("draw");
                 }, 1100);
             }
     })
@@ -90,7 +89,8 @@ export function buildScrollMagicScenes() {
                 $(".photography-display").css({"opacity":"100%"});
                 //$(".tile-title").css({"opacity":"100%"});
                 $("#tile-title-photography").css({"opacity":"100%"});
-                animateLine('.tile-title-line-photography');
+                $("#draw-line-tile-pl").addClass("draw");
+                $("#draw-line-tile-pr").addClass("draw");
                 }, 1300);
             }
     })

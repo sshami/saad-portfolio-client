@@ -12,11 +12,11 @@
             </div>
             <div id="flatlay-bio" class="row flatlay-bio flatlay">
                 <div class=col-2></div>
-                <div class="col" style="padding: 2px"><div id="draw-line-bio-l" class="draw-line left"></div></div>
+                <div class="col" style="padding: 2px; margin-top: 6px;"><div id="draw-line-bio-l" class="draw-line left"></div></div>
                 <div class="col-auto" style="height: 50px;">
                     <h1 id="bio-title" class="bio-title rising-bio-title">{{ bio.title }}</h1>
                 </div>
-                <div class="col" style="padding: 2px"><div id="draw-line-bio-r" class="draw-line right"></div></div>
+                <div class="col" style="padding: 2px; margin-top: 6px;"><div id="draw-line-bio-r" class="draw-line right"></div></div>
                 <div class=col-2></div>
                 <div class="col-sm-12 bio-text">
                     <p class="rising-bio-text-p1">{{ bio.paragraph_one }}</p>

@@ -235,7 +235,6 @@ export default {
       height:0px;
       width:1px;
       border-bottom:1px solid #000;
-      margin-top: 6px;
 
       &.left {
         float: right;

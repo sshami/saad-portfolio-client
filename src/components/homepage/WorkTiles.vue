@@ -3,9 +3,9 @@
         <div id="web-tile" class="col-md-6 tile web-tile" @click="webdevPage">
             <div id="tile-title-web" class="row tile-title web-dev">
                 <div class="col-1"></div>
-                <div class="col tile-title-line-web left"></div>
+                <div class="col" style="padding: 0px; margin-top: 20px;"><div id="draw-line-tile-wl" class="draw-line left"></div></div>
                 <div class="col-auto tile-title-text"><h2>{{ web_tile.title }}</h2></div>
-                <div class="col tile-title-line-web right"></div>
+                <div class="col" style="padding: 0px; margin-top: 20px;"><div id="draw-line-tile-wr" class="draw-line"></div></div>
                 <div class="col-1"></div>
             </div>
             <div id="mobile-lc" class="web-img mobile-lc">
@@ -22,9 +22,9 @@
         <div id="photography-tile" class="col-md-6 tile photography-tile" @click="photographyPage">
             <div id="tile-title-photography" class="row tile-title photography">
                 <div class="col-1"></div>
-                <div class="col tile-title-line-photography left"></div>
+                <div class="col" style="padding: 0px; margin-top: 20px;"><div id="draw-line-tile-pl" class="draw-line left"></div></div>
                 <div class="col-auto tile-title-text"><h2>{{ photography_tile.title }}</h2></div>
-                <div class="col tile-title-line-photography right"></div>
+                <div class="col" style="padding: 0px; margin-top: 20px;"><div id="draw-line-tile-pr" class="draw-line"></div></div>
                 <div class="col-1"></div>
             </div>
             <div id="photography-display" class="photography-display">
@@ -119,23 +119,6 @@ export default {
 
         .tile-title-text {
             margin-top: 14px;
-        }
-
-        .tile-title-line-photography, .tile-title-line-web  {
-        left: 0;
-        height: 1px;
-        width: 100%;
-        background-color: black;
-        top: 21px;
-        opacity: 0;
-
-        &.left {
-            transform-origin: 100% 100%;
-        }
-
-        &.right {
-            transform-origin: 0% 0%;
-        }
         }
 
 
