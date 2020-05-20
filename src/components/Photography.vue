@@ -30,7 +30,7 @@
 <script>
 import $ from 'jquery'
 import { animateText } from '../static/js/anime-animations.js'
-import { initScrollMagicControllerAndTimeline, createPhotographySlideScene, removeScrollMagicDom, destroyScrollMagic } from '../static/js/photography.js'
+import { initScrollMagicController, initSlideTimeline, createPhotographySlideScene, resetTimeline, removeScrollMagicDom, destroyScrollMagic } from '../static/js/photography.js'
 
 export default {
   name: 'Photography',
@@ -46,7 +46,8 @@ export default {
     this.openingTransition();
     /* Setup photo slide - need to give it some time to get accurate photo widths */
     setTimeout(function(){
-        initScrollMagicControllerAndTimeline();
+        initScrollMagicController();
+        initSlideTimeline();
         createPhotographySlideScene();
     }, 500);
   },
@@ -94,15 +95,16 @@ export default {
     homePage() {
         return this.$router.push('/');
     },
-    /* Window resize event -  need to recalculate sizing for photo slide */
+    /* Window resize event -  need to reset scrollmagic and timeline to recalculate sizing for photo slide */
     onResize(event) {
         console.log('window has been resized', event) ;
-        //window.scrollTo(0, 0);
-        //$("#js-slideContainer").css("transform", "translate(0px, 0px)");
+        window.scrollTo(0, 0);
+        resetTimeline();
         destroyScrollMagic();
         removeScrollMagicDom();
         $("#js-wrapper").css("width", "100%");
-        initScrollMagicControllerAndTimeline();
+        initScrollMagicController();
+        initSlideTimeline();
         createPhotographySlideScene();
 
     }
@@ -127,7 +129,7 @@ export default {
         background-color: $neutral-pink;
         height: 100%;
         width: 40px;
-        z-index: 10;
+        z-index: 2;
     }
 
     .photography-page-title {
@@ -156,7 +158,7 @@ export default {
         position: fixed;
         top: 0px;
         left: 55px;
-        z-index: 10;
+        z-index: 2;
 
     }
 
