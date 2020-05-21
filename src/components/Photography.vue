@@ -12,7 +12,7 @@
         </div>
 
         <div class="wrapper" id="js-wrapper">
-            <div class="sections" id="js-slideContainer">
+            <div class="slide-container" id="js-slideContainer">
                 <div class="photos-container">
                     <img class="photo" src="https://66.media.tumblr.com/0a82fa7ce59404e7a713ded2fd5aa81d/tumblr_pkf8ro270V1v57djwo1_1280.jpg" />
                     <img class="photo" src="https://66.media.tumblr.com/1d87611e8ffffe6701377dc2b58b1638/tumblr_pf48obYBwN1v57djwo1_1280.jpg" />
@@ -161,10 +161,7 @@ export default {
 
     }
 
-
-    // ---------- SCROLLING STYLES ---------- //
-
-    $panelcount: 5; // set # of panels/sections here
+    // ---------- Photo slide styles ---------- //
 
     .wrapper{
         width: 100%;
@@ -172,12 +169,12 @@ export default {
         overflow: hidden;
         perspective: 1000;
         margin-left: 50px;
-        //background-color: gray;
     }
 
-    // .sections {
-    //     backface-visibility: hidden;
-    // }
+    .slide-container {
+        height: 100%;
+        //backface-visibility: hidden;
+    }
 
     .photos-container {
         height: 100%;
@@ -187,40 +184,8 @@ export default {
         float: left;
         margin-left: 80px;
         height: 100%;
-        padding-top: 90px;
-        padding-bottom: 90px;
-    }
-
-    .section {
-    & {
-        height: 100%;
-        width: 900px;
-        //width: calc( 100% / #{$panelcount} );
-        float: left;
-
-        // aesthetic only ----
-        position: relative;
-        
-        $colors: #F64747, #22A7F0, #F9690E, #9B59B6, #03C9A9, green;
-        @for $i from 1 through length($colors) {
-        &:nth-child(#{$i}) {
-            background: nth($colors, $i)
-        }
-        }
-    }
-    &s {
-        width: percentage($panelcount);
-        height: 100%;
-    }
-    &__title {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        
-        font-size: 30px;
-        color: #fff;
-    }
+        padding-top: 110px;
+        padding-bottom: 110px;
     }
 
 </style>

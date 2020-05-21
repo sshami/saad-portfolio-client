@@ -29,21 +29,21 @@ export function initScrollMagicController() {
 
 /*  Initialize TimelineMax Horizontal Slide */
 export function initSlideTimeline() {
-    // NEED TO CALCULATE THE X-TRANSLATE PERCENTAGE ON LOAD AND ANYTIME BROWSER WINDOW IS RESIZED
-    // Calculate: 
-    // "width of all the photos in the set" + plus "left/right margins and paddings" - minus "width of the browser window"
-    // / divided by
-    // "total width of the sections container" (which changes according to width of browser window)
-    // x times 
-    // 100 (to get percentage)
+    
+    // Get total width of photos in the slide
     var photoWidths = getPhotoWidths();
-    var x_translate = ((photoWidths) - $(window).width()) / $("#js-slideContainer").width();
-    var slideEndSpace = 0.09;
-    var x_translate_percentage = (x_translate + slideEndSpace) * 100;
+    // Calculate and set the width of the slide container according to width of all photos
+    var sectionsContainerWidth = photoWidths + $(window).width();
+    $("#js-slideContainer").css("width", sectionsContainerWidth);
 
+    // Calculate X translate percentage for timeline slide tween
+    var x_translate = ((photoWidths)) / sectionsContainerWidth;
+    var x_translate_percentage = (x_translate) * 100;
+
+    // Initialize timeline
     horizontalSlideTimeLine = new TimelineMax()
     // note: need to add rotation for Firefox
-    .to("#js-slideContainer", 1,   {x: "-" + x_translate_percentage + "%", rotation: 0.05})
+    .to("#js-slideContainer", 1,   {x: "-" + (x_translate_percentage) + "%", rotation: 0.05})
 }
 
 /*  Create ScrollMagic Scene and add to ScrollMagic Controller */
