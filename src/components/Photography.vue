@@ -176,7 +176,7 @@ export default {
     }
 
     // .sections {
-    //     position: fixed;
+    //     backface-visibility: hidden;
     // }
 
     .photos-container {
@@ -187,8 +187,8 @@ export default {
         float: left;
         margin-left: 80px;
         height: 100%;
-        padding-top: 60px;
-        padding-bottom: 60px;
+        padding-top: 90px;
+        padding-bottom: 90px;
     }
 
     .section {

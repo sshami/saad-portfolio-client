@@ -3,6 +3,8 @@ import { gsap, TimelineMax } from 'gsap/src/all'
 import ScrollMagic from 'scrollmagic'
 import { ScrollMagicPluginGsap } from "scrollmagic-plugin-gsap";
 
+//CSSPlugin.defaultForce3D = false;
+
 ScrollMagicPluginGsap(ScrollMagic, gsap);
 
 /* Get total width of photos in set (including padding) */
@@ -50,7 +52,7 @@ export function createPhotographySlideScene() {
   new ScrollMagic.Scene({
     triggerElement: "#js-wrapper",
     triggerHook: "onLeave",
-    duration: "800%"
+    duration: "900%"
   })
     .setPin("#js-wrapper")
     .setTween(horizontalSlideTimeLine)
