@@ -8,7 +8,7 @@
 <script>
 import HomeIntro from './homepage/HomeIntro.vue'
 import WorkTiles from './homepage/WorkTiles.vue'
-import { initScrollMagicController, buildScrollMagicScenes, destroyScrollMagic } from '../static/js/homepage-scrollmagic.js'
+import { initScrollMagicController, createIntroTimeline, buildScrollMagicScenes, destroyScrollMagic } from '../static/js/homepage-scrollmagic.js'
 
 
 export default {
@@ -20,6 +20,7 @@ export default {
   mounted() {
       /* Build ScrollMagic Scenes */
       initScrollMagicController();
+      createIntroTimeline();
       buildScrollMagicScenes();
   },
   destroyed() {

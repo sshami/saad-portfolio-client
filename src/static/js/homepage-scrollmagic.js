@@ -1,13 +1,33 @@
 import $ from 'jquery'
+import { gsap, TimelineMax, TweenMax } from 'gsap/src/all'
 import ScrollMagic from 'scrollmagic'
+import { ScrollMagicPluginGsap } from "scrollmagic-plugin-gsap";
+//import('scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js');
+//import { addIndicators } from 'scrollmagic'
+import 'imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators'
+
+
+ScrollMagicPluginGsap(ScrollMagic, gsap);
 
 
 // ScrollMagic Controller
 var controller = null;
+var introTimeline = null;
 
 /*  Initialize Scroll Magic Controller */
 export function initScrollMagicController() {
     controller = new ScrollMagic.Controller();
+}
+
+/* Initilize Intro Timeline */
+export function createIntroTimeline() {
+    introTimeline = new TimelineMax();
+    var laptopTween = TweenMax.to("#laptop", 1, {y: "-55%", rotation: 0.05});
+    var cameraTween = TweenMax.to("#camera", 1, {x: "-70%", rotation: 20});
+    var plantTween = TweenMax.to("#plant", 1, {x: "70%", y: "32%", rotation: 140});
+    var coffeeTween = TweenMax.to("#coffee", 1, {x: "70%", y: "50%", rotation: 10});
+    var bioTween = TweenMax.to("#flatlay-bio", 1, {y: "-135%", opacity: 1});
+    introTimeline.add(laptopTween).add(cameraTween, 0).add(coffeeTween, 0).add(plantTween, 0).add(bioTween, 0);
 }
 
 /* Builds Scroll Magic Scenes */
@@ -20,9 +40,12 @@ export function buildScrollMagicScenes() {
     // Build Scene Bio Fade-In
     new ScrollMagic.Scene({
         triggerElement: '#bio',
-        triggerHook: 0.95
+        triggerHook: 0.95,
+        duration: 100
     })
-    .setClassToggle('.flatlay', 'shift')
+    //.setClassToggle('.flatlay', 'shift')
+    .setTween(introTimeline)
+    .offset(-40)
     .on('start', function (event) {
             var scrollDirection = event.scrollDirection;
 
@@ -37,9 +60,9 @@ export function buildScrollMagicScenes() {
                 // TODO: Add reverse animations for bio text and line draw?
             }
     })
-    // .addIndicators({
-    //   name: 'bio-fade-in'
-    // })
+    .addIndicators({
+      name: 'bio-fade-in'
+    })
     .addTo(controller);
 
     /* ------ End Magic Scene Bio Fade-In ------ */

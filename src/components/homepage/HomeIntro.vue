@@ -4,7 +4,7 @@
         <div class="col-lg-12 header-splash">
             <div id="flatlay-container" class="flatlay-container">
                 <div id="flatlay-items" class="flatlay-items">
-                    <img src="../../assets/home/intro-head/laptop-md.jpg" alt="Laptop" id="laptop" class="flatlay laptop" >
+                    <img src="../../assets/home/intro-head/laptop-sm.jpg" alt="Laptop" id="laptop" class="flatlay laptop" >
                     <img src="../../assets/home/intro-head/camera.jpg" alt="Camera" id="camera" class="flatlay camera">
                     <img src="../../assets/home/intro-head/coffee.jpg" alt="Coffee" id="coffee" class="flatlay coffee">
                     <img src="../../assets/home/intro-head/plant.png" alt="Plant" id="plant" class="flatlay plant">
@@ -182,7 +182,7 @@ export default {
             right: 52%;
             top: 45%;
             width: 13%;
-            transition: all 1.5s ease-out;
+            transition: all 1.3s ease-out;
 
             &.shift {
                 transform: translateX(-70%) rotate(20deg);
