@@ -23,10 +23,10 @@ export function initScrollMagicController() {
 export function createIntroTimeline() {
     introTimeline = new TimelineMax();
     var laptopTween = TweenMax.to("#laptop", 1, {y: "-35%", rotation: 0.05, ease: "power1.in"});
-    var cameraTween = TweenMax.to("#camera", 1, {x: "-70%", rotation: 20, ease: "power1.in"});
-    var plantTween = TweenMax.to("#plant", 1, {x: "70%", rotation: 140, ease: "power1.in"});
-    var coffeeTween = TweenMax.to("#coffee", 1, {x: "70%", rotation: 10, ease: "power1.in"});
-    var bioTween = TweenMax.to("#flatlay-bio", 1, {y: "-20%", opacity: 1, ease: "power1.in"});
+    var cameraTween = TweenMax.to("#camera", 1, {x: "-70%", y: "10%", rotation: 20, ease: "power1.in"});
+    var plantTween = TweenMax.to("#plant", 1, {x: "70%", y: "20%", rotation: 140, ease: "power1.in"});
+    var coffeeTween = TweenMax.to("#coffee", 1, {x: "70%", y: "20%", rotation: 10, ease: "power1.in"});
+    var bioTween = TweenMax.to("#flatlay-bio", 1, {y: "-30vh", opacity: 1, ease: "power1.in"});
     introTimeline.add(laptopTween).add(cameraTween, 0).add(coffeeTween, 0).add(plantTween, 0).add(bioTween, 0);
 }
 

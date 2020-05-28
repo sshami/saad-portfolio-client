@@ -9,7 +9,8 @@
                     <img src="../../assets/home/intro-head/camera.jpg" alt="Camera" id="camera" class="flatlay camera">
                     <img src="../../assets/home/intro-head/coffee.jpg" alt="Coffee" id="coffee" class="flatlay coffee">
                     <img src="../../assets/home/intro-head/plant.png" alt="Plant" id="plant" class="flatlay plant">
-
+                </div>
+            </div>
                     <div id="flatlay-bio" class="row flatlay-bio flatlay">
                         <div class=col-2></div>
                         <div class="col" style="padding: 2px; margin-top: 6px;"><div id="draw-line-bio-l" class="draw-line left"></div></div>
@@ -28,9 +29,6 @@
                             <a v-bind:href="social_links.email" target="_blank"><span class="socicon-mail"></span></a>
                         </div>
                     </div>
-                </div>
-
-            </div>
         </div>
     </div>
 </template>
@@ -98,7 +96,7 @@ export default {
         .flatlay-container {
             //position: absolute;
 
-            margin-top: 5%;
+            margin-top: 10%;
             top: 50%;
             left: 50%;
             width: 100%;
@@ -200,61 +198,61 @@ export default {
                 }
             }
 
-            .flatlay-bio {
-                position: absolute;
-                margin-left: auto;
-                margin-right: auto;
-                top: 90%;
-                //top: 100%;
-                left: 0;
-                right: 0;
-                text-align: center;
-                width: 70%;
-                max-width: 600px;
-                //opacity: 0;
-                //transition: all 0.5s ease-out;
+        }
 
-                /* 767px and down */
-                @media only screen and (max-width: 767px) {
-                    width: 80%;
+        .flatlay-bio {
+            position: absolute;
+            margin-left: auto;
+            margin-right: auto;
+            top: 100%;
+            //top: 100%;
+            left: 0;
+            right: 0;
+            text-align: center;
+            width: 70%;
+            max-width: 600px;
+            //opacity: 0;
+            //transition: all 0.5s ease-out;
+
+            /* 767px and down */
+            @media only screen and (max-width: 767px) {
+                width: 80%;
+            }
+
+            /* 321px and down */
+            @media only screen and (max-width: 321px) {
+                font-size: 12px;
+            }
+
+            .rising-bio-title .letter {
+                display: inline-block;
+                line-height: 1em;
+            }
+
+            .bio-text {
+                padding-top: 10px;
+            }
+
+            .bio-social {
+                font-size: 20px;
+                padding-top: 20px;
+
+
+                a {
+                    color: black;
+                    text-decoration: none;
                 }
 
-                /* 321px and down */
-                @media only screen and (max-width: 321px) {
-                    font-size: 12px;
-                }
-
-                .rising-bio-title .letter {
-                    display: inline-block;
-                    line-height: 1em;
-                }
-
-                .bio-text {
-                    padding-top: 10px;
-                }
-
-                .bio-social {
-                    font-size: 20px;
-                    padding-top: 20px;
-
-
-                    a {
-                        color: black;
-                        text-decoration: none;
-                    }
-
-                    span {
-                        padding: 9px;
-                    }
-                }
-
-                &.shift {
-                    transform: translateY(-135%);
-                    bottom: auto;
-                    opacity: 1;
+                span {
+                    padding: 9px;
                 }
             }
 
+            &.shift {
+                transform: translateY(-135%);
+                bottom: auto;
+                opacity: 1;
+            }
         }
 
 
