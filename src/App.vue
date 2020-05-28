@@ -241,18 +241,18 @@ export default {
       }
       
       &.draw {
-        -webkit-animation: increase 2s;
-        -moz-animation:    increase 2s; 
-        -o-animation:      increase 2s; 
-        animation:         increase 2s; 
+        -webkit-animation: increase 3s;
+        -moz-animation:    increase 3s; 
+        -o-animation:      increase 3s; 
+        animation:         increase 3s; 
         animation-fill-mode: forwards;
       }
 
       &.undraw {
-        -webkit-animation: decrease 2s;
-        -moz-animation:    decrease 2s; 
-        -o-animation:      decrease 2s; 
-        animation:         decrease 2s; 
+        -webkit-animation: decrease 3s;
+        -moz-animation:    decrease 3s; 
+        -o-animation:      decrease 3s; 
+        animation:         decrease 3s; 
         animation-fill-mode: forwards;
       }
 
