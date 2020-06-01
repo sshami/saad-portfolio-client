@@ -30,7 +30,7 @@
 <script>
 import $ from 'jquery'
 import { animateText } from '../static/js/anime-animations.js'
-import { initScrollMagicController, initSlideTimeline, createPhotographySlideScene, resetTimeline, removeScrollMagicDom, destroyScrollMagic } from '../static/js/photography.js'
+import { getPhotographyScrollMagicController, initScrollMagicController, initSlideTimeline, createPhotographySlideScene, resetTimeline, removeScrollMagicDom, destroyScrollMagic } from '../static/js/photography.js'
 
 export default {
   name: 'Photography',
@@ -44,12 +44,24 @@ export default {
     // Register an event listener when the Vue component is ready
     window.addEventListener('resize', this.onResize)
     this.openingTransition();
-    /* Setup photo slide - need to give it some time to get accurate photo widths */
-    setTimeout(function(){
-        initScrollMagicController();
-        initSlideTimeline();
-        createPhotographySlideScene();
-    }, 500);
+    /* Setup photo slide for desktop - need to give it some time to get accurate photo widths */
+    if (window.innerWidth > 1367){
+        setTimeout(function(){
+            initScrollMagicController();
+            initSlideTimeline();
+            createPhotographySlideScene();
+        }, 500);
+    /* Otherwise setup regular photo page scroll for mobile/tablet sizes */
+    } else {
+        $('.photo').each(function(){
+            $(this).addClass("mobile");
+        });
+        $('.slide-container').addClass("mobile")
+        $('.wrapper').addClass("mobile")
+        $('.photography-page-title-container').addClass("mobile");
+        $('.photography-page-title').addClass("mobile");
+        
+    }
   },
   beforeDestroy(){
     // Unregister the event listener before destroying this Vue instance
@@ -97,15 +109,16 @@ export default {
     },
     /* Window resize event -  need to reset scrollmagic and timeline to recalculate sizing for photo slide */
     onResize() {
-        window.scrollTo(0, 0);
-        resetTimeline();
-        destroyScrollMagic();
-        removeScrollMagicDom();
-        $("#js-wrapper").css("width", "100%");
-        initScrollMagicController();
-        initSlideTimeline();
-        createPhotographySlideScene();
-
+        if (getPhotographyScrollMagicController() != null) {
+            window.scrollTo(0, 0);
+            resetTimeline();
+            destroyScrollMagic();
+            removeScrollMagicDom();
+            $("#js-wrapper").css("width", "100%");
+            initScrollMagicController();
+            initSlideTimeline();
+            createPhotographySlideScene();
+        }
     }
   }
 }
@@ -129,6 +142,16 @@ export default {
         height: 100%;
         width: 40px;
         z-index: 2;
+
+        &.mobile {
+            background-color: transparent;
+            position: relative;
+            height: 40px;
+            width: 400px;
+            margin: 0px auto;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
     }
 
     .photography-page-title {
@@ -138,6 +161,14 @@ export default {
         width: 400px;
         text-transform: uppercase;
         transform: rotate(-90deg);
+
+        &.mobile {
+            position: relative;
+            top: auto;
+            left: auto;
+            width: auto;
+            transform: inherit;
+        }
     }
 
     .photos {
@@ -169,11 +200,39 @@ export default {
         overflow: hidden;
         perspective: 1000;
         margin-left: 50px;
+
+        &.mobile {
+            height: 100%;
+            margin-left: 0px;
+        }
+
     }
 
     .slide-container {
         height: 100%;
         //backface-visibility: hidden;
+
+        &.mobile {
+            width: 45%;
+            margin: 0px auto;
+            max-width: 1250px;
+
+            /* 1000px to 701px */
+            @media only screen and (max-width: 1000px) and (min-width: 701px) {
+                width: 65%;
+            }
+
+            /* 700px to 416px */
+            @media only screen and (max-width: 700px) and (min-width: 416px) {
+                width: 75%;
+            }
+
+            /* 415px and down */
+            @media only screen and (max-width: 415px) {
+                width: 95%;
+            }
+
+        }
     }
 
     .photos-container {
@@ -186,6 +245,15 @@ export default {
         height: 100%;
         padding-top: 110px;
         padding-bottom: 110px;
+
+        &.mobile {
+            float: none;
+            margin-left: 0px;
+            width: 100%;
+            padding: 0px 0px 80px 0px;
+
+        }
+
     }
 
 </style>

@@ -22,6 +22,11 @@ var photographyScrollMagicController = null;
 // Horizontal Slide (TimeLineMax)
 var horizontalSlideTimeLine = null;
 
+/* Get Scroll Magic Controller */
+export function getPhotographyScrollMagicController() {
+    return photographyScrollMagicController;
+}
+
 /*  Initialize Scroll Magic Controller */
 export function initScrollMagicController() {
     photographyScrollMagicController = new ScrollMagic.Controller();
@@ -29,7 +34,7 @@ export function initScrollMagicController() {
 
 /*  Initialize TimelineMax Horizontal Slide */
 export function initSlideTimeline() {
-    
+
     // Get total width of photos in the slide
     var photoWidths = getPhotoWidths();
     // Calculate and set the width of the slide container according to width of all photos
@@ -76,4 +81,3 @@ export function removeScrollMagicDom(){
     var cnt = $(".scrollmagic-pin-spacer").contents();
     $(".scrollmagic-pin-spacer").replaceWith(cnt);
 }
-
