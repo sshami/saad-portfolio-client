@@ -5,6 +5,7 @@
         <div id="header-splash" class="col-lg-12 header-splash">
             <div id="flatlay-container" class="flatlay-container">
                 <div id="flatlay-items" class="flatlay-items">
+                    <!-- TODO: Resize header flatlay images according to screen size -->
                     <img src="../../assets/home/intro-head/laptop-sm.jpg" alt="Laptop" id="laptop" class="flatlay laptop" >
                     <img src="../../assets/home/intro-head/camera.jpg" alt="Camera" id="camera" class="flatlay camera">
                     <img src="../../assets/home/intro-head/coffee.jpg" alt="Coffee" id="coffee" class="flatlay coffee">
@@ -86,7 +87,7 @@ export default {
         height: 100vh;
         max-height: -webkit-fill-available;
         //height: 900px;
-        margin-bottom: 500px;
+        margin-bottom: 200px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -211,7 +212,7 @@ export default {
             text-align: center;
             width: 70%;
             max-width: 600px;
-            //opacity: 0;
+            opacity: 0;
             //transition: all 0.5s ease-out;
 
             /* 767px and down */

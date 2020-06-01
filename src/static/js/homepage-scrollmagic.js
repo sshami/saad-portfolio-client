@@ -61,9 +61,9 @@ export function buildScrollMagicScenes() {
                 // TODO: Add reverse animations for bio text and line draw?
             }
     })
-    .addIndicators({
-      name: 'bio-fade-in'
-    })
+    // .addIndicators({
+    //   name: 'bio-fade-in'
+    // })
     .addTo(controller);
 
     /* ------ End Magic Scene Bio Fade-In ------ */
