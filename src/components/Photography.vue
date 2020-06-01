@@ -51,7 +51,7 @@ export default {
             initSlideTimeline();
             createPhotographySlideScene();
         }, 500);
-    /* Otherwise setup regular photo page scroll for mobile/tablet sizes */
+    /* Otherwise setup regular photo vertical page scroll for mobile/tablet sizes */
     } else {
         $('.photo').each(function(){
             $(this).addClass("mobile");
@@ -151,6 +151,19 @@ export default {
             margin: 0px auto;
             margin-top: 50px;
             margin-bottom: 50px;
+
+
+
+            /* 415px to 330px */
+            @media only screen and (max-width: 415px) and (min-width: 331px) {
+                width: 300px;
+            }
+
+            /* 330px and down */
+            @media only screen and (max-width: 330px) {
+                width: 250px;
+            }
+
         }
     }
 
@@ -218,8 +231,8 @@ export default {
             max-width: 1250px;
 
             /* 1000px to 701px */
-            @media only screen and (max-width: 1000px) and (min-width: 701px) {
-                width: 65%;
+            @media only screen and (max-width: 1367px) and (min-width: 701px) {
+                width: 60%;
             }
 
             /* 700px to 416px */
