@@ -11,18 +11,6 @@
             <span>SAAD</span>
         </div>
 
-        <!-- <div class="wrapper" id="js-wrapper">
-            <div class="slide-container" id="js-slideContainer">
-                <div class="photos-container">
-                    <img class="photo" src="https://66.media.tumblr.com/0a82fa7ce59404e7a713ded2fd5aa81d/tumblr_pkf8ro270V1v57djwo1_1280.jpg" />
-                    <img class="photo" src="https://66.media.tumblr.com/1d87611e8ffffe6701377dc2b58b1638/tumblr_pf48obYBwN1v57djwo1_1280.jpg" />
-                    <img class="photo" src="https://66.media.tumblr.com/ac9b62f320dee8a607f09078629a2c82/tumblr_pf48pwtn2v1v57djwo1_1280.jpg" />
-                    <img class="photo" src="https://66.media.tumblr.com/e16bdff3d9aedd32991e7efcf2f10468/tumblr_pehq47jW131v57djwo1_1280.jpg" />
-                    <img class="photo" src="https://66.media.tumblr.com/3b4baff7e0146ef48f6e8e408dd4d108/tumblr_pcnqksLOZq1v57djwo1_1280.jpg" />
-                </div>
-            </div>
-        </div> -->
-
         <div class="photos-container" id="photos-container" >
             <div class="block" id="start">
                 <img class="photo" src="https://66.media.tumblr.com/0a82fa7ce59404e7a713ded2fd5aa81d/tumblr_pkf8ro270V1v57djwo1_1280.jpg" />
@@ -60,7 +48,7 @@
 <script>
 import $ from 'jquery'
 import { animateText } from '../static/js/anime-animations.js'
-import { initHorizontalScroll, createPhotoMenuTriggerEvent } from '../static/js/photography.js'
+import { initHorizontalScroll, createPhotoMenuTriggerEvent, removePhotoMenuTriggerEvent, destroyHorizontalScroll } from '../static/js/photography.js'
 
 export default {
   name: 'Photography',
@@ -110,6 +98,7 @@ export default {
   destroyed() {
         this.closingTransition();
         // Cleanup
+        destroyHorizontalScroll();
         if ($('body').hasClass("unset-pink")){
             $('body').removeClass("unset-pink");
         } else if ($('body').hasClass("set-pink")) {
@@ -155,6 +144,7 @@ export default {
     /* Window resize event -  need to recalculate photo menu trigger and reset event */
     onResize() {
         setTimeout(function(){
+            removePhotoMenuTriggerEvent();
             createPhotoMenuTriggerEvent();
         }, 500);
     }
@@ -245,50 +235,6 @@ export default {
 
     // ---------- Photo slide styles ---------- //
 
-    .wrapper{
-        //width: 100%;
-        height: 100vh;
-        //overflow: hidden;
-        perspective: 1000;
-        margin-left: 50px;
-
-        &.mobile {
-            height: 100%;
-            margin-left: 0px;
-        }
-
-    }
-
-    .slide-container {
-        height: 100%;
-        //backface-visibility: hidden;
-
-        &.mobile {
-            width: 45%;
-            margin: 0px auto;
-            max-width: 1250px;
-
-            /* 1000px to 701px */
-            @media only screen and (max-width: 1367px) and (min-width: 701px) {
-                width: 60%;
-            }
-
-            /* 700px to 416px */
-            @media only screen and (max-width: 700px) and (min-width: 416px) {
-                width: 75%;
-            }
-
-            /* 415px and down */
-            @media only screen and (max-width: 415px) {
-                width: 95%;
-            }
-
-        }
-    }
-
-    .photos-container {
-        height: 100%;
-    }
 
     .photo {
         // float: left;
@@ -307,38 +253,35 @@ export default {
 
     }
 
+    .photos-container {
+        display: flex;
+        font-family: sans-serif;
+        height: 100vh;
+    }
 
+    .photos-container {
+        display: flex;
+        flex: 1;
+        height: 100vh;
+    }
 
+    .block {
+        height: 100%;
+        font-size: 32px;
+        color: black;
+        margin-left: 50px;
+        padding: 90px 0px 90px 0px;
+    }
 
-        .photos-container {
-            display: flex;
-            font-family: sans-serif;
-            height: 100vh;
-        }
+    .album-menu {
+        width: 100vw;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
 
-        .photos-container {
-            display: flex;
-            flex: 1;
-            height: 100vh;
-        }
-
-        .block {
-            height: 100%;
-            font-size: 32px;
-            color: black;
-            margin-left: 50px;
-            padding: 90px 0px 90px 0px;
-        }
-
-        .album-menu {
-            width: 100vw;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .block a {
-            color: inherit;
-        }
+    .block a {
+        color: inherit;
+    }
 
 </style>
