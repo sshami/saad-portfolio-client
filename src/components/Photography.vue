@@ -257,6 +257,7 @@ export default {
         display: flex;
         font-family: sans-serif;
         height: 100vh;
+        align-items: center;
     }
 
     .photos-container {
@@ -271,6 +272,7 @@ export default {
         color: black;
         margin-left: 50px;
         padding: 90px 0px 90px 0px;
+        max-height: 3000px;
     }
 
     .album-menu {
