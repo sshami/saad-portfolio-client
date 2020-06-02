@@ -2,6 +2,10 @@ import $ from 'jquery'
 import { gsap, TimelineMax } from 'gsap/src/all'
 import ScrollMagic from 'scrollmagic'
 import { ScrollMagicPluginGsap } from "scrollmagic-plugin-gsap";
+import HorizontalScroll from '@oberon-amsterdam/horizontal'
+import 'imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators'
+
+new HorizontalScroll();
 
 //CSSPlugin.defaultForce3D = false;
 
@@ -29,7 +33,7 @@ export function getPhotographyScrollMagicController() {
 
 /*  Initialize Scroll Magic Controller */
 export function initScrollMagicController() {
-    photographyScrollMagicController = new ScrollMagic.Controller();
+    photographyScrollMagicController = new ScrollMagic.Controller({vertical: false});
 }
 
 /*  Initialize TimelineMax Horizontal Slide */
@@ -80,4 +84,29 @@ export function resetTimeline() {
 export function removeScrollMagicDom(){
     var cnt = $(".scrollmagic-pin-spacer").contents();
     $(".scrollmagic-pin-spacer").replaceWith(cnt);
+}
+
+
+
+
+export function scrollMagicPhotographySlideScene() {
+    new ScrollMagic.Scene({
+        triggerElement: "#end",
+        triggerHook: 0.50
+      })
+    .offset(-0.7)
+    .on('start', function (event) {
+
+        console.log(event);
+        console.log("STARTING!");
+
+    })
+    .on('leave', function (event){
+        console.log(event);
+        console.log("LEAVING!");
+    })
+    // .addIndicators({
+    //     name: "photo-slide"
+    // }) // add indicators (requires plugin)
+    .addTo(photographyScrollMagicController);
 }

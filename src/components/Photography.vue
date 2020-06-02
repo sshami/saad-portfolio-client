@@ -11,7 +11,7 @@
             <span>SAAD</span>
         </div>
 
-        <div class="wrapper" id="js-wrapper">
+        <!-- <div class="wrapper" id="js-wrapper">
             <div class="slide-container" id="js-slideContainer">
                 <div class="photos-container">
                     <img class="photo" src="https://66.media.tumblr.com/0a82fa7ce59404e7a713ded2fd5aa81d/tumblr_pkf8ro270V1v57djwo1_1280.jpg" />
@@ -19,6 +19,36 @@
                     <img class="photo" src="https://66.media.tumblr.com/ac9b62f320dee8a607f09078629a2c82/tumblr_pf48pwtn2v1v57djwo1_1280.jpg" />
                     <img class="photo" src="https://66.media.tumblr.com/e16bdff3d9aedd32991e7efcf2f10468/tumblr_pehq47jW131v57djwo1_1280.jpg" />
                     <img class="photo" src="https://66.media.tumblr.com/3b4baff7e0146ef48f6e8e408dd4d108/tumblr_pcnqksLOZq1v57djwo1_1280.jpg" />
+                </div>
+            </div>
+        </div> -->
+
+        <div class="photos-container" id="photos-container" >
+            <div class="block" id="start">
+                <img class="photo" src="https://66.media.tumblr.com/0a82fa7ce59404e7a713ded2fd5aa81d/tumblr_pkf8ro270V1v57djwo1_1280.jpg" />
+            </div>
+
+            <div class="block">
+                <img class="photo" src="https://66.media.tumblr.com/1d87611e8ffffe6701377dc2b58b1638/tumblr_pf48obYBwN1v57djwo1_1280.jpg" />
+            </div>
+
+            <div class="block">
+                <img class="photo" src="https://66.media.tumblr.com/ac9b62f320dee8a607f09078629a2c82/tumblr_pf48pwtn2v1v57djwo1_1280.jpg" />
+            </div>
+
+            <div class="block">
+                <img class="photo" src="https://66.media.tumblr.com/e16bdff3d9aedd32991e7efcf2f10468/tumblr_pehq47jW131v57djwo1_1280.jpg" />
+            </div>
+
+            <div class="block">
+                <img class="photo" src="https://66.media.tumblr.com/3b4baff7e0146ef48f6e8e408dd4d108/tumblr_pcnqksLOZq1v57djwo1_1280.jpg" />
+            </div>
+
+            <div class="block menu" id="end">
+                <div class="album-menu">
+                    <a href="#start">
+                        Back to start
+                    </a>
                 </div>
             </div>
         </div>
@@ -30,7 +60,8 @@
 <script>
 import $ from 'jquery'
 import { animateText } from '../static/js/anime-animations.js'
-import { getPhotographyScrollMagicController, initScrollMagicController, initSlideTimeline, createPhotographySlideScene, resetTimeline, removeScrollMagicDom, destroyScrollMagic } from '../static/js/photography.js'
+//import { initScrollMagicController, scrollMagicPhotographySlideScene } from '../static/js/photography.js'
+import HorizontalScroll from '@oberon-amsterdam/horizontal'
 
 export default {
   name: 'Photography',
@@ -44,24 +75,33 @@ export default {
     // Register an event listener when the Vue component is ready
     window.addEventListener('resize', this.onResize)
     this.openingTransition();
+    const horizontal = new HorizontalScroll({ 
+        container: document.querySelector('.photos-container')
+    });
+    console.log(document.getElementById("photos-container").scrollWidth);
+    horizontal.on('scroll', function(event) {  
+        console.log(event);
+    });
+    // initScrollMagicController()
+    // scrollMagicPhotographySlideScene()
     /* Setup photo slide for desktop - need to give it some time to get accurate photo widths */
-    if (window.innerWidth > 1367){
-        setTimeout(function(){
-            initScrollMagicController();
-            initSlideTimeline();
-            createPhotographySlideScene();
-        }, 500);
+    // if (window.innerWidth > 1367){
+    //     setTimeout(function(){
+    //         initScrollMagicController();
+    //         initSlideTimeline();
+    //         createPhotographySlideScene();
+    //     }, 500);
     /* Otherwise setup regular photo vertical page scroll for mobile/tablet sizes */
-    } else {
-        $('.photo').each(function(){
-            $(this).addClass("mobile");
-        });
-        $('.slide-container').addClass("mobile")
-        $('.wrapper').addClass("mobile")
-        $('.photography-page-title-container').addClass("mobile");
-        $('.photography-page-title').addClass("mobile");
+    // } else {
+    //     $('.photo').each(function(){
+    //         $(this).addClass("mobile");
+    //     });
+    //     $('.slide-container').addClass("mobile")
+    //     $('.wrapper').addClass("mobile")
+    //     $('.photography-page-title-container').addClass("mobile");
+    //     $('.photography-page-title').addClass("mobile");
         
-    }
+    // }
   },
   beforeDestroy(){
     // Unregister the event listener before destroying this Vue instance
@@ -69,7 +109,7 @@ export default {
   },
   destroyed() {
       this.closingTransition();
-      destroyScrollMagic();
+    //   destroyScrollMagic();
   },
   methods: {
     /* Opening Transition */
@@ -109,16 +149,16 @@ export default {
     },
     /* Window resize event -  need to reset scrollmagic and timeline to recalculate sizing for photo slide */
     onResize() {
-        if (getPhotographyScrollMagicController() != null) {
-            window.scrollTo(0, 0);
-            resetTimeline();
-            destroyScrollMagic();
-            removeScrollMagicDom();
-            $("#js-wrapper").css("width", "100%");
-            initScrollMagicController();
-            initSlideTimeline();
-            createPhotographySlideScene();
-        }
+        // if (getPhotographyScrollMagicController() != null) {
+        //     window.scrollTo(0, 0);
+        //     resetTimeline();
+        //     destroyScrollMagic();
+        //     removeScrollMagicDom();
+        //     $("#js-wrapper").css("width", "100%");
+        //     initScrollMagicController();
+        //     initSlideTimeline();
+        //     createPhotographySlideScene();
+        // }
     }
   }
 }
@@ -208,9 +248,9 @@ export default {
     // ---------- Photo slide styles ---------- //
 
     .wrapper{
-        width: 100%;
+        //width: 100%;
         height: 100vh;
-        overflow: hidden;
+        //overflow: hidden;
         perspective: 1000;
         margin-left: 50px;
 
@@ -253,11 +293,11 @@ export default {
     }
 
     .photo {
-        float: left;
-        margin-left: 80px;
+        // float: left;
+        // margin-left: 80px;
         height: 100%;
-        padding-top: 110px;
-        padding-bottom: 110px;
+        // padding-top: 110px;
+        // padding-bottom: 110px;
 
         &.mobile {
             float: none;
@@ -268,5 +308,40 @@ export default {
         }
 
     }
+
+
+
+
+        .photos-container {
+            display: flex;
+            font-family: sans-serif;
+            height: 100vh;
+        }
+
+        .photos-container {
+            display: flex;
+            flex: 1;
+            height: 100vh;
+        }
+
+        .block {
+            height: 100%;
+            font-size: 32px;
+            color: black;
+            margin-left: 50px;
+            padding: 80px 0px 80px 0px;
+            
+            &.menu {
+                background-color: blue;
+            }
+        }
+
+        .album-menu {
+            width: 1600px;
+        }
+
+        .block a {
+            color: inherit;
+        }
 
 </style>
