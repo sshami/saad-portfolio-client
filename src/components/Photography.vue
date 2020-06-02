@@ -44,7 +44,7 @@
                 <img class="photo" src="https://66.media.tumblr.com/3b4baff7e0146ef48f6e8e408dd4d108/tumblr_pcnqksLOZq1v57djwo1_1280.jpg" />
             </div>
 
-            <div class="block menu" id="end">
+            <div class="block" id="end">
                 <div class="album-menu">
                     <a href="#start">
                         Back to start
@@ -60,8 +60,7 @@
 <script>
 import $ from 'jquery'
 import { animateText } from '../static/js/anime-animations.js'
-//import { initScrollMagicController, scrollMagicPhotographySlideScene } from '../static/js/photography.js'
-import HorizontalScroll from '@oberon-amsterdam/horizontal'
+import { initHorizontalScroll, createPhotoMenuTriggerEvent } from '../static/js/photography.js'
 
 export default {
   name: 'Photography',
@@ -75,13 +74,14 @@ export default {
     // Register an event listener when the Vue component is ready
     window.addEventListener('resize', this.onResize)
     this.openingTransition();
-    const horizontal = new HorizontalScroll({ 
-        container: document.querySelector('.photos-container')
-    });
-    console.log(document.getElementById("photos-container").scrollWidth);
-    horizontal.on('scroll', function(event) {  
-        console.log(event);
-    });
+
+    initHorizontalScroll();
+    setTimeout(function(){
+        createPhotoMenuTriggerEvent();
+    }, 500);
+    // horizontal.on('scroll', function(event) {  
+    //     console.log(event);
+    // });
     // initScrollMagicController()
     // scrollMagicPhotographySlideScene()
     /* Setup photo slide for desktop - need to give it some time to get accurate photo widths */
@@ -108,8 +108,13 @@ export default {
     window.removeEventListener('resize', this.onResize)
   },
   destroyed() {
-      this.closingTransition();
-    //   destroyScrollMagic();
+        this.closingTransition();
+        // Cleanup
+        if ($('body').hasClass("unset-pink")){
+            $('body').removeClass("unset-pink");
+        } else if ($('body').hasClass("set-pink")) {
+            $('body').removeClass("set-pink");
+        }
   },
   methods: {
     /* Opening Transition */
@@ -147,18 +152,11 @@ export default {
     homePage() {
         return this.$router.push('/');
     },
-    /* Window resize event -  need to reset scrollmagic and timeline to recalculate sizing for photo slide */
+    /* Window resize event -  need to recalculate photo menu trigger and reset event */
     onResize() {
-        // if (getPhotographyScrollMagicController() != null) {
-        //     window.scrollTo(0, 0);
-        //     resetTimeline();
-        //     destroyScrollMagic();
-        //     removeScrollMagicDom();
-        //     $("#js-wrapper").css("width", "100%");
-        //     initScrollMagicController();
-        //     initSlideTimeline();
-        //     createPhotographySlideScene();
-        // }
+        setTimeout(function(){
+            createPhotoMenuTriggerEvent();
+        }, 500);
     }
   }
 }
@@ -329,15 +327,14 @@ export default {
             font-size: 32px;
             color: black;
             margin-left: 50px;
-            padding: 80px 0px 80px 0px;
-            
-            &.menu {
-                background-color: blue;
-            }
+            padding: 90px 0px 90px 0px;
         }
 
         .album-menu {
-            width: 1600px;
+            width: 100vw;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
 
         .block a {

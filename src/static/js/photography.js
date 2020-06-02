@@ -2,10 +2,9 @@ import $ from 'jquery'
 import { gsap, TimelineMax } from 'gsap/src/all'
 import ScrollMagic from 'scrollmagic'
 import { ScrollMagicPluginGsap } from "scrollmagic-plugin-gsap";
-import HorizontalScroll from '@oberon-amsterdam/horizontal'
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators'
+import HorizontalScroll from '@oberon-amsterdam/horizontal'
 
-new HorizontalScroll();
 
 //CSSPlugin.defaultForce3D = false;
 
@@ -86,9 +85,6 @@ export function removeScrollMagicDom(){
     $(".scrollmagic-pin-spacer").replaceWith(cnt);
 }
 
-
-
-
 export function scrollMagicPhotographySlideScene() {
     new ScrollMagic.Scene({
         triggerElement: "#end",
@@ -109,4 +105,46 @@ export function scrollMagicPhotographySlideScene() {
     //     name: "photo-slide"
     // }) // add indicators (requires plugin)
     .addTo(photographyScrollMagicController);
+}
+
+
+
+
+
+
+var horizontal = null;
+
+export function initHorizontalScroll() {
+    horizontal = new HorizontalScroll({ 
+        container: document.querySelector('.photos-container')
+    });
+}
+
+
+/* Calculates scroll value at which photo album menu should appear */
+function calculatePhotoMenuTrigger() {
+    var scrollWidth = $("#photos-container")[0].scrollWidth; 
+    var containerWidth = $("#photos-container").width();
+    var scrollEnd = scrollWidth - containerWidth;
+    var menuTrigger = scrollEnd - (containerWidth/2.5);
+    console.log(menuTrigger);
+    return menuTrigger;
+}
+
+/* Creates scroll event for when scrolled to the photo menu trigger */
+export function createPhotoMenuTriggerEvent(){
+    var menuTrigger = calculatePhotoMenuTrigger();
+    horizontal.on('scroll', function(event) {  
+        if (event >= menuTrigger) {
+            if ($('body').hasClass("unset-pink")){
+                $('body').removeClass("unset-pink");
+            }
+            $('body').addClass("set-pink");
+        } else {
+            if ($('body').hasClass("set-pink")){
+                $('body').removeClass("set-pink");
+            }
+            $('body').addClass("unset-pink");
+        }
+    });
 }

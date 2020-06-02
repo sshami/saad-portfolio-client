@@ -49,6 +49,17 @@ export default {
       line-height: 2;
       margin:0;
       padding:0;
+
+      &.set-pink {
+        transition: all 3s ease;
+        background-color: $neutral-pink;
+      }
+
+      &.unset-pink {
+        transition: all 3s ease;
+        background-color: $base-cream;
+      }
+
     }
 
     .transition-screen-photography-in {
