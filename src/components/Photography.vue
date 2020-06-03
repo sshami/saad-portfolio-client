@@ -208,6 +208,11 @@ export default {
         // margin-left: 80px;
         height: 100%;
         margin-right: 60px;
+        max-width: 100%;
+        max-height: 3000px;
+        align-self: center;
+        flex: 0 0 auto;
+        //object-fit: contain;
         // padding-top: 110px;
         // padding-bottom: 110px;
 
