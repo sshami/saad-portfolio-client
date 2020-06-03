@@ -12,25 +12,11 @@
         </div>
 
         <div class="photos-container" id="photos-container" >
-            <div class="block" id="start">
-                <img class="photo" src="https://66.media.tumblr.com/0a82fa7ce59404e7a713ded2fd5aa81d/tumblr_pkf8ro270V1v57djwo1_1280.jpg" />
-            </div>
-
-            <div class="block">
-                <img class="photo" src="https://66.media.tumblr.com/1d87611e8ffffe6701377dc2b58b1638/tumblr_pf48obYBwN1v57djwo1_1280.jpg" />
-            </div>
-
-            <div class="block">
-                <img class="photo" src="https://66.media.tumblr.com/ac9b62f320dee8a607f09078629a2c82/tumblr_pf48pwtn2v1v57djwo1_1280.jpg" />
-            </div>
-
-            <div class="block">
-                <img class="photo" src="https://66.media.tumblr.com/e16bdff3d9aedd32991e7efcf2f10468/tumblr_pehq47jW131v57djwo1_1280.jpg" />
-            </div>
-
-            <div class="block">
-                <img class="photo" src="https://66.media.tumblr.com/3b4baff7e0146ef48f6e8e408dd4d108/tumblr_pcnqksLOZq1v57djwo1_1280.jpg" />
-            </div>
+            <img id="start" class="photo" src="https://66.media.tumblr.com/0a82fa7ce59404e7a713ded2fd5aa81d/tumblr_pkf8ro270V1v57djwo1_1280.jpg" />
+            <img class="photo" src="https://66.media.tumblr.com/1d87611e8ffffe6701377dc2b58b1638/tumblr_pf48obYBwN1v57djwo1_1280.jpg" />
+            <img class="photo" src="https://66.media.tumblr.com/ac9b62f320dee8a607f09078629a2c82/tumblr_pf48pwtn2v1v57djwo1_1280.jpg" />
+            <img class="photo" src="https://66.media.tumblr.com/e16bdff3d9aedd32991e7efcf2f10468/tumblr_pehq47jW131v57djwo1_1280.jpg" />
+            <img class="photo" src="https://66.media.tumblr.com/3b4baff7e0146ef48f6e8e408dd4d108/tumblr_pcnqksLOZq1v57djwo1_1280.jpg" />
 
             <div class="block" id="end">
                 <div class="album-menu">
@@ -221,12 +207,15 @@ export default {
         // float: left;
         // margin-left: 80px;
         height: 100%;
+        margin-right: 60px;
         // padding-top: 110px;
         // padding-bottom: 110px;
 
         /* 1050px and down */
         @media only screen and (max-width: 1050px) {
             width: 100%;
+            margin-right: unset;
+            margin-bottom: 150px;
         }
 
     }
@@ -236,6 +225,7 @@ export default {
         font-family: sans-serif;
         height: 100vh;
         align-items: center;
+        padding: 70px;
     }
 
     .photos-container {
