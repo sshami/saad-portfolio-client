@@ -48,7 +48,7 @@
 <script>
 import $ from 'jquery'
 import { animateText } from '../static/js/anime-animations.js'
-import { initHorizontalScroll, createPhotoMenuTriggerEvent, removePhotoMenuTriggerEvent, destroyHorizontalScroll } from '../static/js/photography.js'
+import { initHorizontalScroll, getHorizontalScroll,  createPhotoMenuTriggerEvent, removePhotoMenuTriggerEvent, destroyHorizontalScroll } from '../static/js/photography.js'
 
 export default {
   name: 'Photography',
@@ -62,34 +62,15 @@ export default {
     // Register an event listener when the Vue component is ready
     window.addEventListener('resize', this.onResize)
     this.openingTransition();
-
-    initHorizontalScroll();
-    setTimeout(function(){
-        createPhotoMenuTriggerEvent();
-    }, 500);
-    // horizontal.on('scroll', function(event) {  
-    //     console.log(event);
-    // });
-    // initScrollMagicController()
-    // scrollMagicPhotographySlideScene()
-    /* Setup photo slide for desktop - need to give it some time to get accurate photo widths */
-    // if (window.innerWidth > 1367){
-    //     setTimeout(function(){
-    //         initScrollMagicController();
-    //         initSlideTimeline();
-    //         createPhotographySlideScene();
-    //     }, 500);
-    /* Otherwise setup regular photo vertical page scroll for mobile/tablet sizes */
-    // } else {
-    //     $('.photo').each(function(){
-    //         $(this).addClass("mobile");
-    //     });
-    //     $('.slide-container').addClass("mobile")
-    //     $('.wrapper').addClass("mobile")
-    //     $('.photography-page-title-container').addClass("mobile");
-    //     $('.photography-page-title').addClass("mobile");
-        
-    // }
+    
+    /* Setup horizontal scrolling view if desktop */
+    if (window.innerWidth > 1050){
+        initHorizontalScroll();
+        setTimeout(function(){
+            createPhotoMenuTriggerEvent();
+        }, 500);
+    }
+     
   },
   beforeDestroy(){
     // Unregister the event listener before destroying this Vue instance
@@ -141,12 +122,25 @@ export default {
     homePage() {
         return this.$router.push('/');
     },
-    /* Window resize event -  need to recalculate photo menu trigger and reset event */
+    /* Window resize event */
     onResize() {
-        setTimeout(function(){
-            removePhotoMenuTriggerEvent();
-            createPhotoMenuTriggerEvent();
-        }, 500);
+        if (window.innerWidth > 1050){
+            /* initialize horizontal scroll if not already */
+            if (getHorizontalScroll() == null){
+                initHorizontalScroll();
+            }
+            /* recalculate photo menu trigger and reset event */
+            setTimeout(function(){
+                removePhotoMenuTriggerEvent();
+                createPhotoMenuTriggerEvent();
+            }, 500);
+        } else {
+            /* destroy horizontal scrolling if not already */
+            if (getHorizontalScroll() != null) {
+                removePhotoMenuTriggerEvent();
+                destroyHorizontalScroll();
+            }
+        }
     }
   }
 }
@@ -171,7 +165,8 @@ export default {
         width: 40px;
         z-index: 2;
 
-        &.mobile {
+        /* 1050px and down */
+        @media only screen and (max-width: 1050px) {
             background-color: transparent;
             position: relative;
             height: 40px;
@@ -179,8 +174,6 @@ export default {
             margin: 0px auto;
             margin-top: 50px;
             margin-bottom: 50px;
-
-
 
             /* 415px to 330px */
             @media only screen and (max-width: 415px) and (min-width: 331px) {
@@ -203,25 +196,13 @@ export default {
         text-transform: uppercase;
         transform: rotate(-90deg);
 
-        &.mobile {
+        /* 1050px and down */
+        @media only screen and (max-width: 1050px) {
             position: relative;
             top: auto;
             left: auto;
             width: auto;
             transform: inherit;
-        }
-    }
-
-    .photos {
-        height: 100vh;
-        margin-left: 200px;
-        padding: 60px;
-        width: 100%;
-
-        img {
-            max-width:100%;
-            max-height:100%;
-            margin-right: 150px;
         }
     }
 
@@ -243,12 +224,9 @@ export default {
         // padding-top: 110px;
         // padding-bottom: 110px;
 
-        &.mobile {
-            float: none;
-            margin-left: 0px;
+        /* 1050px and down */
+        @media only screen and (max-width: 1050px) {
             width: 100%;
-            padding: 0px 0px 80px 0px;
-
         }
 
     }
@@ -264,6 +242,21 @@ export default {
         display: flex;
         flex: 1;
         height: 100vh;
+
+        /* 1050px and down */
+        @media only screen and (max-width: 1050px) {
+            display: block;
+            flex: unset;
+            height: auto;
+            width: auto;
+            padding: 0 50px 0 50px;
+
+            /* 430px and down */
+            @media only screen and (max-width: 430px) {
+                padding: 0 10px 0 10px;
+            }
+        }
+
     }
 
     .block {
@@ -273,6 +266,14 @@ export default {
         margin-left: 50px;
         padding: 90px 0px 90px 0px;
         max-height: 3000px;
+
+        /* 1050px and down */
+        @media only screen and (max-width: 1050px) {
+            padding: auto;
+            margin-left: unset;
+            max-height: unset;
+            padding: 0px 0px 90px 0px;
+        }
     }
 
     .album-menu {

@@ -11,6 +11,11 @@ export function initHorizontalScroll() {
     });
 }
 
+/* Returns horizontal scroll object */
+export function getHorizontalScroll() {
+    return horizontal;
+}
+
 /* Calculates scroll value at which photo album menu should appear */
 function calculatePhotoMenuTrigger() {
     var scrollWidth = $("#photos-container")[0].scrollWidth; 
@@ -49,4 +54,5 @@ export function removePhotoMenuTriggerEvent() {
 /* Destroys horizontal scroll */
 export function destroyHorizontalScroll() {
     horizontal.destroy();
+    horizontal = null;
 }
