@@ -35,7 +35,7 @@ function calculatePhotoMenuTrigger() {
     var scrollWidth = $("#photos-container")[0].scrollWidth; 
     var containerWidth = $("#photos-container").width();
     var scrollEnd = scrollWidth - containerWidth;
-    menuTriggerPosition = scrollEnd - (containerWidth/2.5);
+    menuTriggerPosition = scrollEnd - (containerWidth/1.3);
     //return menuTriggerPosition;
 }
 
@@ -65,8 +65,10 @@ function changeBackgroundColor(on){
 function photoMenuTriggerListener(event) {
     if (event >= menuTriggerPosition) {
         changeBackgroundColor(true);
+        $("#album-menu").addClass("show");
     } else if (photosetTitleTriggerEndPosition < event && event < menuTriggerPosition) {
         changeBackgroundColor(false);
+        $("#album-menu").removeClass("show");
     }
 }
 
@@ -75,11 +77,11 @@ function photosetTitleTriggerListener(event) {
     if (event <  photosetTitleTriggerStartPosition) {
         changeBackgroundColor(false);
         $("#start").css("opacity","1");
-        $(".photoset-title").css("color","#FDD9CB");
+        $(".photoset-title.desktop").css("color","#FDD9CB");
     } else if (photosetTitleTriggerStartPosition <= event && event < photosetTitleTriggerEndPosition) {
         changeBackgroundColor(true);
         $("#start").css("opacity","0");
-        $(".photoset-title").css("color","white");
+        $(".photoset-title.desktop").css("color","white");
     }
 }
 

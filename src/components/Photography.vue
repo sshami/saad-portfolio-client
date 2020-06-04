@@ -17,14 +17,14 @@
 
         <div class="photos-container" id="photos-container" >
 
-            <div class="block title-mobile" id="photoset-title-mobile">
-                <div class="photoset-title mobile">Union Market DC</div>
+            <div class="block title-mobile">
+                <div id="photoset-title-mobile" class="photoset-title mobile">Union Market DC</div>
             </div>
 
             <img id="start" class="photo hero" src="https://66.media.tumblr.com/0a82fa7ce59404e7a713ded2fd5aa81d/tumblr_pkf8ro270V1v57djwo1_1280.jpg" />
 
-            <div class="block title-desktop" id="photoset-title">
-                <div class="photoset-title desktop">Union Market DC</div>
+            <div class="block title-desktop">
+                <div id="photoset-title" class="photoset-title desktop">Union Market DC</div>
             </div>
 
             <img class="photo" src="https://66.media.tumblr.com/1d87611e8ffffe6701377dc2b58b1638/tumblr_pf48obYBwN1v57djwo1_1280.jpg" />
@@ -33,10 +33,21 @@
             <img class="photo" src="https://66.media.tumblr.com/3b4baff7e0146ef48f6e8e408dd4d108/tumblr_pcnqksLOZq1v57djwo1_1280.jpg" />
 
             <div class="block" id="end">
-                <div class="album-menu">
-                    <a href="#start">
+                <div id="album-menu" class="album-menu">
+                    <!-- <a href="#start">
                         Back to start
-                    </a>
+                    </a> -->
+                    <div class="menu-list">
+                        <h1>Photo Albums</h1>
+                        <ul>
+                            <li><a href="">Campspace</a></li>
+                            <li><a href="">Havana RVA</a></li>
+                            <li><a href="">Home Studio Shoot</a></li>
+                            <li><a href="">U-Street DC</a></li>
+                            <li><a href="">Cherry Blossom Shoot</a></li>
+                            <li><a href="">Courtney RVA</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -259,9 +270,16 @@ export default {
             font-size: calc(9.5vw + 9.5vh);
             color: $gray;
 
+
             /* 1050px and down */
             @media only screen and (max-width: 1050px) {
                 display: block;
+
+                /* 430px and down */
+                @media only screen and (max-width: 430px) {
+                    font-size: calc(7vw + 7vh);
+                    letter-spacing: 15px;
+                }
             }
         }
 
@@ -354,15 +372,71 @@ export default {
         }
     }
 
+    .block a {
+        color: inherit;
+    }
+
+
     .album-menu {
         width: 100vw;
         align-items: center;
         justify-content: center;
-        text-align: center;
+        padding: 0px 100px 0px 100px; 
+        transition: all 2s ease;
+        opacity: 0;
+        transform: translateY(-10px);
+        color: $gray;
+
+        &.show {
+            opacity: 1;
+            transform: translateY(10px);
+        }
+
+        /* 1050px and down */
+        @media only screen and (max-width: 1050px) {
+            opacity: 1;
+            float: inherit;
+            text-align: center;
+            padding: 0px;
+            margin: 0 auto;
+            width: 50%;
+        }
+
+        h1 {
+            font-family: 'aguero_serif_freeregular', serif;
+            font-weight: lighter;
+            font-size: calc(4vw + 4vh);
+            letter-spacing: 8px;
+        }
+
+        .menu-list {
+            float: left;
+            font-size: calc(0.8vw + 0.8vh);
+            text-transform: uppercase;
+            font-weight: bolder;
+
+
+            ul {
+                list-style-type: none;
+                margin: 0px 0px 0px 5px;
+                padding: 0;
+                line-height: 3;
+
+                a:hover {
+                    text-decoration: none;
+                    color: black;
+                }
+
+            }
+
+            /* 1050px and down */
+            @media only screen and (max-width: 1050px) {
+                margin-bottom: 100px;
+            }
+
+        }
+
     }
 
-    .block a {
-        color: inherit;
-    }
 
 </style>
