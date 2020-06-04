@@ -12,7 +12,13 @@
         </div>
 
         <div class="photos-container" id="photos-container" >
+
             <img id="start" class="photo" src="https://66.media.tumblr.com/0a82fa7ce59404e7a713ded2fd5aa81d/tumblr_pkf8ro270V1v57djwo1_1280.jpg" />
+
+            <div class="block" id="photoset-title">
+                <div class="photoset-title">Union Market DC</div>
+            </div>
+
             <img class="photo" src="https://66.media.tumblr.com/1d87611e8ffffe6701377dc2b58b1638/tumblr_pf48obYBwN1v57djwo1_1280.jpg" />
             <img class="photo" src="https://66.media.tumblr.com/ac9b62f320dee8a607f09078629a2c82/tumblr_pf48pwtn2v1v57djwo1_1280.jpg" />
             <img class="photo" src="https://66.media.tumblr.com/e16bdff3d9aedd32991e7efcf2f10468/tumblr_pehq47jW131v57djwo1_1280.jpg" />
@@ -34,7 +40,7 @@
 <script>
 import $ from 'jquery'
 import { animateText } from '../static/js/anime-animations.js'
-import { initHorizontalScroll, getHorizontalScroll,  createPhotoMenuTriggerEvent, removePhotoMenuTriggerEvent, destroyHorizontalScroll } from '../static/js/photography.js'
+import { initHorizontalScroll, getHorizontalScroll, calculateAllTriggers, createPhotosetTitleTriggerEvent, removePhotosetTitleTriggerEvent, createPhotoMenuTriggerEvent, removePhotoMenuTriggerEvent, destroyHorizontalScroll } from '../static/js/photography.js'
 
 export default {
   name: 'Photography',
@@ -53,6 +59,8 @@ export default {
     if (window.innerWidth > 1050){
         initHorizontalScroll();
         setTimeout(function(){
+            calculateAllTriggers();
+            createPhotosetTitleTriggerEvent();
             createPhotoMenuTriggerEvent();
         }, 500);
     }
@@ -118,11 +126,14 @@ export default {
             /* recalculate photo menu trigger and reset event */
             setTimeout(function(){
                 removePhotoMenuTriggerEvent();
+                calculateAllTriggers();
+                createPhotosetTitleTriggerEvent();
                 createPhotoMenuTriggerEvent();
             }, 500);
         } else {
             /* destroy horizontal scrolling if not already */
             if (getHorizontalScroll() != null) {
+                removePhotosetTitleTriggerEvent();
                 removePhotoMenuTriggerEvent();
                 destroyHorizontalScroll();
             }
@@ -200,6 +211,18 @@ export default {
 
     }
 
+    .photoset-title {
+        font-size: calc(8.5vw + 8.5vh);
+        line-height: 1.3;
+        text-transform: uppercase;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100vw;
+        font-family: 'LemonMilk', serif;
+        color: #676767;
+    }
+
     // ---------- Photo slide styles ---------- //
 
 
@@ -237,6 +260,7 @@ export default {
         display: flex;
         flex: 1;
         height: 100vh;
+        margin-left: 50px;
 
         /* 1050px and down */
         @media only screen and (max-width: 1050px) {
@@ -245,6 +269,7 @@ export default {
             height: auto;
             width: auto;
             padding: 0 50px 0 50px;
+            margin-left: unset;
 
             /* 430px and down */
             @media only screen and (max-width: 430px) {

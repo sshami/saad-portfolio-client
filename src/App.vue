@@ -51,16 +51,31 @@ export default {
       padding:0;
 
       &.set-pink {
-        transition: all 3s ease;
+        transition: all 1s ease;
         background-color: $neutral-pink;
       }
 
       &.unset-pink {
-        transition: all 3s ease;
+        transition: all 1s ease;
         background-color: $base-cream;
       }
 
     }
+
+    @font-face {
+        font-family: LemonMilk;
+        src: url("/assets/fonts/lemon-milk/LEMONMILK-Regular.woff") format("woff"), url("/assets/fonts/lemon-milk/LEMONMILK-Regular.ttf")  format("truetype");
+    }
+
+    @font-face {
+        font-family: LemonMilk;
+        src: url("/assets/fonts/lemon-milk/LEMONMILK-Regular.eot"); /* IE9 Compat Modes */
+        src: url("/assets/fonts/lemon-milk/LEMONMILK-Regular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+            url("/assets/fonts/lemon-milk/LEMONMILK-Regular.woff") format("woff"), /* Modern Browsers */
+            url("/assets/fonts/lemon-milk/LEMONMILK-Regular.ttf")  format("truetype"), /* Safari, Android, iOS */
+            url("/assets/fonts/lemon-milk/LEMONMILK-Regular.svg#svgFontName") format("svg"); /* Legacy iOS */
+    }
+
 
     .transition-screen-photography-in {
       position: fixed;
