@@ -58,7 +58,7 @@
                         </ul>
                     </div>
                     <div class="menu-hero-photos">
-                        <img id="menu-preview-img" src="https://66.media.tumblr.com/36cb4739ab17ba6e6b7d6b7f04cf155f/tumblr_pty0p6wK6b1v57djwo1_1280.jpg" />
+                        <img id="menu-preview-img" src="https://66.media.tumblr.com/f4cdb87d7940d0033ffd0aeeb7545e80/tumblr_o8ktllkayC1v57djwo1_1280.jpg" />
                     </div>
                 </div>
             </div>
