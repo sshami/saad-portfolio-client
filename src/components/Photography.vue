@@ -17,10 +17,14 @@
 
         <div class="photos-container" id="photos-container" >
 
+            <div class="block title-mobile" id="photoset-title-mobile">
+                <div class="photoset-title mobile">Union Market DC</div>
+            </div>
+
             <img id="start" class="photo hero" src="https://66.media.tumblr.com/0a82fa7ce59404e7a713ded2fd5aa81d/tumblr_pkf8ro270V1v57djwo1_1280.jpg" />
 
-            <div class="block" id="photoset-title">
-                <div class="photoset-title">Union Market DC</div>
+            <div class="block title-desktop" id="photoset-title">
+                <div class="photoset-title desktop">Union Market DC</div>
             </div>
 
             <img class="photo" src="https://66.media.tumblr.com/1d87611e8ffffe6701377dc2b58b1638/tumblr_pf48obYBwN1v57djwo1_1280.jpg" />
@@ -152,6 +156,7 @@ export default {
 
     $neutral-pink: #fddecc;
     $neutral-pink-dark: #FDD9CB;
+    $gray: #717171;
 
     @font-face {
       font-family: 'aguero_serif_freeregular';
@@ -231,21 +236,41 @@ export default {
         align-items: center;
         justify-content: center;
         text-align: center;
-        width: 100vw;
         font-family: 'aguero_serif_freeregular', serif;
         color: $neutral-pink-dark;
         transition: all 1s ease;
         letter-spacing: 30px;
-        margin-left: 40vw;
         transition: all 1s ease;
+        
+        &.desktop {
+            font-size: calc(12.5vw + 12.5vh);
+            margin-left: 40vw;
+            width: 100vw;
+
+            /* 1050px and down */
+            @media only screen and (max-width: 1050px) {
+                display: none;
+            }
+        }
+
+        &.mobile {
+            display: none;
+            margin-left: unset;
+            font-size: calc(9.5vw + 9.5vh);
+            color: $gray;
+
+            /* 1050px and down */
+            @media only screen and (max-width: 1050px) {
+                display: block;
+            }
+        }
+
     }
 
     // ---------- Photo slide styles ---------- //
 
 
     .photo {
-        // float: left;
-        // margin-left: 80px;
         height: 100%;
         margin-right: 60px;
         max-width: 100%;
@@ -253,13 +278,17 @@ export default {
         align-self: center;
         flex: 0 0 auto;
         //object-fit: contain;
-        // padding-top: 110px;
-        // padding-bottom: 110px;
 
         &.hero {
             position: fixed;
             padding: 70px 0px 70px 0px;
             transition: all 1.5s ease;
+
+            /* 1050px and down */
+            @media only screen and (max-width: 1050px) {
+                position: relative;
+            }
+
         }
 
         /* 1050px and down */
@@ -317,6 +346,11 @@ export default {
             margin-left: unset;
             max-height: unset;
             padding: 0px 0px 90px 0px;
+
+            &.title-desktop {
+                display: none;
+            }
+
         }
     }
 
