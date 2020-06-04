@@ -54,8 +54,11 @@
                     <div class="menu-list">
                         <h1>Photo Albums</h1>
                         <ul v-for="album in photoalbums" :key="album.title">
-                            <li><a v-bind:href="album.url">{{ album.title }}</a></li>
+                            <li class="list-item"><a v-bind:href="album.url" :data-img="album.hero_image_url">{{ album.title }}</a></li>
                         </ul>
+                    </div>
+                    <div class="menu-hero-photos">
+                        <img id="menu-preview-img" src="https://66.media.tumblr.com/36cb4739ab17ba6e6b7d6b7f04cf155f/tumblr_pty0p6wK6b1v57djwo1_1280.jpg" />
                     </div>
                 </div>
             </div>
@@ -113,32 +116,32 @@ export default {
             photoalbums: [
                 {
                     title: "Campspace",
-                    hero_image_url: "",
+                    hero_image_url: "https://66.media.tumblr.com/1d87611e8ffffe6701377dc2b58b1638/tumblr_pf48obYBwN1v57djwo1_1280.jpg",
                     url: ""
                 },
                 {
                     title: "Havana RVA",
-                    hero_image_url: "",
+                    hero_image_url: "https://66.media.tumblr.com/36cb4739ab17ba6e6b7d6b7f04cf155f/tumblr_pty0p6wK6b1v57djwo1_1280.jpg",
                     url: ""
                 },
                 {
                     title: "Home Studio Shoot",
-                    hero_image_url: "",
+                    hero_image_url: "https://66.media.tumblr.com/0a82fa7ce59404e7a713ded2fd5aa81d/tumblr_pkf8ro270V1v57djwo1_1280.jpg",
                     url: ""
                 },
                 {
                     title: "U-Street DC",
-                    hero_image_url: "",
+                    hero_image_url: "https://66.media.tumblr.com/728144270027a1ebaee50adddbe1aa1f/tumblr_o8ksctWTL51v57djwo1_1280.jpg",
                     url: ""
                 },
                 {
                     title: "Cherry Blossom Shoot",
-                    hero_image_url: "",
+                    hero_image_url: "https://66.media.tumblr.com/9278c4fa179cd64869f71808e443b3a4/tumblr_o8ks03623v1v57djwo1_1280.jpg",
                     url: ""
                 },
                 {
                     title: "Courtney RVA",
-                    hero_image_url: "",
+                    hero_image_url: "https://66.media.tumblr.com/6571c9e32092b669ca7b4fed6889e768/tumblr_pdxq43aYEj1v57djwo1_1280.jpg",
                     url: ""
                 },
 
@@ -165,6 +168,8 @@ export default {
             createPhotoMenuTriggerEvent();
         }, 500);
     }
+
+    this.albumMenuHover();
      
   },
   beforeDestroy(){
@@ -239,6 +244,17 @@ export default {
                 destroyHorizontalScroll();
             }
         }
+    },
+    /* Photo albums menu hover image preview */
+    albumMenuHover() {
+        $("li.list-item > a").hover(function(){
+            var image = $(this)[0].dataset.img;
+            $("#menu-preview-img").fadeOut('fast', function() { 
+                $("#menu-preview-img").attr("src", image).fadeIn('slow'); 
+            });
+        }, function(){
+            
+        });
     }
   }
 }
@@ -496,6 +512,7 @@ export default {
             font-size: calc(0.8vw + 0.8vh);
             text-transform: uppercase;
             font-weight: bolder;
+            width: 40vw;
 
 
             ul {
@@ -516,6 +533,19 @@ export default {
                 margin-bottom: 100px;
             }
 
+        }
+
+        .menu-hero-photos {
+            float: left;
+            width: 40vw;
+            height: 100%;
+            padding: 50px 110px 110px 110px;
+            transition: all 2s ease;
+
+            img {
+                height: 100%;
+                width: 100%;
+            }
         }
 
     }
