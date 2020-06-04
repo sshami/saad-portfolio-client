@@ -11,26 +11,40 @@
             <span>SAAD</span>
         </div>
 
-        <!-- <div id="photoset-hero" class="photoset-hero">
-            <img src="https://66.media.tumblr.com/0a82fa7ce59404e7a713ded2fd5aa81d/tumblr_pkf8ro270V1v57djwo1_1280.jpg" />
-        </div> -->
-
         <div class="photos-container" id="photos-container" >
 
-            <div class="block title-mobile">
+            <!-- <div class="block title-mobile">
                 <div id="photoset-title-mobile" class="photoset-title mobile">Union Market DC</div>
-            </div>
-
+            </div> -->
+            <!-- 
             <img id="start" class="photo hero" src="https://66.media.tumblr.com/0a82fa7ce59404e7a713ded2fd5aa81d/tumblr_pkf8ro270V1v57djwo1_1280.jpg" />
 
             <div class="block title-desktop">
                 <div id="photoset-title" class="photoset-title desktop">Union Market DC</div>
-            </div>
-
-            <img class="photo" src="https://66.media.tumblr.com/1d87611e8ffffe6701377dc2b58b1638/tumblr_pf48obYBwN1v57djwo1_1280.jpg" />
+            </div> -->
+            
+            <!-- <img class="photo" src="https://66.media.tumblr.com/1d87611e8ffffe6701377dc2b58b1638/tumblr_pf48obYBwN1v57djwo1_1280.jpg" />
             <img class="photo" src="https://66.media.tumblr.com/ac9b62f320dee8a607f09078629a2c82/tumblr_pf48pwtn2v1v57djwo1_1280.jpg" />
             <img class="photo" src="https://66.media.tumblr.com/e16bdff3d9aedd32991e7efcf2f10468/tumblr_pehq47jW131v57djwo1_1280.jpg" />
-            <img class="photo" src="https://66.media.tumblr.com/3b4baff7e0146ef48f6e8e408dd4d108/tumblr_pcnqksLOZq1v57djwo1_1280.jpg" />
+            <img class="photo" src="https://66.media.tumblr.com/3b4baff7e0146ef48f6e8e408dd4d108/tumblr_pcnqksLOZq1v57djwo1_1280.jpg" /> -->
+            
+
+            <div class="block title-mobile">
+                <div id="photoset-title-mobile" class="photoset-title mobile">{{ photoset.title }}</div>
+            </div>
+
+            <template v-for="(photo, index) in photoset.photos">
+                <template v-if="index == 0">
+                    <img id="start" class="photo hero" :src="photo.url" :key="photo.id" />
+                    <div class="block title-desktop" :key="photo.id">
+                        <div id="photoset-title" class="photoset-title desktop">{{ photoset.title }}</div>
+                    </div>
+                </template>
+                <template v-else>
+                    <img class="photo" :src="photo.url" :key="photo.id" />
+                </template>
+            </template>
+
 
             <div class="block" id="end">
                 <div id="album-menu" class="album-menu">
@@ -39,13 +53,8 @@
                     </a> -->
                     <div class="menu-list">
                         <h1>Photo Albums</h1>
-                        <ul>
-                            <li><a href="">Campspace</a></li>
-                            <li><a href="">Havana RVA</a></li>
-                            <li><a href="">Home Studio Shoot</a></li>
-                            <li><a href="">U-Street DC</a></li>
-                            <li><a href="">Cherry Blossom Shoot</a></li>
-                            <li><a href="">Courtney RVA</a></li>
+                        <ul v-for="album in photoalbums" :key="album.title">
+                            <li><a v-bind:href="album.url">{{ album.title }}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -63,6 +72,79 @@ import { initHorizontalScroll, getHorizontalScroll, calculateAllTriggers, create
 
 export default {
   name: 'Photography',
+    data: function () {
+        return {
+            photoset: {
+                title: "Union Market DC",
+                title_size: 12.5,
+                photos: [
+                    {
+                        id: 1,
+                        caption: "",
+                        url: "https://66.media.tumblr.com/0a82fa7ce59404e7a713ded2fd5aa81d/tumblr_pkf8ro270V1v57djwo1_1280.jpg",
+                        hero: true
+                    },
+                    {
+                        id: 2,
+                        caption: "",
+                        url: "https://66.media.tumblr.com/1d87611e8ffffe6701377dc2b58b1638/tumblr_pf48obYBwN1v57djwo1_1280.jpg",
+                        hero: false
+                    },
+                    {
+                        id: 3,
+                        caption: "",
+                        url: "https://66.media.tumblr.com/ac9b62f320dee8a607f09078629a2c82/tumblr_pf48pwtn2v1v57djwo1_1280.jpg",
+                        hero: false
+                    },
+                    {
+                        id: 4,
+                        caption: "",
+                        url: "https://66.media.tumblr.com/e16bdff3d9aedd32991e7efcf2f10468/tumblr_pehq47jW131v57djwo1_1280.jpg",
+                        hero: false
+                    },
+                    {
+                        id: 4,
+                        caption: "",
+                        url: "https://66.media.tumblr.com/3b4baff7e0146ef48f6e8e408dd4d108/tumblr_pcnqksLOZq1v57djwo1_1280.jpg",
+                        hero: false
+                    },
+                ]
+            },
+            photoalbums: [
+                {
+                    title: "Campspace",
+                    hero_image_url: "",
+                    url: ""
+                },
+                {
+                    title: "Havana RVA",
+                    hero_image_url: "",
+                    url: ""
+                },
+                {
+                    title: "Home Studio Shoot",
+                    hero_image_url: "",
+                    url: ""
+                },
+                {
+                    title: "U-Street DC",
+                    hero_image_url: "",
+                    url: ""
+                },
+                {
+                    title: "Cherry Blossom Shoot",
+                    hero_image_url: "",
+                    url: ""
+                },
+                {
+                    title: "Courtney RVA",
+                    hero_image_url: "",
+                    url: ""
+                },
+
+            ]
+        }
+    },
   beforeMount() {
       /* animate opening swipe-in transition */
       $("#transition-screen-photography-in").addClass("swipe");
