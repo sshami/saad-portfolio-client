@@ -11,9 +11,13 @@
             <span>SAAD</span>
         </div>
 
+        <!-- <div id="photoset-hero" class="photoset-hero">
+            <img src="https://66.media.tumblr.com/0a82fa7ce59404e7a713ded2fd5aa81d/tumblr_pkf8ro270V1v57djwo1_1280.jpg" />
+        </div> -->
+
         <div class="photos-container" id="photos-container" >
 
-            <img id="start" class="photo" src="https://66.media.tumblr.com/0a82fa7ce59404e7a713ded2fd5aa81d/tumblr_pkf8ro270V1v57djwo1_1280.jpg" />
+            <img id="start" class="photo hero" src="https://66.media.tumblr.com/0a82fa7ce59404e7a713ded2fd5aa81d/tumblr_pkf8ro270V1v57djwo1_1280.jpg" />
 
             <div class="block" id="photoset-title">
                 <div class="photoset-title">Union Market DC</div>
@@ -147,6 +151,15 @@ export default {
 <style scoped lang="scss">
 
     $neutral-pink: #fddecc;
+    $neutral-pink-dark: #FDD9CB;
+
+    @font-face {
+      font-family: 'aguero_serif_freeregular';
+      src: url("../assets/fonts/aguero-serif-kit/aguero_serif-webfont.woff2") format('woff2'),
+          url("../assets/fonts/aguero-serif-kit/aguero_serif-webfont.woff") format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
 
     .page {
         height: 100%;
@@ -212,15 +225,19 @@ export default {
     }
 
     .photoset-title {
-        font-size: calc(8.5vw + 8.5vh);
+        font-size: calc(12.5vw + 12.5vh);
         line-height: 1.3;
         text-transform: uppercase;
         align-items: center;
         justify-content: center;
         text-align: center;
         width: 100vw;
-        font-family: 'LemonMilk', serif;
-        color: #676767;
+        font-family: 'aguero_serif_freeregular', serif;
+        color: $neutral-pink-dark;
+        transition: all 1s ease;
+        letter-spacing: 30px;
+        margin-left: 40vw;
+        transition: all 1s ease;
     }
 
     // ---------- Photo slide styles ---------- //
@@ -238,6 +255,12 @@ export default {
         //object-fit: contain;
         // padding-top: 110px;
         // padding-bottom: 110px;
+
+        &.hero {
+            position: fixed;
+            padding: 70px 0px 70px 0px;
+            transition: all 1.5s ease;
+        }
 
         /* 1050px and down */
         @media only screen and (max-width: 1050px) {
@@ -284,8 +307,9 @@ export default {
         font-size: 32px;
         color: black;
         margin-left: 50px;
-        padding: 90px 0px 90px 0px;
+        //padding: 90px 0px 90px 0px;
         max-height: 3000px;
+        z-index: 5;
 
         /* 1050px and down */
         @media only screen and (max-width: 1050px) {

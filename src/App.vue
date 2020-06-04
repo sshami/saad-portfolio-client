@@ -37,6 +37,7 @@ export default {
     $base-cream: #FFFCF4;
     $violet-blue: #F4F6FD;
     $neutral-pink: #fddecc;
+    $neutral-pink-dark: #FDD9CB;
 
     html, body {
       font-family: 'Lato', sans-serif;
@@ -52,7 +53,7 @@ export default {
 
       &.set-pink {
         transition: all 1s ease;
-        background-color: $neutral-pink;
+        background-color: $neutral-pink-dark;
       }
 
       &.unset-pink {
@@ -62,19 +63,32 @@ export default {
 
     }
 
-    @font-face {
-        font-family: LemonMilk;
-        src: url("/assets/fonts/lemon-milk/LEMONMILK-Regular.woff") format("woff"), url("/assets/fonts/lemon-milk/LEMONMILK-Regular.ttf")  format("truetype");
-    }
+    // @font-face {
+    //     font-family: LemonMilk;
+    //     src: url("/assets/fonts/lemon-milk/LEMONMILK-Regular.woff") format("woff"), url("/assets/fonts/lemon-milk/LEMONMILK-Regular.ttf")  format("truetype");
+    // }
 
-    @font-face {
-        font-family: LemonMilk;
-        src: url("/assets/fonts/lemon-milk/LEMONMILK-Regular.eot"); /* IE9 Compat Modes */
-        src: url("/assets/fonts/lemon-milk/LEMONMILK-Regular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-            url("/assets/fonts/lemon-milk/LEMONMILK-Regular.woff") format("woff"), /* Modern Browsers */
-            url("/assets/fonts/lemon-milk/LEMONMILK-Regular.ttf")  format("truetype"), /* Safari, Android, iOS */
-            url("/assets/fonts/lemon-milk/LEMONMILK-Regular.svg#svgFontName") format("svg"); /* Legacy iOS */
-    }
+    // @font-face {
+    //     font-family: LemonMilkLight;
+    //     src: url("/assets/fonts/lemon-milk/light/LEMONMILK-Light.eot"); /* IE9 Compat Modes */
+    //     src: url("/assets/fonts/lemon-milk/light/LEMONMILK-Light.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    //         url("/assets/fonts/lemon-milk/light/LEMONMILK-Light.woff") format("woff"), /* Modern Browsers */
+    //         url("/assets/fonts/lemon-milk/light/LEMONMILK-Light.ttf")  format("truetype"), /* Safari, Android, iOS */
+    //         url("/assets/fonts/lemon-milk/light/LEMONMILK-Light.svg#svgFontName") format("svg"); /* Legacy iOS */
+    // }
+
+    // @font-face {
+    //     font-family: AgueroSerif;
+    //     src: url("/assets/fonts/aguero-serif-kit/aguero_serif-webfont.woff2") format("woff2");
+    // }
+
+    // @font-face {
+    //   font-family: 'aguero_serif_freeregular';
+    //   src: url("/assets/fonts/aguero-serif-kit/aguero_serif-webfont.woff2") format('woff2'),
+    //       url("/assets/fonts/aguero-serif-kit/aguero_serif-webfont.woff") format('woff');
+    //   font-weight: normal;
+    //   font-style: normal;
+    // }
 
 
     .transition-screen-photography-in {

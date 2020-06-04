@@ -44,9 +44,6 @@ export function calculateAllTriggers() {
     calculatePhotoMenuTrigger();
     calculatePhotosetTitleTriggerStart();
     calculatePhotosetTitleTriggerEnd();
-    console.log("PHOTO MENU TRIGGER: " + menuTriggerPosition);
-    console.log("TITLE START TRIGGER: " + photosetTitleTriggerStartPosition);
-    console.log("TITLE END TRIGGER: " + photosetTitleTriggerEndPosition);
 }
 
 /* Changes body background color */
@@ -66,12 +63,9 @@ function changeBackgroundColor(on){
 
 /* Event listener function to change body color when end album menu is reached */
 function photoMenuTriggerListener(event) {
-    console.log(event);
     if (event >= menuTriggerPosition) {
-        //console.log("menu - in if");
         changeBackgroundColor(true);
     } else if (photosetTitleTriggerEndPosition < event && event < menuTriggerPosition) {
-        //console.log("menu - in else");
         changeBackgroundColor(false);
     }
 }
@@ -79,11 +73,13 @@ function photoMenuTriggerListener(event) {
 /* Event listener function to change body color when photoset title is reached */
 function photosetTitleTriggerListener(event) {
     if (event <  photosetTitleTriggerStartPosition) {
-        //console.log("title - in if");
         changeBackgroundColor(false);
+        $("#start").css("opacity","1");
+        $(".photoset-title").css("color","#FDD9CB");
     } else if (photosetTitleTriggerStartPosition <= event && event < photosetTitleTriggerEndPosition) {
-        console.log("title - in else");
         changeBackgroundColor(true);
+        $("#start").css("opacity","0");
+        $(".photoset-title").css("color","white");
     }
 }
 

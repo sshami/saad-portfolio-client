@@ -66,6 +66,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
     $violet-blue: #F4F6FD;
 
     .page {
