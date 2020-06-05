@@ -398,7 +398,7 @@ export default {
         &.hero {
             position: fixed;
             padding: 70px 0px 70px 0px;
-            transition: all 1.5s ease;
+            transition: all 0.7s ease;
 
             /* 1050px and down */
             @media only screen and (max-width: 1050px) {
