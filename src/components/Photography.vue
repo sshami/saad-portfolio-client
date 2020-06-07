@@ -36,7 +36,7 @@
             <template v-for="(photo, index) in photoset.photos">
                 <template v-if="index == 0">
                     <img id="start" class="photo hero" :src="photo.url" :key="photo.id" />
-                    <div class="block title-desktop" :key="photo.id">
+                    <div id="photoset-title-desktop" class="block title-desktop" :key="photo.id">
                         <div id="photoset-title" class="photoset-title desktop">{{ photoset.title }}</div>
                     </div>
                 </template>
@@ -360,6 +360,10 @@ export default {
             @media only screen and (max-width: 1050px) {
                 display: none;
             }
+
+            &.reveal {
+                color: white;
+            }
         }
 
         &.mobile {
@@ -403,6 +407,10 @@ export default {
             /* 1050px and down */
             @media only screen and (max-width: 1050px) {
                 position: relative;
+            }
+
+            &.hide {
+                opacity: 0;
             }
 
         }

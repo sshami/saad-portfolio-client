@@ -63,10 +63,10 @@ function changeBackgroundColor(on){
 
 /* Event listener function to change body color when end album menu is reached */
 function photoMenuTriggerListener(event) {
-    if (event >= menuTriggerPosition) {
+    if (event >= menuTriggerPosition && !$("#album-menu").hasClass("show")) {
         changeBackgroundColor(true);
         $("#album-menu").addClass("show");
-    } else if (photosetTitleTriggerEndPosition < event && event < menuTriggerPosition) {
+    } else if (event > photosetTitleTriggerEndPosition && event < menuTriggerPosition && $("#album-menu").hasClass("show")) {
         changeBackgroundColor(false);
         $("#album-menu").removeClass("show");
     }
@@ -74,14 +74,18 @@ function photoMenuTriggerListener(event) {
 
 /* Event listener function to change body color when photoset title is reached */
 function photosetTitleTriggerListener(event) {
-    if (event <  photosetTitleTriggerStartPosition) {
+    if (event <  photosetTitleTriggerStartPosition && $("#start").hasClass("hide")) {
         changeBackgroundColor(false);
-        $("#start").css("opacity","1");
-        $(".photoset-title.desktop").css("color","#FDD9CB");
-    } else if (photosetTitleTriggerStartPosition <= event && event < photosetTitleTriggerEndPosition) {
+        $("#start").removeClass("hide");
+        $("#photoset-title").removeClass("reveal");
+    } else if (photosetTitleTriggerStartPosition <= event && event < photosetTitleTriggerEndPosition && !$(".photoset-title.desktop").hasClass("reveal")) {
         changeBackgroundColor(true);
-        $("#start").css("opacity","0");
-        $(".photoset-title.desktop").css("color","white");
+        $("#start").addClass("hide");
+        //$(".photoset-title.desktop").css("color","white");
+        $("#photoset-title").addClass("reveal");
+    } else if (event > photosetTitleTriggerEndPosition && event < menuTriggerPosition && $(".photoset-title.desktop").hasClass("reveal")) {
+        $("#photoset-title").removeClass("reveal");
+        changeBackgroundColor(false);
     }
 }
 
