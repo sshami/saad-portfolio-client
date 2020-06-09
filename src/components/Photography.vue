@@ -36,7 +36,7 @@
             <template v-for="(photo, index) in photoset.photos">
                 <template v-if="index == 0">
                     <img id="start" class="photo hero" :src="photo.url" :key="photo.id" />
-                    <div id="photoset-title-desktop" class="block title-desktop" :key="photo.id">
+                    <div class="block title-desktop" :key="photo.id">
                         <div id="photoset-title" class="photoset-title desktop">{{ photoset.title }}</div>
                     </div>
                 </template>
@@ -47,10 +47,12 @@
 
 
             <div class="block" id="end">
-                <div id="album-menu" class="album-menu">
-                    <!-- <a href="#start">
-                        Back to start
-                    </a> -->
+                <div id="slide-space" class="slide-space">
+                </div>
+            </div>
+
+            <div id="album-menu" class="album-menu">
+                <div id="album-menu-contents" class="album-menu-contents">
                     <div class="menu-list">
                         <h1>Photo Albums</h1>
                         <ul v-for="album in photoalbums" :key="album.title">
@@ -58,10 +60,11 @@
                         </ul>
                     </div>
                     <div class="menu-hero-photos">
-                        <img id="menu-preview-img" src="https://66.media.tumblr.com/f4cdb87d7940d0033ffd0aeeb7545e80/tumblr_o8ktllkayC1v57djwo1_1280.jpg" />
+                        <img id="menu-preview-img" src="https://66.media.tumblr.com/f4cdb87d7940d0033ffd0aeeb7545e80/tumblr_o8ktllkayC1v57djwo1_500.jpg" />
                     </div>
                 </div>
             </div>
+
         </div>
 
     </div>
@@ -116,32 +119,32 @@ export default {
             photoalbums: [
                 {
                     title: "Campspace",
-                    hero_image_url: "https://66.media.tumblr.com/1d87611e8ffffe6701377dc2b58b1638/tumblr_pf48obYBwN1v57djwo1_1280.jpg",
+                    hero_image_url: "https://66.media.tumblr.com/1d87611e8ffffe6701377dc2b58b1638/tumblr_pf48obYBwN1v57djwo1_500.jpg",
                     url: ""
                 },
                 {
                     title: "Havana RVA",
-                    hero_image_url: "https://66.media.tumblr.com/36cb4739ab17ba6e6b7d6b7f04cf155f/tumblr_pty0p6wK6b1v57djwo1_1280.jpg",
+                    hero_image_url: "https://66.media.tumblr.com/36cb4739ab17ba6e6b7d6b7f04cf155f/tumblr_pty0p6wK6b1v57djwo1_500.jpg",
                     url: ""
                 },
                 {
                     title: "Home Studio Shoot",
-                    hero_image_url: "https://66.media.tumblr.com/0a82fa7ce59404e7a713ded2fd5aa81d/tumblr_pkf8ro270V1v57djwo1_1280.jpg",
+                    hero_image_url: "https://66.media.tumblr.com/0a82fa7ce59404e7a713ded2fd5aa81d/tumblr_pkf8ro270V1v57djwo1_500.jpg",
                     url: ""
                 },
                 {
                     title: "U-Street DC",
-                    hero_image_url: "https://66.media.tumblr.com/728144270027a1ebaee50adddbe1aa1f/tumblr_o8ksctWTL51v57djwo1_1280.jpg",
+                    hero_image_url: "https://66.media.tumblr.com/728144270027a1ebaee50adddbe1aa1f/tumblr_o8ksctWTL51v57djwo1_500.jpg",
                     url: ""
                 },
                 {
                     title: "Cherry Blossom Shoot",
-                    hero_image_url: "https://66.media.tumblr.com/9278c4fa179cd64869f71808e443b3a4/tumblr_o8ks03623v1v57djwo1_1280.jpg",
+                    hero_image_url: "https://66.media.tumblr.com/9278c4fa179cd64869f71808e443b3a4/tumblr_o8ks03623v1v57djwo1_500.jpg",
                     url: ""
                 },
                 {
                     title: "Courtney RVA",
-                    hero_image_url: "https://66.media.tumblr.com/6571c9e32092b669ca7b4fed6889e768/tumblr_pdxq43aYEj1v57djwo1_1280.jpg",
+                    hero_image_url: "https://66.media.tumblr.com/6571c9e32092b669ca7b4fed6889e768/tumblr_pdxq43aYEj1v57djwo1_500.jpg",
                     url: ""
                 },
 
@@ -287,7 +290,7 @@ export default {
         background-color: $neutral-pink;
         height: 100%;
         width: 40px;
-        z-index: 2;
+        z-index: 10;
 
         /* 1050px and down */
         @media only screen and (max-width: 1050px) {
@@ -319,6 +322,7 @@ export default {
         width: 400px;
         text-transform: uppercase;
         transform: rotate(-90deg);
+        z-index: 10;
 
         /* 1050px and down */
         @media only screen and (max-width: 1050px) {
@@ -392,7 +396,7 @@ export default {
 
     .photo {
         height: 100%;
-        margin-right: 60px;
+        margin-right: 100px;
         max-width: 100%;
         max-height: 3000px;
         align-self: center;
@@ -430,13 +434,17 @@ export default {
         height: 100vh;
         align-items: center;
         padding: 70px;
+        transition: all 1s ease;
+
+        &.change-bg-color {
+            background-color: $neutral-pink;
+        }
     }
 
     .photos-container {
         display: flex;
         flex: 1;
         height: 100vh;
-        margin-left: 50px;
 
         /* 1050px and down */
         @media only screen and (max-width: 1050px) {
@@ -460,7 +468,6 @@ export default {
         font-size: 32px;
         color: black;
         margin-left: 50px;
-        //padding: 90px 0px 90px 0px;
         max-height: 3000px;
         z-index: 5;
 
@@ -482,20 +489,28 @@ export default {
         color: inherit;
     }
 
+    .slide-space {
+        width: 60vw;
+    }
+ 
 
     .album-menu {
         width: 100vw;
+        display: flex;
         align-items: center;
         justify-content: center;
         padding: 0px 100px 0px 100px; 
-        transition: all 2s ease;
+        transition: all 1s ease;
         opacity: 0;
-        transform: translateY(-10px);
         color: $gray;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        background-color: $neutral-pink;
 
         &.show {
             opacity: 1;
-            transform: translateY(10px);
         }
 
         /* 1050px and down */
@@ -515,45 +530,60 @@ export default {
             letter-spacing: 8px;
         }
 
-        .menu-list {
-            float: left;
-            font-size: calc(0.8vw + 0.8vh);
-            text-transform: uppercase;
-            font-weight: bolder;
-            width: 40vw;
+        .album-menu-contents {
+
+            transform: translateX(250px);
+            transition: all 1.5s ease;           
+
+            &.swipe-in {
+                transform: translateX(0px) rotate(0.05deg);
+            }
+
+            .menu-list {
+                float: left;
+                font-size: calc(0.8vw + 0.8vh);
+                text-transform: uppercase;
+                font-weight: bolder;
+                width: 40vw;
 
 
-            ul {
-                list-style-type: none;
-                margin: 0px 0px 0px 5px;
-                padding: 0;
-                line-height: 3;
+                ul {
+                    list-style-type: none;
+                    margin: 0px 0px 0px 5px;
+                    padding: 0;
+                    line-height: 3;
 
-                a:hover {
-                    text-decoration: none;
-                    color: black;
+                    a {
+                       color: $gray; 
+                    }
+
+                    a:hover {
+                        text-decoration: none;
+                        color: black;
+                    }
+
+                }
+
+                /* 1050px and down */
+                @media only screen and (max-width: 1050px) {
+                    margin-bottom: 100px;
                 }
 
             }
 
-            /* 1050px and down */
-            @media only screen and (max-width: 1050px) {
-                margin-bottom: 100px;
-            }
-
-        }
-
-        .menu-hero-photos {
-            float: left;
-            width: 40vw;
-            height: 100%;
-            padding: 50px 110px 110px 110px;
-            transition: all 2s ease;
-
-            img {
+            .menu-hero-photos {
+                float: left;
+                width: 20vw;
                 height: 100%;
-                width: 100%;
+                margin-top: 20px;
+                transition: all 2s ease;
+
+                img {
+                    height: 100%;
+                    width: 100%;
+                }
             }
+
         }
 
     }

@@ -18,11 +18,13 @@ export function getHorizontalScroll() {
     return horizontal;
 }
 
+/* Calculates scroll value at which album title should appear (revealed) */
 function calculatePhotosetTitleTriggerStart() {
     var firstPhotoWidth = $("#start").width();
     photosetTitleTriggerStartPosition = firstPhotoWidth/2;
 }
 
+/* Calculates scroll value at which album title should disappear (un-revealed) */
 function calculatePhotosetTitleTriggerEnd() {
     var firstPhotoWidth = $("#start").width();
     var photosetTitleWidth = $("#photoset-title").width();
@@ -33,10 +35,9 @@ function calculatePhotosetTitleTriggerEnd() {
 /* Calculates scroll value at which photo album menu should appear */
 function calculatePhotoMenuTrigger() {
     var scrollWidth = $("#photos-container")[0].scrollWidth; 
-    var containerWidth = $("#photos-container").width();
-    var scrollEnd = scrollWidth - containerWidth;
-    menuTriggerPosition = scrollEnd - (containerWidth/1.3);
-    //return menuTriggerPosition;
+    var endSpaceWidth = $("#slide-space").width();
+    var scrollEnd = scrollWidth - endSpaceWidth;
+    menuTriggerPosition = scrollEnd - (endSpaceWidth/1);
 }
 
 /* Calculates and sets all triggers */
@@ -46,53 +47,39 @@ export function calculateAllTriggers() {
     calculatePhotosetTitleTriggerEnd();
 }
 
-/* Changes body background color */
-function changeBackgroundColor(on){
-    if (on){
-        if ($('body').hasClass("unset-pink")){
-            $('body').removeClass("unset-pink");
-        }
-        $('body').addClass("set-pink");
-    } else {
-        if ($('body').hasClass("set-pink")){
-            $('body').removeClass("set-pink");
-        }
-        $('body').addClass("unset-pink");
-    }
-}
-
-/* Event listener function to change body color when end album menu is reached */
+/* Event listener function to show photo album menu when end of the album is reached */
 function photoMenuTriggerListener(event) {
     if (event >= menuTriggerPosition && !$("#album-menu").hasClass("show")) {
-        changeBackgroundColor(true);
         $("#album-menu").addClass("show");
+        $("#album-menu-contents").addClass("swipe-in");
     } else if (event > photosetTitleTriggerEndPosition && event < menuTriggerPosition && $("#album-menu").hasClass("show")) {
-        changeBackgroundColor(false);
         $("#album-menu").removeClass("show");
+        $("#album-menu-contents").removeClass("swipe-in");
     }
 }
 
-/* Event listener function to change body color when photoset title is reached */
+/* Event listener function to change background color when photoset title is reached */
 function photosetTitleTriggerListener(event) {
     if (event <  photosetTitleTriggerStartPosition && $("#start").hasClass("hide")) {
-        changeBackgroundColor(false);
+        $("#photos-container").removeClass("change-bg-color");
         $("#start").removeClass("hide");
         $("#photoset-title").removeClass("reveal");
     } else if (photosetTitleTriggerStartPosition <= event && event < photosetTitleTriggerEndPosition && !$(".photoset-title.desktop").hasClass("reveal")) {
-        changeBackgroundColor(true);
+        $("#photos-container").addClass("change-bg-color");
         $("#start").addClass("hide");
-        //$(".photoset-title.desktop").css("color","white");
         $("#photoset-title").addClass("reveal");
     } else if (event > photosetTitleTriggerEndPosition && event < menuTriggerPosition && $(".photoset-title.desktop").hasClass("reveal")) {
         $("#photoset-title").removeClass("reveal");
-        changeBackgroundColor(false);
+        $("#photos-container").removeClass("change-bg-color");
     }
 }
 
+/* Creates scroll event for when scrolled to the album title triggers */
 export function createPhotosetTitleTriggerEvent() {
     horizontal.on('scroll', photosetTitleTriggerListener);
 }
 
+/* Removes the event listener (photosetTitleTriggerListener) */
 export function removePhotosetTitleTriggerEvent() {
     horizontal.off('scroll', photosetTitleTriggerListener);
 }
