@@ -51,16 +51,6 @@ export default {
       margin:0;
       padding:0;
 
-      &.set-pink {
-        transition: all 1s ease;
-        background-color: $neutral-pink-dark;
-      }
-
-      &.unset-pink {
-        transition: all 1s ease;
-        background-color: $base-cream;
-      }
-
     }
 
     // @font-face {

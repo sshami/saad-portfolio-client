@@ -178,16 +178,13 @@ export default {
   beforeDestroy(){
     // Unregister the event listener before destroying this Vue instance
     window.removeEventListener('resize', this.onResize)
+    removePhotosetTitleTriggerEvent();
+    removePhotoMenuTriggerEvent();
   },
   destroyed() {
         this.closingTransition();
         // Cleanup
         destroyHorizontalScroll();
-        if ($('body').hasClass("unset-pink")){
-            $('body').removeClass("unset-pink");
-        } else if ($('body').hasClass("set-pink")) {
-            $('body').removeClass("set-pink");
-        }
   },
   methods: {
     /* Opening Transition */
