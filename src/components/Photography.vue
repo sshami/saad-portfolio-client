@@ -46,7 +46,7 @@
             </template>
 
 
-            <div class="block" id="end">
+            <div class="block end" id="end">
                 <div id="slide-space" class="slide-space">
                 </div>
             </div>
@@ -483,6 +483,13 @@ export default {
             }
 
         }
+
+        &.end {
+            /* 1050px and down */
+            @media only screen and (max-width: 1050px) {
+                display: none;
+            }   
+        }
     }
 
     .block a {
@@ -515,12 +522,15 @@ export default {
 
         /* 1050px and down */
         @media only screen and (max-width: 1050px) {
+            position: relative;
             opacity: 1;
             float: inherit;
             text-align: center;
             padding: 0px;
             margin: 0 auto;
-            width: 50%;
+            height: 100%;
+            width: 100%;
+            background-color: transparent;
         }
 
         h1 {
@@ -533,7 +543,12 @@ export default {
         .album-menu-contents {
 
             transform: translateX(250px);
-            transition: all 1.5s ease;           
+            transition: all 1.5s ease;
+
+            /* 1050px and down */
+            @media only screen and (max-width: 1050px) {
+                transform: unset;
+            }
 
             &.swipe-in {
                 transform: translateX(0px) rotate(0.05deg);
@@ -562,11 +577,18 @@ export default {
                         color: black;
                     }
 
+                    /* 1050px and down */
+                    @media only screen and (max-width: 1050px) {
+                        margin: 0px;
+                    }
+
                 }
 
                 /* 1050px and down */
                 @media only screen and (max-width: 1050px) {
+                    font-size: calc(1.1vw + 1.1vh);
                     margin-bottom: 100px;
+                    width: 80vw;
                 }
 
             }
@@ -582,6 +604,12 @@ export default {
                     height: 100%;
                     width: 100%;
                 }
+
+                /* 1050px and down */
+                @media only screen and (max-width: 1050px) {
+                    display: none;
+                }
+
             }
 
         }
