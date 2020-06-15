@@ -16,18 +16,18 @@
                         <div class=col-2></div>
                         <div class="col" style="padding: 2px; margin-top: 6px;"><div id="draw-line-bio-l" class="draw-line left"></div></div>
                         <div class="col-auto" style="height: 50px;">
-                            <h1 id="bio-title" class="bio-title rising-bio-title">{{ bio.title }}</h1>
+                            <h1 id="bio-title" class="bio-title rising-bio-title">{{ homepage_intro.bio_title }}</h1>
                         </div>
                         <div class="col" style="padding: 2px; margin-top: 6px;"><div id="draw-line-bio-r" class="draw-line right"></div></div>
                         <div class=col-2></div>
                         <div class="col-sm-12 bio-text">
-                            <p class="rising-bio-text-p1">{{ bio.paragraph_one }}</p>
-                            <p class="rising-bio-text-p2">{{ bio.paragraph_two }}</p>
+                            <p class="rising-bio-text-p1">{{ homepage_intro.bio_paragraph1 }}</p>
+                            <p class="rising-bio-text-p2">{{ homepage_intro.bio_paragraph2 }}</p>
                         </div>
                         <div class="col-sm-12 bio-social">
-                            <a v-bind:href="social_links.instagram" target="_blank"><span class="socicon-instagram"></span></a>
-                            <a v-bind:href="social_links.facebook" target="_blank"><span class="socicon-facebook"></span></a>
-                            <a v-bind:href="social_links.email" target="_blank"><span class="socicon-mail"></span></a>
+                            <a v-bind:href="homepage_intro.contact_instagram" target="_blank"><span class="socicon-instagram"></span></a>
+                            <a v-bind:href="homepage_intro.contact_facebook" target="_blank"><span class="socicon-facebook"></span></a>
+                            <a v-bind:href="'mailto:' + homepage_intro.contact_email" target="_blank"><span class="socicon-mail"></span></a>
                         </div>
                     </div>
         </div>
@@ -35,28 +35,23 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
     name: 'HomeIntro',
     data: function () {
         return {
-            bio: { 
-                title: 'About',
-                paragraph_one: 'I\'m a photographer and full stack web developer in the Washington DC area',
-                paragraph_two: 'Services I offer include portrait photography, web design, front-end web development, \
-                            back-end web application development, and web service development.' 
-            },
-            flatlay_items: {
-                laptop: '',
-                camera: '',
-                coffee: '',
-                plant: ''
-            },
-            social_links: {
-                instagram: 'https://www.instagram.com/canvs_/',
-                facebook: 'https://www.facebook.com/saad.shami91',
-                email: 'mailto:sshami91@gmail.com'
-            }
+            homepage_intro: {}
         }
+    },
+    mounted() {
+        // Fetch homepage intro data
+        axios
+        .get('http://127.0.0.1:8000/api/v2/pages/?format=json&type=homepage.Homepage&fields=*')
+        .then(response => (this.homepage_intro = response.data.items[0]))
+        .catch(error => {
+            console.log("There was an error: " + error);
+        })
     }
 }
 </script>
