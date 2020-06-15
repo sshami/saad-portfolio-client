@@ -157,7 +157,7 @@ export default {
     if (this.$route.params.albumSlug) {
         var album_slug = this.$route.params.albumSlug
         axios
-        .get(API_ROOT + '/api/v2/pages/?type=photography.PhotographyAlbum&slug=' + album_slug + '&fields=photos')
+        .get(API_ROOT + '/api/v2/pages/?type=photography.PhotographyAlbum&slug=' + album_slug + '&fields=photos,title_font_size')
         .then(response => (this.photo_album = response.data.items[0]))
         .catch(error => {
             // TODO: use vue js logging
