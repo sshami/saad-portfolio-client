@@ -33,15 +33,15 @@
                 <div id="photoset-title-mobile" class="photoset-title mobile">{{ photoset.title }}</div>
             </div>
 
-            <template v-for="(photo, index) in photoset.photos">
+            <template v-for="(photo, index) in photo_album.photos">
                 <template v-if="index == 0">
-                    <img id="start" class="photo hero" :src="photo.url" :key="photo.id" />
+                    <img id="start" class="photo hero" :src="'http://127.0.0.1:8000' + photo.value.image_url" :key="photo.id" />
                     <div class="block title-desktop" :key="photo.id">
-                        <div id="photoset-title" class="photoset-title desktop">{{ photoset.title }}</div>
+                        <div id="photoset-title" class="photoset-title desktop">{{ photo_album.title }}</div>
                     </div>
                 </template>
                 <template v-else>
-                    <img class="photo" :src="photo.url" :key="photo.id" />
+                    <img class="photo" :src="'http://127.0.0.1:8000' + photo.value.image_url" :key="photo.id" />
                 </template>
             </template>
 
@@ -75,6 +75,9 @@
 import $ from 'jquery'
 import { animateText } from '../static/js/anime-animations.js'
 import { initHorizontalScroll, getHorizontalScroll, calculateAllTriggers, createPhotosetTitleTriggerEvent, removePhotosetTitleTriggerEvent, createPhotoMenuTriggerEvent, removePhotoMenuTriggerEvent, destroyHorizontalScroll } from '../static/js/photography.js'
+import axios from 'axios'
+import { API_ROOT } from '../common/variables.js'
+
 
 export default {
   name: 'Photography',
@@ -83,38 +86,6 @@ export default {
             photoset: {
                 title: "Union Market DC",
                 title_size: 12.5,
-                photos: [
-                    {
-                        id: 1,
-                        caption: "",
-                        url: "https://66.media.tumblr.com/0a82fa7ce59404e7a713ded2fd5aa81d/tumblr_pkf8ro270V1v57djwo1_1280.jpg",
-                        hero: true
-                    },
-                    {
-                        id: 2,
-                        caption: "",
-                        url: "https://66.media.tumblr.com/1d87611e8ffffe6701377dc2b58b1638/tumblr_pf48obYBwN1v57djwo1_1280.jpg",
-                        hero: false
-                    },
-                    {
-                        id: 3,
-                        caption: "",
-                        url: "https://66.media.tumblr.com/ac9b62f320dee8a607f09078629a2c82/tumblr_pf48pwtn2v1v57djwo1_1280.jpg",
-                        hero: false
-                    },
-                    {
-                        id: 4,
-                        caption: "",
-                        url: "https://66.media.tumblr.com/e16bdff3d9aedd32991e7efcf2f10468/tumblr_pehq47jW131v57djwo1_1280.jpg",
-                        hero: false
-                    },
-                    {
-                        id: 4,
-                        caption: "",
-                        url: "https://66.media.tumblr.com/3b4baff7e0146ef48f6e8e408dd4d108/tumblr_pcnqksLOZq1v57djwo1_1280.jpg",
-                        hero: false
-                    },
-                ]
             },
             photoalbums: [
                 {
@@ -148,7 +119,15 @@ export default {
                     url: ""
                 },
 
-            ]
+            ],
+            // Current photo album being viewed
+            photo_album : {},
+        }
+    },
+    watch: {
+        '$route' (to, from) {
+            console.log(to);
+            console.log(from);
         }
     },
   beforeMount() {
@@ -173,6 +152,20 @@ export default {
     }
 
     this.albumMenuHover();
+
+    // Fetch photo album data
+    if (this.$route.params.albumSlug) {
+        var album_slug = this.$route.params.albumSlug
+        axios
+        .get(API_ROOT + '/api/v2/pages/?type=photography.PhotographyAlbum&slug=' + album_slug + '&fields=photos')
+        .then(response => (this.photo_album = response.data.items[0]))
+        .catch(error => {
+            // TODO: use vue js logging
+            console.log("There was an error: " + error);
+        })
+    } else {
+        console.log("FETCH DEFAULT PHOTO ALBUM!");
+    }
      
   },
   beforeDestroy(){

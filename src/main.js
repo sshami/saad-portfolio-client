@@ -14,7 +14,7 @@ Vue.use(VueRouter);
 
 const routes = [
   { path:'/', component: Homepage},
-  { path:'/photography', component: Photography},
+  { path:'/photography/:albumSlug?', component: Photography},
   { path:'/web', component: Web}
 ];
 
