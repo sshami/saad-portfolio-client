@@ -47,19 +47,8 @@ export function calculateAllTriggers() {
     calculatePhotosetTitleTriggerEnd();
 }
 
-/* Event listener function to show photo album menu when end of the album is reached */
-function photoMenuTriggerListener(event) {
-    if (event >= menuTriggerPosition && !$("#album-menu").hasClass("show")) {
-        $("#album-menu").addClass("show");
-        $("#album-menu-contents").addClass("swipe-in");
-    } else if (event > photosetTitleTriggerEndPosition && event < menuTriggerPosition && $("#album-menu").hasClass("show")) {
-        $("#album-menu").removeClass("show");
-        $("#album-menu-contents").removeClass("swipe-in");
-    }
-}
-
-/* Event listener function to change background color when photoset title is reached */
-function photosetTitleTriggerListener(event) {
+/* Event listener function to fire when triggers (scroll values calculated above) are active */
+function photosetScrollListener(event) {
     if (event <  photosetTitleTriggerStartPosition && $("#start").hasClass("hide")) {
         $("#photos-container").removeClass("change-bg-color");
         $("#start").removeClass("hide");
@@ -71,27 +60,23 @@ function photosetTitleTriggerListener(event) {
     } else if (event > photosetTitleTriggerEndPosition && event < menuTriggerPosition && $(".photoset-title.desktop").hasClass("reveal")) {
         $("#photoset-title").removeClass("reveal");
         $("#photos-container").removeClass("change-bg-color");
+    } else if (event >= menuTriggerPosition && !$("#album-menu").hasClass("show")){
+        $("#album-menu").addClass("show");
+        $("#album-menu-contents").addClass("swipe-in");
+    } else if (event > photosetTitleTriggerEndPosition && event < menuTriggerPosition && $("#album-menu").hasClass("show")) {
+        $("#album-menu").removeClass("show");
+        $("#album-menu-contents").removeClass("swipe-in");
     }
 }
 
-/* Creates scroll event for when scrolled to the album title triggers */
-export function createPhotosetTitleTriggerEvent() {
-    horizontal.on('scroll', photosetTitleTriggerListener);
+/* Creates scroll event */
+export function createPhotosetScrollEvent() {
+    horizontal.on('scroll', photosetScrollListener);
 }
 
-/* Removes the event listener (photosetTitleTriggerListener) */
-export function removePhotosetTitleTriggerEvent() {
-    horizontal.off('scroll', photosetTitleTriggerListener);
-}
-
-/* Creates scroll event for when scrolled to the photo menu trigger */
-export function createPhotoMenuTriggerEvent(){
-    horizontal.on('scroll', photoMenuTriggerListener);
-}
-
-/* Removes the event listener (photoMenuTriggerListener) */
-export function removePhotoMenuTriggerEvent() {
-    horizontal.off('scroll', photoMenuTriggerListener);
+/* Removes scroll event */
+export function removePhotosetScrollEvent() {
+    horizontal.off('scroll', photosetScrollListener);
 }
 
 /* Destroys horizontal scroll */

@@ -74,7 +74,7 @@
 <script>
 import $ from 'jquery'
 import { animateText } from '../static/js/anime-animations.js'
-import { initHorizontalScroll, getHorizontalScroll, calculateAllTriggers, createPhotosetTitleTriggerEvent, removePhotosetTitleTriggerEvent, createPhotoMenuTriggerEvent, removePhotoMenuTriggerEvent, destroyHorizontalScroll } from '../static/js/photography.js'
+import { initHorizontalScroll, getHorizontalScroll, calculateAllTriggers, createPhotosetScrollEvent, removePhotosetScrollEvent, destroyHorizontalScroll } from '../static/js/photography.js'
 import axios from 'axios'
 import { API_ROOT } from '../common/variables.js'
 
@@ -146,8 +146,7 @@ export default {
         initHorizontalScroll();
         setTimeout(function(){
             calculateAllTriggers();
-            createPhotosetTitleTriggerEvent();
-            createPhotoMenuTriggerEvent();
+            createPhotosetScrollEvent();
         }, 500);
     }
 
@@ -171,8 +170,7 @@ export default {
   beforeDestroy(){
     // Unregister the event listener before destroying this Vue instance
     window.removeEventListener('resize', this.onResize)
-    removePhotosetTitleTriggerEvent();
-    removePhotoMenuTriggerEvent();
+    removePhotosetScrollEvent();
   },
   destroyed() {
         this.closingTransition();
@@ -224,16 +222,14 @@ export default {
             }
             /* recalculate photo menu trigger and reset event */
             setTimeout(function(){
-                removePhotoMenuTriggerEvent();
+                removePhotosetScrollEvent();
                 calculateAllTriggers();
-                createPhotosetTitleTriggerEvent();
-                createPhotoMenuTriggerEvent();
+                createPhotosetScrollEvent();
             }, 500);
         } else {
             /* destroy horizontal scrolling if not already */
             if (getHorizontalScroll() != null) {
-                removePhotosetTitleTriggerEvent();
-                removePhotoMenuTriggerEvent();
+                removePhotosetScrollEvent();
                 destroyHorizontalScroll();
             }
         }
@@ -535,6 +531,7 @@ export default {
 
             transform: translateX(250px);
             transition: all 1.5s ease;
+            will-change: transform;
 
             /* 1050px and down */
             @media only screen and (max-width: 1050px) {
