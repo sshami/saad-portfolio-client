@@ -397,6 +397,7 @@ export default {
             position: fixed;
             padding: 70px 0px 70px 0px;
             transition: all 0.7s ease;
+            will-change: transform;
 
             /* 1050px and down */
             @media only screen and (max-width: 1050px) {

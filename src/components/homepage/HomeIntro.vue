@@ -119,6 +119,8 @@ export default {
                 right: 0;
                 top: 0;
                 width: 50%;
+                will-change: transform;
+
                 //transition: all 0.5s ease-out;
 
                 /* antialiasing */
@@ -141,6 +143,8 @@ export default {
                 right: 52%;
                 top: 45%;
                 width: 13%;
+                will-change: transform;
+
                 //transition: all 0.5s ease-out;
 
                 &.shift {
@@ -161,6 +165,8 @@ export default {
                 right: 0;
                 top: 55%;
                 width: 12%;
+                will-change: transform;
+
                 //transition: all 0.5s ease-out;
 
                 &.shift {
@@ -182,6 +188,8 @@ export default {
                 right: 0;
                 top: 36%;
                 width: 11%;
+                will-change: transform;
+
                 //transition: all 0.5s ease-out;
 
                 &.shift {
