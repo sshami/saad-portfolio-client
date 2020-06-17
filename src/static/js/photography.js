@@ -20,13 +20,13 @@ export function getHorizontalScroll() {
 
 /* Calculates scroll value at which album title should appear (revealed) */
 function calculatePhotosetTitleTriggerStart() {
-    var firstPhotoWidth = $("#start").width();
+    var firstPhotoWidth = $("#hero").width();
     photosetTitleTriggerStartPosition = firstPhotoWidth/2;
 }
 
 /* Calculates scroll value at which album title should disappear (un-revealed) */
 function calculatePhotosetTitleTriggerEnd() {
-    var firstPhotoWidth = $("#start").width();
+    var firstPhotoWidth = $("#hero").width();
     var photosetTitleWidth = $("#photoset-title").width();
     var scrollEnd = firstPhotoWidth + photosetTitleWidth;
     photosetTitleTriggerEndPosition = scrollEnd - (photosetTitleWidth/2.8);
@@ -49,13 +49,13 @@ export function calculateAllTriggers() {
 
 /* Event listener function to fire when triggers (scroll values calculated above) are active */
 function photosetScrollListener(event) {
-    if (event <  photosetTitleTriggerStartPosition && $("#start").hasClass("hide")) {
+    if (event <  photosetTitleTriggerStartPosition && $("#hero").hasClass("hide")) {
         $("#photos-container").removeClass("change-bg-color");
-        $("#start").removeClass("hide");
+        $("#hero").removeClass("hide");
         $("#photoset-title").removeClass("reveal");
     } else if (photosetTitleTriggerStartPosition <= event && event < photosetTitleTriggerEndPosition && !$(".photoset-title.desktop").hasClass("reveal")) {
         $("#photos-container").addClass("change-bg-color");
-        $("#start").addClass("hide");
+        $("#hero").addClass("hide");
         $("#photoset-title").addClass("reveal");
     } else if (event > photosetTitleTriggerEndPosition && event < menuTriggerPosition && $(".photoset-title.desktop").hasClass("reveal")) {
         $("#photoset-title").removeClass("reveal");

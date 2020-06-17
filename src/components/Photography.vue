@@ -7,8 +7,10 @@
                 <div class="col" style="padding: 0px; margin-top: 6px;"><div id="draw-line-page-pr" class="draw-line"></div></div>
             </div>
         </div>
-        <div class="homepage-link" @click="homePage">
-            <span>SAAD</span>
+
+        
+        <div class="homepage-link">
+            <router-link :to="{ name: 'homepage'}">SAAD</router-link>
         </div>
 
         <div class="photos-container" id="photos-container" >
@@ -28,6 +30,7 @@
             <img class="photo" src="https://66.media.tumblr.com/e16bdff3d9aedd32991e7efcf2f10468/tumblr_pehq47jW131v57djwo1_1280.jpg" />
             <img class="photo" src="https://66.media.tumblr.com/3b4baff7e0146ef48f6e8e408dd4d108/tumblr_pcnqksLOZq1v57djwo1_1280.jpg" /> -->
             
+            <span id="start"></span>
 
             <div class="block title-mobile">
                 <div id="photoset-title-mobile" class="photoset-title mobile">{{ photoset.title }}</div>
@@ -35,8 +38,8 @@
 
             <template v-for="(photo, index) in photo_album.photos">
                 <template v-if="index == 0">
-                    <img id="start" class="photo hero" :src="'http://127.0.0.1:8000' + photo.value.image_url" :key="photo.id" />
-                    <div class="block title-desktop" :key="photo.id">
+                    <img id="hero" class="photo hero" :src="'http://127.0.0.1:8000' + photo.value.image_url" :key="photo.id" />
+                    <div id="album-title" class="block title-desktop" :key="photo.id">
                         <div id="photoset-title" class="photoset-title desktop">{{ photo_album.title }}</div>
                     </div>
                 </template>
@@ -56,8 +59,11 @@
                     <div class="menu-list">
                         <h1>Photo Albums</h1>
                         <ul v-for="album in photoalbums" :key="album.title">
-                            <li class="list-item"><router-link :to="{ name: 'photography', params: { albumSlug: album.url }}"><a :data-img="album.hero_image_url">{{ album.title }}</a></router-link></li>
+                            <template v-if="album.url"> 
+                                <li class="list-item"><router-link :to="{ name: 'photography', params: { albumSlug: album.url }}"><a :data-img="album.hero_image_url">{{ album.title }}</a></router-link></li>
+                            </template>
                         </ul>
+                        <a href="#start" @click="backToStart">Back to start</a>
                     </div>
                     <div class="menu-hero-photos">
                         <img id="menu-preview-img" src="https://66.media.tumblr.com/f4cdb87d7940d0033ffd0aeeb7545e80/tumblr_o8ktllkayC1v57djwo1_500.jpg" />
@@ -101,22 +107,22 @@ export default {
                 {
                     title: "Home Studio Shoot",
                     hero_image_url: "https://66.media.tumblr.com/0a82fa7ce59404e7a713ded2fd5aa81d/tumblr_pkf8ro270V1v57djwo1_500.jpg",
-                    url: ""
+                    url: "home-studio"
                 },
                 {
                     title: "U-Street DC",
                     hero_image_url: "https://66.media.tumblr.com/728144270027a1ebaee50adddbe1aa1f/tumblr_o8ksctWTL51v57djwo1_500.jpg",
-                    url: ""
+                    url: "u-street-dc"
                 },
                 {
                     title: "Cherry Blossom Shoot",
                     hero_image_url: "https://66.media.tumblr.com/9278c4fa179cd64869f71808e443b3a4/tumblr_o8ks03623v1v57djwo1_500.jpg",
-                    url: ""
+                    url: "cherry-blossom"
                 },
                 {
                     title: "Courtney RVA",
                     hero_image_url: "https://66.media.tumblr.com/6571c9e32092b669ca7b4fed6889e768/tumblr_pdxq43aYEj1v57djwo1_500.jpg",
-                    url: ""
+                    url: "courtney-rva"
                 },
 
             ],
@@ -139,6 +145,13 @@ export default {
                 calculateAllTriggers();
                 createPhotosetScrollEvent();
             }, 500);
+
+            /* programmatically scroll to #start anchor */
+            location.href = "#start";
+
+            $("#album-menu").removeClass("show");
+            $("#album-menu-contents").removeClass("swipe-in");
+            $("#hero").removeClass("hide");
         }
     },
   beforeMount() {
@@ -208,9 +221,10 @@ export default {
             $("#transition-screen-photography-in").removeClass("swipe");
         }, 1500);
     },
-    /* Navigate to home page */
-    homePage() {
-        return this.$router.push('/');
+    backToStart() {
+        $("#hero").removeClass("hide");
+        $("#album-menu").removeClass("show");
+        $("#album-menu-contents").removeClass("swipe-in");
     },
     /* Window resize event */
     onResize() {
@@ -338,8 +352,16 @@ export default {
         position: fixed;
         top: 0px;
         left: 55px;
-        z-index: 2;
+        z-index: 10;
 
+        a {
+            color: $gray; 
+        }
+
+        a:hover {
+            text-decoration: none;
+            color: black;
+        }
     }
 
     .photoset-title {
@@ -516,6 +538,7 @@ export default {
         left: 0;
         height: 100vh;
         background-color: $neutral-pink;
+        z-index: 6;
 
         &.show {
             opacity: 1;
