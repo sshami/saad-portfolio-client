@@ -56,7 +56,7 @@
                     <div class="menu-list">
                         <h1>Photo Albums</h1>
                         <ul v-for="album in photoalbums" :key="album.title">
-                            <li class="list-item"><a v-bind:href="album.url" :data-img="album.hero_image_url">{{ album.title }}</a></li>
+                            <li class="list-item"><router-link :to="{ name: 'photography', params: { albumSlug: album.url }}"><a :data-img="album.hero_image_url">{{ album.title }}</a></router-link></li>
                         </ul>
                     </div>
                     <div class="menu-hero-photos">
@@ -89,14 +89,14 @@ export default {
             },
             photoalbums: [
                 {
-                    title: "Campspace",
+                    title: "Campspace Studios",
                     hero_image_url: "https://66.media.tumblr.com/1d87611e8ffffe6701377dc2b58b1638/tumblr_pf48obYBwN1v57djwo1_500.jpg",
-                    url: ""
+                    url: "campspace-studios"
                 },
                 {
-                    title: "Havana RVA",
+                    title: "Havana Richmond",
                     hero_image_url: "https://66.media.tumblr.com/36cb4739ab17ba6e6b7d6b7f04cf155f/tumblr_pty0p6wK6b1v57djwo1_500.jpg",
-                    url: ""
+                    url: "havana"
                 },
                 {
                     title: "Home Studio Shoot",
@@ -125,9 +125,20 @@ export default {
         }
     },
     watch: {
+        /* Watch for route changes */
         '$route' (to, from) {
             console.log(to);
             console.log(from);
+
+            /* pull new data */
+            this.pullPhotoAlbumData();
+
+            /* recalculate photo menu trigger and reset event */
+            setTimeout(function(){
+                removePhotosetScrollEvent();
+                calculateAllTriggers();
+                createPhotosetScrollEvent();
+            }, 500);
         }
     },
   beforeMount() {
@@ -152,19 +163,7 @@ export default {
 
     this.albumMenuHover();
 
-    // Fetch photo album data
-    if (this.$route.params.albumSlug) {
-        var album_slug = this.$route.params.albumSlug
-        axios
-        .get(API_ROOT + '/api/v2/pages/?type=photography.PhotographyAlbum&slug=' + album_slug + '&fields=photos,title_font_size')
-        .then(response => (this.photo_album = response.data.items[0]))
-        .catch(error => {
-            // TODO: use vue js logging
-            console.log("There was an error: " + error);
-        })
-    } else {
-        console.log("FETCH DEFAULT PHOTO ALBUM!");
-    }
+    this.pullPhotoAlbumData();
      
   },
   beforeDestroy(){
@@ -232,6 +231,21 @@ export default {
                 removePhotosetScrollEvent();
                 destroyHorizontalScroll();
             }
+        }
+    },
+    /* Get photo album data from API endpoint */
+    pullPhotoAlbumData() {
+        if (this.$route.params.albumSlug) {
+            var album_slug = this.$route.params.albumSlug
+            axios
+            .get(API_ROOT + '/api/v2/pages/?type=photography.PhotographyAlbum&slug=' + album_slug + '&fields=photos,title_font_size')
+            .then(response => (this.photo_album = response.data.items[0]))
+            .catch(error => {
+                // TODO: use vue js logging
+                console.log("There was an error: " + error);
+            })
+        } else {
+            console.log("FETCH DEFAULT PHOTO ALBUM!");
         }
     },
     /* Photo albums menu hover image preview */

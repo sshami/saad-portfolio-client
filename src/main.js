@@ -13,9 +13,9 @@ Vue.config.productionTip = false
 Vue.use(VueRouter);
 
 const routes = [
-  { path:'/', component: Homepage},
-  { path:'/photography/:albumSlug?', component: Photography},
-  { path:'/web', component: Web}
+  { path:'/', component: Homepage, name: 'homepage'},
+  { path:'/photography/:albumSlug?', component: Photography, name: 'photography'},
+  { path:'/web', component: Web, name: 'web'}
 ];
 
 const router = new VueRouter({
