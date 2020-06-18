@@ -38,13 +38,13 @@
 
             <template v-for="(photo, index) in photo_album.photos">
                 <template v-if="index == 0">
-                    <img id="hero" class="photo hero" :src="'http://127.0.0.1:8000' + photo.value.image_url" :key="photo.id" />
+                    <img id="hero" class="photo hero" :src="'http://192.168.1.20:8000' + photo.value.image_url" :key="photo.id" />
                     <div id="album-title" class="block title-desktop" :key="photo.id">
                         <div id="photoset-title" class="photoset-title desktop">{{ photo_album.title }}</div>
                     </div>
                 </template>
                 <template v-else>
-                    <img class="photo" :src="'http://127.0.0.1:8000' + photo.value.image_url" :key="photo.id" />
+                    <img class="photo" :src="'http://192.168.1.20:8000' + photo.value.image_url" :key="photo.id" />
                 </template>
             </template>
 
@@ -105,9 +105,9 @@ export default {
                     url: "havana"
                 },
                 {
-                    title: "Home Studio Shoot",
+                    title: "Havana Low-res",
                     hero_image_url: "https://66.media.tumblr.com/0a82fa7ce59404e7a713ded2fd5aa81d/tumblr_pkf8ro270V1v57djwo1_500.jpg",
-                    url: "home-studio"
+                    url: "havana-low-res"
                 },
                 {
                     title: "U-Street DC",
