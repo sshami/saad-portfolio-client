@@ -182,7 +182,7 @@ export default {
         setTimeout(function(){
             calculateAllTriggers();
             createPhotosetScrollEvent();
-        }, 600);
+        }, 1000);
     }
 
     /* Enable menu hover functions */
