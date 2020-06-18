@@ -128,6 +128,7 @@ export default {
             ],
             // Current photo album being viewed
             photo_album : {},
+            default_album : ''
         }
     },
     watch: {
@@ -152,6 +153,10 @@ export default {
             $("#album-menu").removeClass("show");
             $("#album-menu-contents").removeClass("swipe-in");
             $("#hero").removeClass("hide");
+        },
+        /* Watch for when default album is set in order to fetch default album data */
+        default_album: function(val) {
+            this.getPhotoAlbumData(val);
         }
     },
   beforeMount() {
@@ -164,6 +169,12 @@ export default {
     // Register an event listener when the Vue component is ready
     window.addEventListener('resize', this.onResize)
     this.openingTransition();
+
+    // TODO: NEED TO ENSURE THAT PHOTO ALBUM DATA IS PULLED FIRST 
+    // BEFORE ENABLING HORIZONTAL SCROLL AND ADDING SCROLL EVENT
+
+    /* Pull photo album data */
+    this.pullPhotoAlbumData();
     
     /* Setup horizontal scrolling view if desktop */
     if (window.innerWidth > 1050){
@@ -171,12 +182,11 @@ export default {
         setTimeout(function(){
             calculateAllTriggers();
             createPhotosetScrollEvent();
-        }, 500);
+        }, 600);
     }
 
+    /* Enable menu hover functions */
     this.albumMenuHover();
-
-    this.pullPhotoAlbumData();
      
   },
   beforeDestroy(){
@@ -247,19 +257,35 @@ export default {
             }
         }
     },
-    /* Get photo album data from API endpoint */
+    /* Get and set photo album data from API endpoint */
+    getPhotoAlbumData(slug) {
+        axios
+        .get(API_ROOT + '/api/v2/pages/?type=photography.PhotographyAlbum&slug=' + slug + '&fields=photos,title_font_size')
+        .then(response => (this.photo_album = response.data.items[0]))
+        .catch(error => {
+            // TODO: use vue js logging
+            console.log("There was an error: " + error);
+        })
+    },
+    /* Get and set the default photo album from API endpoint */
+    getDefaultPhotoAlbum() {
+        axios
+        .get(API_ROOT + '/api/photography/')
+        .then(response => (this.default_album = response.data[0].default_album.slug))
+        .catch(error => {
+            // TODO: use vue js logging
+            console.log("There was an error: " + error);
+        })
+    },
+    /* Pull photo album data based on route URL */
     pullPhotoAlbumData() {
         if (this.$route.params.albumSlug) {
+            // Use album slug in URL to get/set the photo album data
             var album_slug = this.$route.params.albumSlug
-            axios
-            .get(API_ROOT + '/api/v2/pages/?type=photography.PhotographyAlbum&slug=' + album_slug + '&fields=photos,title_font_size')
-            .then(response => (this.photo_album = response.data.items[0]))
-            .catch(error => {
-                // TODO: use vue js logging
-                console.log("There was an error: " + error);
-            })
+            this.getPhotoAlbumData(album_slug);
         } else {
-            console.log("FETCH DEFAULT PHOTO ALBUM!");
+            // If no album slug in URL then get/set the default album
+            this.getDefaultPhotoAlbum();
         }
     },
     /* Photo albums menu hover image preview */
