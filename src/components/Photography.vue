@@ -102,12 +102,7 @@ export default {
                 {
                     title: "Havana Richmond",
                     hero_image_url: "https://66.media.tumblr.com/36cb4739ab17ba6e6b7d6b7f04cf155f/tumblr_pty0p6wK6b1v57djwo1_500.jpg",
-                    url: "havana"
-                },
-                {
-                    title: "Havana Low-res",
-                    hero_image_url: "https://66.media.tumblr.com/0a82fa7ce59404e7a713ded2fd5aa81d/tumblr_pkf8ro270V1v57djwo1_500.jpg",
-                    url: "havana-low-res"
+                    url: "havana-richmond"
                 },
                 {
                     title: "U-Street DC",
@@ -128,6 +123,7 @@ export default {
             ],
             // Current photo album being viewed
             photo_album : {},
+            title_font_size: 12.5,
             default_album : ''
         }
     },
@@ -157,6 +153,11 @@ export default {
         /* Watch for when default album is set in order to fetch default album data */
         default_album: function(val) {
             this.getPhotoAlbumData(val);
+        },
+        /* Watch for when title font size changes */
+        title_font_size: function(val) {
+            // TODO: Create function to set font size for desktop title
+            console.log("Title font size changed to " + val);
         }
     },
   beforeMount() {
@@ -261,7 +262,13 @@ export default {
     getPhotoAlbumData(slug) {
         axios
         .get(API_ROOT + '/api/v2/pages/?type=photography.PhotographyAlbum&slug=' + slug + '&fields=photos,title_font_size')
-        .then(response => (this.photo_album = response.data.items[0]))
+        .then( (response) => {
+                // Set photo album data
+                this.photo_album = response.data.items[0]
+                // Set title font size data
+                this.title_font_size = response.data.items[0].title_font_size
+            }
+        )
         .catch(error => {
             // TODO: use vue js logging
             console.log("There was an error: " + error);
@@ -391,7 +398,7 @@ export default {
     }
 
     .photoset-title {
-        font-size: calc(12.5vw + 12.5vh);
+        font-size: calc(12.50vw + 12.50vh);
         line-height: 1.3;
         text-transform: uppercase;
         align-items: center;
@@ -404,7 +411,7 @@ export default {
         transition: all 1s ease;
         
         &.desktop {
-            font-size: calc(12.5vw + 12.5vh);
+            font-size: calc(12.70vw + 12.70vh);
             margin-left: 40vw;
             width: 100vw;
 
