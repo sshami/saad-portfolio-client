@@ -482,7 +482,7 @@ export default {
         font-family: sans-serif;
         height: 100vh;
         align-items: center;
-        padding: 70px;
+        padding: 90px;
         transition: all 1s ease;
 
         &.change-bg-color {
