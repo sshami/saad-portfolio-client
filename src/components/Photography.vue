@@ -60,7 +60,7 @@
                         <h1>Photo Albums</h1>
                         <ul v-for="album in photoalbums" :key="album.title">
                             <template v-if="album.url"> 
-                                <li class="list-item"><router-link :to="{ name: 'photography', params: { albumSlug: album.url }}"><a :data-img="album.hero_image_url">{{ album.title }}</a></router-link></li>
+                                <li class="list-item" :data-img="album.hero_image_url"><router-link :to="{ name: 'photography', params: { albumSlug: album.url }}"><a>{{ album.title }}</a></router-link></li>
                             </template>
                         </ul>
                         <a href="#start" @click="backToStart">Back to start</a>
@@ -297,7 +297,7 @@ export default {
     },
     /* Photo albums menu hover image preview */
     albumMenuHover() {
-        $("li.list-item > a").hover(function(){
+        $("li.list-item").hover(function(){
             var image = $(this)[0].dataset.img;
             $("#menu-preview-img").fadeOut('fast', function() { 
                 $("#menu-preview-img").attr("src", image).fadeIn('slow'); 
