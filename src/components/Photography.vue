@@ -261,12 +261,12 @@ export default {
     /* Get and set photo album data from API endpoint */
     getPhotoAlbumData(slug) {
         axios
-        .get(API_ROOT + '/api/v2/pages/?type=photography.PhotographyAlbum&slug=' + slug + '&fields=photos,title_font_size')
+        .get(API_ROOT + '/api/photographyalbums/?album=' + slug)
         .then( (response) => {
                 // Set photo album data
-                this.photo_album = response.data.items[0]
+                this.photo_album = response.data[0]
                 // Set title font size data
-                this.title_font_size = response.data.items[0].title_font_size
+                this.title_font_size = response.data[0].title_font_size
             }
         )
         .catch(error => {
