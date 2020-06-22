@@ -38,13 +38,13 @@
 
             <template v-for="(photo, index) in photo_album.photos">
                 <template v-if="index == 0">
-                    <img id="hero" class="photo hero" :src="'http://192.168.1.20:8000' + photo.value.image_url" :key="photo.id" />
+                    <img id="hero" class="photo hero" :src="photo.value.image_url" :key="photo.id" />
                     <div id="album-title" class="block title-desktop" :key="photo.id">
                         <div id="photoset-title" class="photoset-title desktop">{{ photo_album.title }}</div>
                     </div>
                 </template>
                 <template v-else>
-                    <img class="photo" :src="'http://192.168.1.20:8000' + photo.value.image_url" :key="photo.id" />
+                    <img class="photo" :src="photo.value.image_url" :key="photo.id" />
                 </template>
             </template>
 
@@ -81,8 +81,7 @@
 import $ from 'jquery'
 import { animateText } from '../static/js/anime-animations.js'
 import { initHorizontalScroll, getHorizontalScroll, calculateAllTriggers, createPhotosetScrollEvent, removePhotosetScrollEvent, destroyHorizontalScroll } from '../static/js/photography.js'
-import axios from 'axios'
-import { API_ROOT } from '../common/variables.js'
+import api from '../common/api-instance.js'
 
 
 export default {
@@ -260,8 +259,7 @@ export default {
     },
     /* Get and set photo album data from API endpoint */
     getPhotoAlbumData(slug) {
-        axios
-        .get(API_ROOT + '/api/photographyalbums/?album=' + slug)
+        api.get('/photographyalbums/?album=' + slug)
         .then( (response) => {
                 // Set photo album data
                 this.photo_album = response.data[0]
@@ -276,8 +274,7 @@ export default {
     },
     /* Get and set the default photo album from API endpoint */
     getDefaultPhotoAlbum() {
-        axios
-        .get(API_ROOT + '/api/photography/')
+        api.get('/photography/')
         .then(response => (this.default_album = response.data[0].default_album.slug))
         .catch(error => {
             // TODO: use vue js logging

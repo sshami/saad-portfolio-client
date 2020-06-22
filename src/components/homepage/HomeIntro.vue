@@ -35,8 +35,7 @@
 </template>
 
 <script>
-import axios from 'axios'
-import { API_ROOT } from '../../common/variables.js'
+import api from '../../common/api-instance.js'
 
 export default {
     name: 'HomeIntro',
@@ -47,8 +46,8 @@ export default {
     },
     mounted() {
         // Fetch homepage intro data
-        axios
-        .get(API_ROOT + '/api/homepage/')
+        api
+        .get('/homepage/')
         .then(response => (this.homepage_intro = response.data[0]))
         .catch(error => {
             console.log("There was an error: " + error);
