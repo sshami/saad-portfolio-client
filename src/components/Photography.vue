@@ -259,7 +259,12 @@ export default {
     },
     /* Get and set photo album data from API endpoint */
     getPhotoAlbumData(slug) {
-        api.get('/photographyalbums/?album=' + slug)
+        api.get('/photographyalbums/?album=' + slug, 
+        {
+            headers: {
+                //'Authorization': 'Bearer ' + 'add jwt token here'
+            }
+        })
         .then( (response) => {
                 // Set photo album data
                 this.photo_album = response.data[0]
@@ -274,7 +279,12 @@ export default {
     },
     /* Get and set the default photo album from API endpoint */
     getDefaultPhotoAlbum() {
-        api.get('/photography/')
+        api.get('/photography/',
+        {
+            headers: {
+                //'Authorization': 'Bearer ' + 'add jwt token here'
+            }
+        })
         .then(response => (this.default_album = response.data[0].default_album.slug))
         .catch(error => {
             // TODO: use vue js logging
