@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+
+  web-client:
+    container_name: web-client
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:
+      - '80:80'
+
