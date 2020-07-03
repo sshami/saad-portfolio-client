@@ -8,10 +8,10 @@
                 <div class="col" style="padding: 0px; margin-top: 20px;"><div id="draw-line-tile-wr" class="draw-line"></div></div>
                 <div class="col-1"></div>
             </div>
-            <div id="mobile-lc" class="web-img mobile-lc">
+            <div id="mobile-lc" class="mobile-lc">
                 <img src="../../assets/home/web-mobile-lc3d.png" alt="Lauren Castle Mobile Website">
             </div>
-            <div id="mobile-ss" class="web-img mobile-ss">
+            <div id="mobile-ss" class="mobile-ss">
                 <img src="../../assets/home/web-mobile-ss3d.png" alt="Saad Mobile Website">
             </div>
             <div class="explore-btn">
@@ -152,15 +152,11 @@ export default {
 
     }
 
-    > .web-img {
-        position: absolute;
-        transition:all 2s ease-in;
-        opacity: 0%;
-    }
-
     > .mobile-lc {
+        position: absolute;
         top: 25%;
         transition:all 4s ease;
+        opacity: 0%;
 
         img {
             width: 48%;
@@ -179,8 +175,10 @@ export default {
     }
 
     > .mobile-ss {
+        position: absolute;
         top: 10%;
         transition:all 4s ease;
+        opacity: 0%;
 
         img {
             width: 56%;

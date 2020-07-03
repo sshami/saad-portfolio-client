@@ -84,7 +84,10 @@ export function buildScrollMagicScenes() {
             var scrollDirection = event.scrollDirection;
             if (scrollDirection == 'FORWARD'){
                 setTimeout(function(){ 
-                $(".web-img").addClass("fade-in");
+                $(".mobile-lc").addClass("fade-in");
+                $(".mobile-lc").css({"opacity":"100%"});
+                $(".mobile-ss").addClass("fade-in");
+                $(".mobile-ss").css({"opacity":"100%"});
                 //$(".tile-title").css({"opacity":"100%"});
                 $("#tile-title-web").css({"opacity":"100%"});
                 $("#draw-line-tile-wl").addClass("draw");
