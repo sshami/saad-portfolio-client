@@ -38,13 +38,15 @@
 
             <template v-for="(photo, index) in photo_album.photos">
                 <template v-if="index == 0">
-                    <img id="hero" class="photo hero" :src="photo.value.image_url" :key="photo.id" />
+                    <img id="hero" class="photo--web hero" :src="photo.value.image_url" :key="photo.id" />
+                    <img id="hero" class="photo--mobile hero" :src="photo.value.image_url_mobile" :key="photo.id" />
                     <div id="album-title" class="block title-desktop" :key="photo.id">
                         <div id="photoset-title" class="photoset-title desktop">{{ photo_album.title }}</div>
                     </div>
                 </template>
                 <template v-else>
-                    <img class="photo" :src="photo.value.image_url" :key="photo.id" />
+                    <img class="photo--web" :src="photo.value.image_url" :key="photo.id" />
+                    <img class="photo--mobile" :src="photo.value.image_url_mobile" :key="photo.id" />
                 </template>
             </template>
 
@@ -479,7 +481,23 @@ export default {
             &.hide {
                 opacity: 0;
             }
+        }
 
+        &--web {
+            @extend .photo;
+            /* 1050px and down */
+            @media only screen and (max-width: 1050px) {
+                display: none;
+            }
+        }
+
+        &--mobile {
+            @extend .photo;
+            display: none;
+            /* 1050px and down */
+            @media only screen and (max-width: 1050px) {
+                display: block;
+            }
         }
 
         /* 1050px and down */
