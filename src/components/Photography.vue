@@ -33,7 +33,7 @@
             <span id="start"></span>
 
             <div class="block title-mobile">
-                <div id="photoset-title-mobile" class="photoset-title mobile">{{ photoset.title }}</div>
+                <div id="photoset-title-mobile" class="photoset-title mobile">{{ photo_album.title }}</div>
             </div>
 
             <template v-for="(photo, index) in photo_album.photos">
@@ -387,6 +387,8 @@ export default {
             left: auto;
             width: auto;
             transform: inherit;
+            color: $gray;
+            margin-top: 100px;
         }
     }
 
@@ -437,8 +439,10 @@ export default {
         &.mobile {
             display: none;
             margin-left: unset;
+            margin-top: 14vh;
             font-size: calc(9.5vw + 9.5vh);
             color: $gray;
+            padding: 20px;
 
 
             /* 1050px and down */
@@ -447,8 +451,8 @@ export default {
 
                 /* 430px and down */
                 @media only screen and (max-width: 430px) {
-                    font-size: calc(7vw + 7vh);
-                    letter-spacing: 15px;
+                    font-size: calc(6vw + 5vh);
+                    letter-spacing: 12px;
                 }
             }
         }
@@ -476,6 +480,7 @@ export default {
             /* 1050px and down */
             @media only screen and (max-width: 1050px) {
                 position: relative;
+                padding: 0px 0px 0px 0px;
             }
 
             &.hide {
@@ -504,7 +509,7 @@ export default {
         @media only screen and (max-width: 1050px) {
             width: 100%;
             margin-right: unset;
-            margin-bottom: 150px;
+            margin-bottom: 70px;
         }
 
     }
@@ -533,13 +538,8 @@ export default {
             flex: unset;
             height: auto;
             width: auto;
-            padding: 0 50px 0 50px;
+            padding: 0px 0px 0px 0px;
             margin-left: unset;
-
-            /* 430px and down */
-            @media only screen and (max-width: 430px) {
-                padding: 0 10px 0 10px;
-            }
         }
 
     }
@@ -561,6 +561,10 @@ export default {
 
             &.title-desktop {
                 display: none;
+            }
+
+            &.title-mobile {
+                height: 80vh;
             }
 
         }
