@@ -65,7 +65,10 @@
                                 <li class="list-item" :data-img="album.hero_image_url"><router-link :to="{ name: 'photography', params: { albumSlug: album.url }}"><a>{{ album.title }}</a></router-link></li>
                             </template>
                         </ul>
-                        <a href="#start" @click="backToStart">Back to start</a>
+                        <a href="#start" class="beginning-link square-btn color-pink-dark left-arrow" @click="backToStart">
+                            <img src="../assets/icons/arrow.svg" alt="Arrow">
+                            Back to Start
+                        </a>
                     </div>
                     <div class="menu-hero-photos">
                         <img id="menu-preview-img" src="https://66.media.tumblr.com/f4cdb87d7940d0033ffd0aeeb7545e80/tumblr_o8ktllkayC1v57djwo1_500.jpg" />
@@ -325,6 +328,7 @@ export default {
     $neutral-pink: #fddecc;
     $neutral-pink-dark: #FDD9CB;
     $gray: #717171;
+    $gray-dark: #545454;
 
     @font-face {
       font-family: 'aguero_serif_freeregular';
@@ -594,6 +598,7 @@ export default {
         padding: 0px 100px 0px 100px; 
         transition: all 1s ease;
         opacity: 0;
+        pointer-events: none;
         color: $gray;
         position: absolute;
         top: 0;
@@ -601,9 +606,11 @@ export default {
         height: 100vh;
         background-color: $neutral-pink;
         z-index: 6;
+        letter-spacing: 4px;
 
         &.show {
             opacity: 1;
+            pointer-events: auto;
         }
 
         /* 1050px and down */
@@ -622,7 +629,7 @@ export default {
         h1 {
             font-family: 'aguero_serif_freeregular', serif;
             font-weight: lighter;
-            font-size: calc(4vw + 4vh);
+            font-size: calc(3vw + 3vh);
             letter-spacing: 8px;
         }
 
@@ -643,10 +650,15 @@ export default {
 
             .menu-list {
                 float: left;
-                font-size: calc(0.8vw + 0.8vh);
+                font-size: calc(0.6vw + 0.6vh);
                 text-transform: uppercase;
                 font-weight: bolder;
                 width: 40vw;
+
+                a:hover {
+                    text-decoration: none;
+                    color: black;
+                }
 
 
                 ul {
@@ -684,7 +696,6 @@ export default {
                 float: left;
                 width: 20vw;
                 height: 100%;
-                margin-top: 20px;
                 transition: all 2s ease;
 
                 img {
@@ -696,6 +707,13 @@ export default {
                 @media only screen and (max-width: 1050px) {
                     display: none;
                 }
+
+            }
+
+            .beginning-link {
+                color: $gray-dark;
+                margin: 0px 0px 0px 5px;
+                line-height: 5;
 
             }
 

@@ -37,7 +37,7 @@ export default {
     $base-cream: #FFFCF4;
     $violet-blue: #F4F6FD;
     $neutral-pink: #fddecc;
-    $neutral-pink-dark: #FDD9CB;
+    $neutral-pink-dark: #fbc6a7;
 
     html, body {
       font-family: 'Lato', sans-serif;
@@ -298,6 +298,31 @@ export default {
           }
       }
 
+    }
+
+    .square-btn {
+        background-color: #FFFCF4;
+        padding: 10px 10px 10px 0px;
+
+
+        h2{
+            letter-spacing: 5px;
+        }
+
+        &.left-arrow {
+          img {
+            transform: rotate(-180deg);
+            opacity: 60%;
+          }
+        }
+
+        &.color-cream {
+          background-color: $base-cream;
+        }
+
+        &.color-pink-dark {
+          background-color: $neutral-pink-dark
+        }
     }
 
 
