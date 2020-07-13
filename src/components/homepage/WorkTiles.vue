@@ -35,11 +35,11 @@
                 <img src="../../assets/icons/arrow.svg" alt="Arrow">
             </div>
         </div>
-        <div id="tile-hover-title-web" class="tile-hover-title-web">
-            <img src="../../assets/home/tiles/web-title.png" alt="Web Development">
+        <div id="tile-hover-title-photography" class="hover-title hover-title--photography">
+            <span class="neut-pink">Pho</span><span class="viol-blue">tography</span>
         </div>
-        <div id="tile-hover-title-photography" class="tile-hover-title-photography">
-            <img src="../../assets/home/tiles/photography-title.png" alt="Photography">
+        <div id="tile-hover-title-web" class="hover-title hover-title--webdev">
+            <span class="neut-pink">Web Devel</span><span class="viol-blue">opment</span>
         </div>
     </div>
 </template>
@@ -87,6 +87,14 @@ export default {
     $base-cream: #FFFCF4;
     $violet-blue: #F4F6FD;
     $neutral-pink: #fddecc;
+
+    @font-face {
+      font-family: 'aguero_serif_freeregular';
+      src: url("../../assets/fonts/aguero-serif-kit/aguero_serif-webfont.woff2") format('woff2'),
+          url("../../assets/fonts/aguero-serif-kit/aguero_serif-webfont.woff") format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
 
     @mixin aspect-ratio($width, $height) {
     position: relative;
@@ -222,52 +230,48 @@ export default {
 
     .work-tiles {
         position: relative;
-    }
+        overflow: hidden;
 
-    .tile-hover-title-web {
-    position: absolute;
-    top: 88%;
-    left: 8%;
-    opacity: 0;
-    transition: all 1s ease;
+        > .hover-title {
+            font-family: 'aguero_serif_freeregular', serif;
+            font-size: 13vw;
+            text-transform: uppercase;
+            opacity: 0;
+            transition: all 1s ease;
+            top: 75%;
 
-    img {
-        width: 70%;
-    }
 
-    &.reveal {
-        transform: translateY(-78%);
-        opacity: 100;
-    }
+            &--photography {
+                position: absolute;
+                left: 35.5%;
+                letter-spacing: 10px;
+            }
 
-    /* 1024px and down */
-    @media only screen and (max-width: 1024px) {
-        display: none;
-    }
+            &--webdev {
+                position: absolute;
+                left: 6%;
+                letter-spacing: 5px;
+            }
 
-    }
+            > .viol-blue {
+                color: $violet-blue;
+            }
 
-    .tile-hover-title-photography {
-    position: absolute;
-    top: 88%;
-    left: 35.5%;
-    opacity: 0;
-    transition: all 1s ease;
+            > .neut-pink {
+                color: $neutral-pink;
+            }
 
-    img {
-        width: 81%;
-    }
+            &.reveal {
+                transform: translateY(-28%);
+                opacity: 100;
+            }
 
-    &.reveal {
-        transform: translateY(-78%);
-        opacity: 100;
-    }
+            /* 1024px and down */
+            @media only screen and (max-width: 1024px) {
+                display: none;
+            }
 
-    /* 1024px and down */
-    @media only screen and (max-width: 1024px) {
-        display: none;
-    }
-
+        }
     }
 
     .web-tile {
