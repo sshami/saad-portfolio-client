@@ -105,11 +105,13 @@ function closeNav() {
     if ($(window).scrollTop() > 100){
         $('header').addClass('shadow');
     }
+
     //$('body').unbind('touchmove');
 
 }
 
-(function() {
+/* Used to transform hamburger menu icon to X when expanded */
+window.onload = function() {
 
     "use strict";
   
@@ -127,4 +129,4 @@ function closeNav() {
       });
     }
   
-  })();
+  };

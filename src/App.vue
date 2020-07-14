@@ -47,18 +47,22 @@
 
 <script>
 
+import $ from 'jquery'
 import * as common from './static/js/common.js'
 
 export default {
   name: 'App',
   methods: {
+    /* Toggle mobile nav when clicked on */
     mobileNavToggle() {
       common.mobileNavToggle();
     },
     /* Routes to page when item clicked on mobile nav */
     routeToFromMobileNav(routeName) {
-      // Toggle (close) mobile nav when route is changed
+      // Toggle (close) mobile nav
       common.mobileNavToggle();
+      // Change from X to hamburger icon
+      $('.c-hamburger').removeClass('is-active');
       // Route to the page
       return this.$router.push(routeName);
     }
