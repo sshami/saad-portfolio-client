@@ -1,5 +1,16 @@
 <template>
-  <div id="app">
+    <div id="app">
+      <header class="nav-container">
+        <div class="title-logo">Saad</div>
+        <div class="navigation">
+          <div class="nav-links">
+            <a href="" class="active">Home</a>
+            <a href="">About</a>
+            <a href="">Web Dev</a>
+            <a href="">Photography</a>
+          </div>
+        </div>
+      </header>
     <!-- Page Transition Overlays -->
     <div id="transition-screen-photography-in" class="transition-screen-photography-in">
       <div id="transition-photography-title" class="transition-photography-title">
@@ -21,6 +32,9 @@
 </template>
 
 <script>
+
+import './static/js/common.js'
+
 export default {
   name: 'App'
 }
@@ -39,6 +53,8 @@ export default {
     $neutral-pink: #fddecc;
     $neutral-pink-dark: #fbc6a7;
 
+    $header-height: 60px;
+
     html, body {
       font-family: 'Lato', sans-serif;
       overflow-x: hidden;
@@ -50,6 +66,43 @@ export default {
       line-height: 2;
       margin:0;
       padding:0;
+
+    }
+
+    header {
+      height: $header-height;
+      top: 0;
+      transition: box-shadow 0.5s ease-in-out, top 0.2s ease-in-out;
+      width: 100%;
+      z-index: 15;
+      line-height: 1;
+      position: fixed;
+
+      a:hover {
+        text-decoration: none;
+      }
+
+      &.shadow {
+        background-color: $base-cream;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+      }
+
+      &.mobile-nav {
+          background: rgba(255, 255, 255, 0);
+      }
+    }
+
+    // we'll add this class using javascript
+    .nav-container {
+
+      &.up {
+        top: -$header-height;
+
+        // @media screen and (max-width: 1036px) {
+        //       top: -$header-height - 10px;
+        // }
+      }
+
 
     }
 
@@ -80,6 +133,47 @@ export default {
     //   font-style: normal;
     // }
 
+    .title-logo {
+      float:left;
+      margin: 5px 0px 5px 15px;
+      padding: 7px;
+      width: 10%;
+      font-size: 30px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .navigation {
+      float:right;
+      margin-top: 10px;
+      width: 50%;
+      padding: 12px;
+      text-transform: uppercase;
+
+      /* 1050px and down */
+      @media only screen and (max-width: 1050px) {
+            display: none;
+        }
+    }
+
+    .nav-links {
+      float: right;
+      letter-spacing: 1.5px;
+      font-size: 13px;
+      font-weight: bolder;
+
+      a {
+          margin-right: 40px;
+          color: black;
+
+          &.active {
+              border-bottom: 1px solid #000;
+              padding-bottom: 2px;
+          }
+      }
+
+    }
+
 
     .transition-screen-photography-in {
       position: fixed;
@@ -91,7 +185,7 @@ export default {
       height: 100%;
       top: 0px;
       left: 0px;
-      z-index: 5;
+      z-index: 20;
       transition: all 1s ease;
 
       &.swipe {
@@ -113,7 +207,7 @@ export default {
       height: 100%;
       top: 0px;
       left: 0px;
-      z-index: 5;
+      z-index: 20;
       transition: all 1s ease;
       opacity: 0;
 
@@ -168,7 +262,7 @@ export default {
       height: 100%;
       top: 0px;
       left: 0px;
-      z-index: 5;
+      z-index: 20;
       transition: all 1s ease;
 
       &.swipe {
@@ -190,7 +284,7 @@ export default {
       height: 100%;
       top: 0px;
       left: 0px;
-      z-index: 5;
+      z-index: 20;
       transition: all 1s ease;
       opacity: 0;
 
