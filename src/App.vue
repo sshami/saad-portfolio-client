@@ -4,7 +4,9 @@
       <button class="c-hamburger c-hamburger--htx" @click="mobileNavToggle">
               <span>toggle menu</span>
       </button>
-      <div class="title-logo">Saad</div>
+      <div class="title-logo" v-bind:class="[(currentRouteName == 'photography' ? 'shift' : '')]">
+        <router-link :to="{ name: 'homepage'}"><img src="./assets/saad-logo.png" alt="SAAD"></router-link>
+      </div>
       <div class="navigation">
         <div class="nav-links">
           <a href="" class="active">Home</a>
@@ -52,6 +54,11 @@ export default {
   methods: {
     mobileNavToggle() {
       common.mobileNavToggle();
+    }
+  },
+  computed: {
+    currentRouteName() {
+        return this.$route.name;
     }
   }
 }
@@ -160,6 +167,16 @@ export default {
       font-size: 30px;
       letter-spacing: 3px;
       text-transform: uppercase;
+      transition: 0.5s ease-in-out;
+
+      img {
+        max-width: 100px;
+      }
+
+      &.shift {
+        margin-left: 60px;
+      }
+
     }
 
     .navigation {

@@ -8,10 +8,6 @@
             </div>
         </div>
 
-        
-        <div class="homepage-link">
-            <router-link :to="{ name: 'homepage'}">SAAD</router-link>
-        </div>
 
         <div class="photos-container" id="photos-container" >
 
@@ -393,22 +389,6 @@ export default {
             transform: inherit;
             color: $gray;
             margin-top: 100px;
-        }
-    }
-
-    .homepage-link {
-        position: fixed;
-        top: 0px;
-        left: 55px;
-        z-index: 10;
-
-        a {
-            color: $gray; 
-        }
-
-        a:hover {
-            text-decoration: none;
-            color: black;
         }
     }
 
