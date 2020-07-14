@@ -74,12 +74,12 @@ export function mobileNavToggle() {
 
 /* Open when someone clicks on the span element */
 function openNav() {
-    document.getElementById("myNav").style.height = "100%";
+    document.getElementById("mobile-nav").style.height = "100%";
 
     /* Modify header items */
     $('#header').addClass('mobile-nav');
     $('#navigation-items').addClass('mobile-nav');
-    $('#myNav').find('a').addClass('nav-open');
+    $('#mobile-nav').find('a').addClass('nav-open');
 
     /* Modify body to disable scrolling */
     $('html').addClass('stop-scrolling');
@@ -91,12 +91,12 @@ function openNav() {
 
 /* Close when someone clicks on the "x" symbol inside the overlay */
 function closeNav() {
-    document.getElementById("myNav").style.height = "0%";
+    document.getElementById("mobile-nav").style.height = "0%";
 
     /* Modify header items */
     $('#header').removeClass('mobile-nav');
     $('#navigation-items').removeClass('mobile-nav');
-    $('#myNav').find('a').removeClass('nav-open');
+    $('#mobile-nav').find('a').removeClass('nav-open');
 
     /* Modify body to enable scrolling */
     $('html').removeClass('stop-scrolling');

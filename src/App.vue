@@ -9,20 +9,20 @@
       </div>
       <div class="navigation">
         <div class="nav-links">
-          <a href="" class="active">Home</a>
-          <a href="">About</a>
-          <a href="">Web Dev</a>
-          <a href="">Photography</a>
+          <router-link :to="{ name: 'homepage'}">Home</router-link>
+          <router-link :to="{ name: 'about'}">About</router-link>
+          <router-link :to="{ name: 'web'}">Web Dev</router-link>
+          <router-link :to="{ name: 'photography'}">Photography</router-link>
         </div>
       </div>
     </header>
-    <div id="myNav" class="overlay">
+    <div id="mobile-nav" class="overlay">
       <!-- The mobile nav overlay content -->
       <div class="overlay-content">
-        <a href="" class="active nav-open">Home</a>
-        <a href="" class="nav-open">About</a>
-        <a href="" class="nav-open">Web Dev</a>
-        <a href="" class="nav-open">Photography</a>
+        <a class="nav-open" @click="routeToFromMobileNav('/')">Home</a>
+        <a class="nav-open" @click="routeToFromMobileNav('about')">About</a>
+        <a class="nav-open" @click="routeToFromMobileNav('web')">Web Dev</a>
+        <a class="nav-open" @click="routeToFromMobileNav('photography')">Photography</a>
       </div>
     </div>
     <!-- Page Transition Overlays -->
@@ -54,6 +54,13 @@ export default {
   methods: {
     mobileNavToggle() {
       common.mobileNavToggle();
+    },
+    /* Routes to page when item clicked on mobile nav */
+    routeToFromMobileNav(routeName) {
+      // Toggle (close) mobile nav when route is changed
+      common.mobileNavToggle();
+      // Route to the page
+      return this.$router.push(routeName);
     }
   },
   computed: {
@@ -100,7 +107,7 @@ export default {
       top: 0;
       transition: box-shadow 0.5s ease-in-out, top 0.2s ease-in-out;
       width: 100%;
-      z-index: 15;
+      z-index: 20;
       line-height: 1;
       position: fixed;
 
@@ -222,7 +229,7 @@ export default {
         height: 0%;
         width: 100%;
         position: fixed; /* Stay in place */
-        z-index: 5; /* Sit on top */
+        z-index: 15; /* Sit on top */
         left: 0;
         top: 0;
         background-color: $base-cream; /* Nude fallback color */
@@ -238,7 +245,7 @@ export default {
         width: 100%; /* 100% width */
         text-align: center; /* Centered text/links */
         margin-top: 10px; /* 30px top margin to avoid conflict with the close button on smaller screens */
-        line-height: 50px;
+        line-height: 60px;
         font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
         font-weight: lighter;
         letter-spacing: 1.5px;
@@ -255,6 +262,7 @@ export default {
         transition: 0.3s; /* Transition effects on hover (color) */
         transition: opacity 0.9s ease;
         transition: transform 0.3s ease;
+        cursor: pointer;
 
         &.nav-open {
             transform: scale(2,2);
