@@ -1,16 +1,28 @@
 <template>
     <div id="app">
-      <header class="nav-container">
-        <div class="title-logo">Saad</div>
-        <div class="navigation">
-          <div class="nav-links">
-            <a href="" class="active">Home</a>
-            <a href="">About</a>
-            <a href="">Web Dev</a>
-            <a href="">Photography</a>
-          </div>
+    <header class="nav-container">
+      <button class="c-hamburger c-hamburger--htx" @click="mobileNavToggle">
+              <span>toggle menu</span>
+      </button>
+      <div class="title-logo">Saad</div>
+      <div class="navigation">
+        <div class="nav-links">
+          <a href="" class="active">Home</a>
+          <a href="">About</a>
+          <a href="">Web Dev</a>
+          <a href="">Photography</a>
         </div>
-      </header>
+      </div>
+    </header>
+    <div id="myNav" class="overlay">
+      <!-- The mobile nav overlay content -->
+      <div class="overlay-content">
+        <a href="" class="active nav-open">Home</a>
+        <a href="" class="nav-open">About</a>
+        <a href="" class="nav-open">Web Dev</a>
+        <a href="" class="nav-open">Photography</a>
+      </div>
+    </div>
     <!-- Page Transition Overlays -->
     <div id="transition-screen-photography-in" class="transition-screen-photography-in">
       <div id="transition-photography-title" class="transition-photography-title">
@@ -33,10 +45,15 @@
 
 <script>
 
-import './static/js/common.js'
+import * as common from './static/js/common.js'
 
 export default {
-  name: 'App'
+  name: 'App',
+  methods: {
+    mobileNavToggle() {
+      common.mobileNavToggle();
+    }
+  }
 }
 </script>
 
@@ -45,6 +62,8 @@ export default {
     /* Import Vendor Stylings */
     @import '~bootstrap/dist/css/bootstrap.css';
     @import '~socicon/css/socicon.css';
+
+    @import './static/styles/hamburger.scss';
 
     /* Colors */
     // TODO: Figure out how to make these global
@@ -173,6 +192,106 @@ export default {
       }
 
     }
+
+    /* 
+    ----------------------
+      Mobile Nav Overlay  
+    ----------------------
+    */
+
+    /* Mobile Nav Overlay (background) */
+    .overlay {
+        /* Height & width depends on how you want to reveal the overlay (see JS below) */    
+        height: 0%;
+        width: 100%;
+        position: fixed; /* Stay in place */
+        z-index: 5; /* Sit on top */
+        left: 0;
+        top: 0;
+        background-color: $base-cream; /* Nude fallback color */
+        /* background-color: rgba(28,28,28, 0.9); /* Nude w/opacity */
+        overflow-x: hidden; /* Disable horizontal scroll */
+        transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+    }
+
+    /* Position the content inside the overlay */
+    .overlay-content {
+        position: relative;
+        top: 25%; /* 15% from the top */
+        width: 100%; /* 100% width */
+        text-align: center; /* Centered text/links */
+        margin-top: 10px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+        line-height: 50px;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+        font-weight: lighter;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+    }
+
+    /* The navigation links inside the overlay */
+    .overlay a {
+        margin-bottom: 50px;
+        text-decoration: none;
+        font-size: 15px;
+        color: black;
+        display: block; /* Display block instead of inline */
+        transition: 0.3s; /* Transition effects on hover (color) */
+        transition: opacity 0.9s ease;
+        transition: transform 0.3s ease;
+
+        &.nav-open {
+            transform: scale(2,2);
+        }
+
+        &.active {
+            text-decoration: underline;
+            text-underline-position: under;
+        }
+
+    }
+
+    /* When you mouse over the navigation links, change their color */
+    .overlay a:hover, .overlay a:focus {
+        color: black;
+    }
+
+    /* Position the close button (top right corner) */
+    .overlay .closebtn {
+        position: absolute;
+        top: 20px;
+        right: 45px;
+        font-size: 60px;
+    }
+
+    /* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
+    @media screen and (max-height: 450px) {
+        .overlay a {font-size: 20px}
+        .overlay .closebtn {
+            font-size: 40px;
+            top: 15px;
+            right: 35px;
+        }
+    }
+
+    .menu-mobile {
+        top: 30px;
+        float: right;
+        @media screen and (min-width: 992px) {
+            display: none;
+        }
+    }
+
+    .stop-scrolling {
+      //height: 100%;
+      overflow: hidden;
+    }
+
+
+    /* 
+    ----------------------
+      Page Transitions  
+    ----------------------
+    */
 
 
     .transition-screen-photography-in {
