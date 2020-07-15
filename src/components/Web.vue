@@ -10,11 +10,8 @@
 
         <div class="webdev-container" id="webdev-container">
             <span id="start"></span>
-            <div class="block">
-                <div id="" class="">Some content here 1.</div>
-            </div>
             <div id="page-title-container" class="block title-desktop">
-                <div id="page-title" class="page-title desktop">Web Development</div>
+                <div id="page-title" class="page-title desktop">Web/App Development</div>
             </div>
             <div class="block">
                 <div class="website-display">
@@ -136,6 +133,7 @@ export default {
 <style scoped lang="scss">
 
     $violet-blue: #F4F6FD;
+    $violet-blue-dark: #CED9FD;
     $light-gray: #A2A2A2;
 
     @font-face {
@@ -259,13 +257,22 @@ export default {
         justify-content: center;
         text-align: center;
         font-family: 'aguero_serif_freeregular', serif;
-        color: blue;
+        color: $violet-blue-dark;
         transition: all 1s ease;
         letter-spacing: 30px;
         
         &.desktop {
-            font-size: calc(12.70vw + 12.70vh);
+            font-size: calc(12.0vw + 12.0vh);
+            margin-left: 45vw;
             width: 100vw;
+
+            @media only screen and (max-width: 1530px) and (min-width: 1251px) {
+                font-size: calc(11vw + 11vh);
+            }
+
+            @media only screen and (max-width: 1250px) and (min-width: 1051px) {
+                font-size: calc(10vw + 10vh);
+            }
 
             /* 1050px and down */
             @media only screen and (max-width: 1050px) {
@@ -317,14 +324,14 @@ export default {
                 position: absolute;
                 width: 90%;
                 top: 8%;
-                left: 5%;
+                left: 7%;
             }
 
             .mobile {
                 position: absolute;
                 width: 20%;
                 top: 32%;
-                right: 8%;
+                right: 7%;
             }
         }
     }
@@ -337,6 +344,9 @@ export default {
         position: relative;
         float: left;
         padding: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center; 
 
         .description-text {
             margin-top: 30px;
