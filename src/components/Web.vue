@@ -10,6 +10,8 @@
 
         <div class="webdev-container" id="webdev-container">
             <span id="start"></span>
+            <div id="intro" class="block intro">
+            </div>
             <div id="page-title-container" class="block title-desktop">
                 <div id="page-title" class="page-title desktop">Web/App Development</div>
             </div>
@@ -77,7 +79,7 @@
 <script>
 import $ from 'jquery'
 import { animateText } from '../static/js/anime-animations.js'
-import { initHorizontalScroll } from '../static/js/webdev.js'
+import { initHorizontalScroll, calculateAllTriggers, createPhotosetScrollEvent } from '../static/js/webdev.js'
 
 export default {
   name: 'WebDevelopment',
@@ -90,6 +92,8 @@ export default {
   mounted() {
       this.openingTransition();
       initHorizontalScroll();
+      calculateAllTriggers();
+      createPhotosetScrollEvent();
   },
   destroyed() {
       this.closingTransition()
@@ -134,6 +138,7 @@ export default {
 
     $violet-blue: #F4F6FD;
     $violet-blue-dark: #CED9FD;
+    $neutral-pink: #fddecc;
     $light-gray: #A2A2A2;
 
     @font-face {
@@ -187,6 +192,10 @@ export default {
         padding: 90px;
         transition: all 1s ease;
 
+        &.change-bg-color {
+            background-color: $violet-blue;
+        }
+
     }
 
     .webdev-container {
@@ -231,6 +240,19 @@ export default {
                 height: 80vh;
             }
 
+        }
+
+        &.intro {
+            position: fixed;
+            min-width: 40vw;
+            height: 85vh;
+            transition: all 0.7s ease;
+            will-change: transform;
+            background-color: lightgrey;
+
+            &.hide {
+                opacity: 0;
+            }
         }
 
         &.end {
@@ -280,7 +302,7 @@ export default {
             }
 
             &.reveal {
-                color: white;
+                color: $violet-blue-dark;
             }
         }
 
