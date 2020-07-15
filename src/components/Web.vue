@@ -37,7 +37,24 @@
                 </div>
             </div>
             <div class="block">
-                <div id="" class="">Some content here 3.</div>
+                <div class="website-display">
+                    <div class="display-images">
+                            <img src="../assets/web/temp/saad-desktop-home.png" class="laptop">
+                            <img src="../assets/web/temp/saad-mobile-home2.png" class="mobile">
+                    </div>
+                    <!-- <div class="mobile">
+                        <img src="../assets/web/temp/lauren-mobile-home.png">
+                    </div> -->
+                </div>
+                <div class="description">
+                    <div class="description-text">
+                        <h1>Saad</h1>
+                        <p class="url">saadcreative.com</p>
+                        <p class="desc">Froth robust robusta caramelization et trifecta siphon variety. 
+                        Carajillo plunger pot, aroma a, beans coffee, spoon white latte roast coffee brewed. 
+                        Seasonal, doppio that redeye con panna eu decaffeinated ristretto doppio organic and java.</p>
+                    </div>
+                </div>
             </div>
             <div class="block">
                 <div id="" class="">Some content here 4.</div>
