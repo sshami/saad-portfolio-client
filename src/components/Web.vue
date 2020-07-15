@@ -18,12 +18,13 @@
             </div>
             <div class="block">
                 <div class="website-display">
-                    <div class="laptop">
-                        <img class="img-fluid" src="../assets/web/temp/lauren-desktop-home.png">
+                    <div class="display-images">
+                            <img src="../assets/web/temp/lauren-desktop-home.png" class="laptop">
+                            <img src="../assets/web/temp/lauren-mobile-home.png" class="mobile">
                     </div>
-                    <div class="mobile">
-                        <img class="img-fluid" src="../assets/web/temp/lauren-mobile-home.png">
-                    </div>
+                    <!-- <div class="mobile">
+                        <img src="../assets/web/temp/lauren-mobile-home.png">
+                    </div> -->
                 </div>
                 <div class="description">
                     <div class="description-text">
@@ -143,6 +144,17 @@ export default {
           url("../assets/fonts/aguero-serif-kit/aguero_serif-webfont.woff") format('woff');
       font-weight: normal;
       font-style: normal;
+    }
+
+    @mixin aspect-ratio($width, $height) {
+    position: relative;
+    &:before {
+        display: block;
+        content: "";
+        width: 100%;
+        padding-top: ($height / $width) * 100%;
+    }
+
     }
 
     .page {
@@ -296,18 +308,24 @@ export default {
         position: relative;
         float: left;
 
-        .laptop {
-            width: 100%;
+        .display-images {
+            @include aspect-ratio(8, 6);
             //background-color: blue;
-        }
+            margin-top: 5vh;
 
-        .mobile {
-            width: 20%;
-            height: 50%;
-            position: absolute;
-            top: 210px;
-            right: 40px;
-            //background-color: red;
+            .laptop {
+                position: absolute;
+                width: 90%;
+                top: 8%;
+                left: 5%;
+            }
+
+            .mobile {
+                position: absolute;
+                width: 20%;
+                top: 32%;
+                right: 8%;
+            }
         }
     }
 
