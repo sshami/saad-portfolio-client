@@ -7,6 +7,71 @@
                 <div class="col" style="padding: 0px; margin-top: 6px;"><div id="draw-line-page-wr" class="draw-line"></div></div>
             </div>
         </div>
+
+        <div class="webdev-container" id="webdev-container">
+            <span id="start"></span>
+            <div class="block">
+                <div id="" class="">Some content here 1.</div>
+            </div>
+            <div id="page-title-container" class="block title-desktop">
+                <div id="page-title" class="page-title desktop">Web Development</div>
+            </div>
+            <div class="block">
+                <div class="website-display">
+                    <div class="laptop">
+                        <img class="img-fluid" src="../assets/web/temp/lauren-desktop-home.png">
+                    </div>
+                    <div class="mobile">
+                        <img class="img-fluid" src="../assets/web/temp/lauren-mobile-home.png">
+                    </div>
+                </div>
+                <div class="description">
+                    <div class="description-text">
+                        <h1>Lauren Emily Castle</h1>
+                        <p class="url">laurenemilycastle.com</p>
+                        <p class="desc">Lauren Emily Castle’s website is a collection of her portraits 
+                        captured in collaboration with various photographers, hair/makeup artists, 
+                        and clothing designers. Her website was built using the Django web framework 
+                        along with the Wagtail CMS.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="block">
+                <div id="" class="">Some content here 3.</div>
+            </div>
+            <div class="block">
+                <div id="" class="">Some content here 4.</div>
+            </div>
+            <div class="block">
+                <div id="" class="">Some content here 5.</div>
+            </div>
+            <div class="block">
+                <div id="" class="">Some content here 6.</div>
+            </div>
+            <div class="block">
+                <div id="" class="">Some content here 7.</div>
+            </div>
+            <div class="block">
+                <div id="" class="">Some content here 8.</div>
+            </div>
+            <div class="block">
+                <div id="" class="">Some content here 9.</div>
+            </div>
+            <div class="block">
+                <div id="" class="">Some content here 10.</div>
+            </div>
+            <div class="block end" id="end">
+                <div id="slide-space" class="slide-space">
+                </div>
+            </div>
+            <!-- <img data-v-96abf462="" src="http://45.55.51.168/mediafiles/original_images/1M5A5199-1500.jpg" class="photo--web">
+            <img data-v-96abf462="" src="http://45.55.51.168/mediafiles/original_images/1M5A5199-1500.jpg" class="photo--web">
+            <img data-v-96abf462="" src="http://45.55.51.168/mediafiles/original_images/1M5A5199-1500.jpg" class="photo--web">
+            <img data-v-96abf462="" src="http://45.55.51.168/mediafiles/original_images/1M5A5199-1500.jpg" class="photo--web">
+            <img data-v-96abf462="" src="http://45.55.51.168/mediafiles/original_images/1M5A5199-1500.jpg" class="photo--web">
+            <img data-v-96abf462="" src="http://45.55.51.168/mediafiles/original_images/1M5A5199-1500.jpg" class="photo--web">
+            <img data-v-96abf462="" src="http://45.55.51.168/mediafiles/original_images/1M5A5199-1500.jpg" class="photo--web"> -->
+        </div>
     </div>
 </template>
 
@@ -14,6 +79,7 @@
 <script>
 import $ from 'jquery'
 import { animateText } from '../static/js/anime-animations.js'
+import { initHorizontalScroll } from '../static/js/webdev.js'
 
 export default {
   name: 'WebDevelopment',
@@ -25,6 +91,7 @@ export default {
   },
   mounted() {
       this.openingTransition();
+      initHorizontalScroll();
   },
   destroyed() {
       this.closingTransition()
@@ -68,11 +135,20 @@ export default {
 <style scoped lang="scss">
 
     $violet-blue: #F4F6FD;
+    $light-gray: #A2A2A2;
+
+    @font-face {
+      font-family: 'aguero_serif_freeregular';
+      src: url("../assets/fonts/aguero-serif-kit/aguero_serif-webfont.woff2") format('woff2'),
+          url("../assets/fonts/aguero-serif-kit/aguero_serif-webfont.woff") format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
 
     .page {
         height: 100vh;
         /* fixed position so it doesn't jitter when loading new route/page */
-        position: fixed;
+        //position: fixed;
     }
 
     .web-page-title-container {
@@ -81,6 +157,7 @@ export default {
         height: 100%;
         width: 40px;
         right: 0;
+        z-index: 10;
     }
 
     .web-page-title {
@@ -90,6 +167,181 @@ export default {
         width: 400px;
         text-transform: uppercase;
         transform: rotate(-270deg);
+    }
+
+    .webdev-container {
+        display: flex;
+        font-family: sans-serif;
+        height: 100vh;
+        align-items: center;
+        padding: 90px;
+        transition: all 1s ease;
+
+    }
+
+    .webdev-container {
+        display: flex;
+        flex: 1;
+        height: 100vh;
+
+        /* 1050px and down */
+        @media only screen and (max-width: 1050px) {
+            display: block;
+            flex: unset;
+            height: auto;
+            width: auto;
+            padding: 0px 0px 0px 0px;
+            margin-left: unset;
+        }
+
+    }
+
+    .block {
+        height: 100%;
+        font-size: 32px;
+        color: black;
+        margin-left: 50px;
+        min-width: 100vw;
+        max-height: 3000px;
+        flex: 0 0 auto;
+        //background-color: gray;
+
+        /* 1050px and down */
+        @media only screen and (max-width: 1050px) {
+            padding: auto;
+            margin-left: unset;
+            max-height: unset;
+            padding: 0px 0px 90px 0px;
+
+            &.title-desktop {
+                display: none;
+            }
+
+            &.title-mobile {
+                height: 80vh;
+            }
+
+        }
+
+        &.end {
+            /* 1050px and down */
+            @media only screen and (max-width: 1050px) {
+                display: none;
+            }   
+        }
+    }
+
+    .block a {
+        color: inherit;
+    }
+
+    .slide-space {
+        width: 60vw;
+    }
+
+    .page-title {
+        font-size: calc(10.50vw + 10.50vh);
+        line-height: 1.3;
+        text-transform: uppercase;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-family: 'aguero_serif_freeregular', serif;
+        color: blue;
+        transition: all 1s ease;
+        letter-spacing: 30px;
+        
+        &.desktop {
+            font-size: calc(12.70vw + 12.70vh);
+            width: 100vw;
+
+            /* 1050px and down */
+            @media only screen and (max-width: 1050px) {
+                display: none;
+            }
+
+            &.reveal {
+                color: white;
+            }
+        }
+
+        &.mobile {
+            display: none;
+            margin-left: unset;
+            margin-top: 14vh;
+            font-size: calc(9.5vw + 9.5vh);
+            color: grey;
+            padding: 20px;
+
+
+            /* 1050px and down */
+            @media only screen and (max-width: 1050px) {
+                display: block;
+
+                /* 430px and down */
+                @media only screen and (max-width: 430px) {
+                    font-size: calc(6vw + 5vh);
+                    letter-spacing: 12px;
+                }
+            }
+        }
+
+    }
+
+    .website-display {
+        width: 50%;
+        height: 80%;
+        margin-top: 5%;
+        //background-color: green;
+        position: relative;
+        float: left;
+
+        .laptop {
+            width: 100%;
+            //background-color: blue;
+        }
+
+        .mobile {
+            width: 20%;
+            height: 50%;
+            position: absolute;
+            top: 210px;
+            right: 40px;
+            //background-color: red;
+        }
+    }
+
+    .description {
+        width: 50%;
+        height: 80%;
+        margin-top: 5%;
+        //background-color: pink;
+        position: relative;
+        float: left;
+        padding: 50px;
+
+        .description-text {
+            margin-top: 30px;
+            width: 35vw;
+
+            h1 {
+                margin-bottom: 0px;
+            }
+
+            .url {
+                text-transform: uppercase;
+                font-size: 12px;
+                font-weight: bolder;
+                color: $light-gray;
+                margin-top: 8px;
+            }
+
+            .desc {
+                font-size: 15px;
+                margin-top: 40px;
+                line-height: 2.5;
+            }
+        }
     }
 
 </style>
