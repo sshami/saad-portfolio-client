@@ -12,15 +12,15 @@
             <span id="start"></span>
             <div id="intro" class="block intro">
                 <div class="intro-photos-container">
-                    <img src="../assets/home/web-mobile-lc3d.png" class="mobile-web-left">
-                    <img src="../assets/home/web-mobile-ss3d.png" class="mobile-web-right">
+                    <img src="../assets/home/web-mobile-lc3d.png" id="mobile-web-left" class="mobile-web-left">
+                    <img src="../assets/home/web-mobile-ss3d.png" id="mobile-web-right" class="mobile-web-right">
                 </div>
             </div>
             <div id="page-title-container" class="block title-desktop">
                 <div id="page-title" class="page-title desktop">Web/App Development</div>
             </div>
             <div class="block">
-                <div class="website-display">
+                <div class="project-display">
                     <div class="display-images">
                             <img src="../assets/web/temp/lauren-desktop-home.png" class="laptop">
                             <img src="../assets/web/temp/lauren-mobile-home.png" class="mobile">
@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="block">
-                <div class="website-display">
+                <div class="project-display">
                     <div class="display-images">
                             <img src="../assets/web/temp/saad-desktop-home.png" class="laptop">
                             <img src="../assets/web/temp/saad-mobile-home2.png" class="mobile">
@@ -61,9 +61,9 @@
                 </div>
             </div>
             <div class="block">
-                <div class="website-display">
+                <div class="project-display">
                     <div class="display-images">
-                            <img src="../assets/web/temp/smart-mirror-reflect.png" class="demo">
+                            <img src="../assets/web/temp/smart-mirror-reflect.png" class="standard">
                     </div>
                     <!-- <div class="mobile">
                         <img src="../assets/web/temp/lauren-mobile-home.png">
@@ -112,6 +112,8 @@ export default {
       initHorizontalScroll();
       calculateAllTriggers();
       createPhotosetScrollEvent();
+      $("#mobile-web-left").addClass("fix");
+      $("#mobile-web-right").addClass("fix");
   },
   destroyed() {
       this.closingTransition()
@@ -276,16 +278,26 @@ export default {
                 @include aspect-ratio(8, 9);
 
                 .mobile-web-left {
+                    transition: all 4s ease-in-out;
                     position: absolute;
-                    top: 25%;
+                    top: 15%;
                     width: 70%;
+
+                    &.fix {
+                        transform: translateY(40px) rotate(5deg);
+                    }
                 }
 
                 .mobile-web-right {
+                    transition: all 4s ease-in-out;
                     position: absolute;
-                    top: 5%;
+                    top: 2%;
                     left: 35%;
                     width: 82%;
+
+                    &.fix {
+                        transform: translateY(20px) rotate(-3deg);
+                    }
                 }
             }
         }
@@ -364,7 +376,7 @@ export default {
 
     }
 
-    .website-display {
+    .project-display {
         width: 50%;
         height: 80%;
         margin-top: 5%;
@@ -391,7 +403,7 @@ export default {
                 right: 7%;
             }
 
-            .demo {
+            .standard {
                 position: absolute;
                 width: 100%;
                 top: 0;
