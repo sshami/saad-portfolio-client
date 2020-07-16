@@ -63,7 +63,7 @@
             <div class="block">
                 <div class="website-display">
                     <div class="display-images">
-                            <img src="../assets/web/temp/smart-mirror4.png" class="demo">
+                            <img src="../assets/web/temp/smart-mirror-reflect.png" class="demo">
                     </div>
                     <!-- <div class="mobile">
                         <img src="../assets/web/temp/lauren-mobile-home.png">
