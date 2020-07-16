@@ -11,6 +11,10 @@
         <div class="webdev-container" id="webdev-container">
             <span id="start"></span>
             <div id="intro" class="block intro">
+                <div class="intro-photos-container">
+                    <img src="../assets/home/web-mobile-lc3d.png" class="mobile-web-left">
+                    <img src="../assets/home/web-mobile-ss3d.png" class="mobile-web-right">
+                </div>
             </div>
             <div id="page-title-container" class="block title-desktop">
                 <div id="page-title" class="page-title desktop">Web/App Development</div>
@@ -167,14 +171,13 @@ export default {
     }
 
     @mixin aspect-ratio($width, $height) {
-    position: relative;
-    &:before {
-        display: block;
-        content: "";
-        width: 100%;
-        padding-top: ($height / $width) * 100%;
-    }
-
+        position: relative;
+        &:before {
+            display: block;
+            content: "";
+            width: 100%;
+            padding-top: ($height / $width) * 100%;
+        }
     }
 
     .page {
@@ -265,10 +268,28 @@ export default {
             height: 85vh;
             transition: all 0.7s ease;
             will-change: transform;
-            background-color: lightgrey;
+            //background-color: lightgrey;
+            padding: 10px;
 
             &.hide {
                 opacity: 0;
+            }
+
+            .intro-photos-container {
+                @include aspect-ratio(8, 9);
+
+                .mobile-web-left {
+                    position: absolute;
+                    top: 25%;
+                    width: 70%;
+                }
+
+                .mobile-web-right {
+                    position: absolute;
+                    top: 5%;
+                    left: 35%;
+                    width: 82%;
+                }
             }
         }
 
