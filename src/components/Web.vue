@@ -61,25 +61,22 @@
                 </div>
             </div>
             <div class="block">
-                <div id="" class="">Some content here 4.</div>
-            </div>
-            <div class="block">
-                <div id="" class="">Some content here 5.</div>
-            </div>
-            <div class="block">
-                <div id="" class="">Some content here 6.</div>
-            </div>
-            <div class="block">
-                <div id="" class="">Some content here 7.</div>
-            </div>
-            <div class="block">
-                <div id="" class="">Some content here 8.</div>
-            </div>
-            <div class="block">
-                <div id="" class="">Some content here 9.</div>
-            </div>
-            <div class="block">
-                <div id="" class="">Some content here 10.</div>
+                <div class="website-display">
+                    <div class="display-images">
+                            <img src="../assets/web/temp/smart-mirror4.png" class="demo">
+                    </div>
+                    <!-- <div class="mobile">
+                        <img src="../assets/web/temp/lauren-mobile-home.png">
+                    </div> -->
+                </div>
+                <div class="description text-left">
+                    <div class="description-text">
+                        <h1>Smart Mirror</h1>
+                        <p class="desc">Froth robust robusta caramelization et trifecta siphon variety. 
+                        Carajillo plunger pot, aroma a, beans coffee, spoon white latte roast coffee brewed. 
+                        Seasonal, doppio that redeye con panna eu decaffeinated ristretto doppio organic and java.</p>
+                    </div>
+                </div>
             </div>
             <div class="block end" id="end">
                 <div id="slide-space" class="slide-space">
@@ -393,6 +390,12 @@ export default {
                 top: 32%;
                 right: 7%;
             }
+
+            .demo {
+                position: absolute;
+                width: 100%;
+                top: 0;
+            }
         }
     }
 
@@ -407,6 +410,10 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center; 
+
+        &.text-left {
+            justify-content: unset;
+        }
 
         .description-text {
             margin-top: 30px;
