@@ -190,17 +190,17 @@ export default {
         background-color: $violet-blue;
         height: 100%;
         width: 40px;
-        right: 0;
+        left: 0;
         z-index: 10;
     }
 
     .web-page-title {
         position: absolute;
         top: 47%;
-        left: -175px;
+        left: -155px;
         width: 400px;
         text-transform: uppercase;
-        transform: rotate(-270deg);
+        transform: rotate(-90deg);
     }
 
     .webdev-container {

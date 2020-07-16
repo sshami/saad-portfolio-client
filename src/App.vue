@@ -4,7 +4,7 @@
       <button class="c-hamburger c-hamburger--htx" @click="mobileNavToggle">
               <span>toggle menu</span>
       </button>
-      <div class="title-logo" v-bind:class="[(currentRouteName == 'photography' ? 'shift' : '')]">
+      <div class="title-logo" v-bind:class="[(currentRouteName == 'photography' || currentRouteName == 'web' ? 'shift' : '')]">
         <router-link :to="{ name: 'homepage'}"><img src="./assets/saad-logo.png" alt="SAAD"></router-link>
       </div>
       <div class="navigation">
