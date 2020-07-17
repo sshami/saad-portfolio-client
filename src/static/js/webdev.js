@@ -54,18 +54,19 @@ function webdevScrollListener(event) {
 }
 
 /* Creates scroll event */
-export function createPhotosetScrollEvent() {
+export function createPageScrollEvent() {
     horizontal.on('scroll', webdevScrollListener);
 }
 
 /* Removes scroll event */
-export function removePhotosetScrollEvent() {
+export function removePageScrollEvent() {
     horizontal.off('scroll', webdevScrollListener);
 }
 
 
 /* Destroys horizontal scroll */
 export function destroyHorizontalScroll() {
+    console.log("DESTROYING HORIZONTAL SCROLL!");
     horizontal.destroy();
     horizontal = null;
 }

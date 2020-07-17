@@ -97,7 +97,7 @@
 <script>
 import $ from 'jquery'
 import { animateText } from '../static/js/anime-animations.js'
-import { initHorizontalScroll, calculateAllTriggers, createPhotosetScrollEvent } from '../static/js/webdev.js'
+import { initHorizontalScroll, getHorizontalScroll, calculateAllTriggers, createPageScrollEvent, removePageScrollEvent, destroyHorizontalScroll } from '../static/js/webdev.js'
 
 export default {
   name: 'WebDevelopment',
@@ -108,12 +108,22 @@ export default {
       animateText('rise', '.transition-web-title-text');
   },
   mounted() {
-      this.openingTransition();
-      initHorizontalScroll();
-      calculateAllTriggers();
-      createPhotosetScrollEvent();
-      $("#mobile-web-left").addClass("fix");
-      $("#mobile-web-right").addClass("fix");
+    // Register a resize event listener when the Vue component is ready
+    window.addEventListener('resize', this.onResize)
+    this.openingTransition();
+
+    /* Setup horizontal scrolling view if desktop */
+    if (window.innerWidth > 1050){
+        initHorizontalScroll();
+        setTimeout(function(){
+            calculateAllTriggers();
+            createPageScrollEvent();
+        }, 1000);
+    }
+
+    // Animate intro phones
+    $("#mobile-web-left").addClass("fix");
+    $("#mobile-web-right").addClass("fix");
   },
   destroyed() {
       this.closingTransition()
@@ -149,6 +159,27 @@ export default {
         setTimeout(function(){ 
             $("#transition-screen-web-in").removeClass("swipe");
         }, 1500);
+    },
+    /* Window resize event */
+    onResize() {
+        if (window.innerWidth > 1050){
+            /* initialize horizontal scroll if not already */
+            if (getHorizontalScroll() == null){
+                initHorizontalScroll();
+            }
+            /* recalculate photo menu trigger and reset event */
+            setTimeout(function(){
+                removePageScrollEvent();
+                calculateAllTriggers();
+                createPageScrollEvent();
+            }, 500);
+        } else {
+            /* destroy horizontal scrolling if not already */
+            if (getHorizontalScroll() != null) {
+                removePageScrollEvent();
+                destroyHorizontalScroll();
+            }
+        }
     }
   }
 }
@@ -235,7 +266,7 @@ export default {
     }
 
     .block {
-        height: 100%;
+        //height: 100%;
         font-size: 32px;
         color: black;
         margin-left: 50px;
@@ -264,7 +295,6 @@ export default {
         &.intro {
             position: fixed;
             min-width: 40vw;
-            height: 85vh;
             transition: all 0.7s ease;
             will-change: transform;
             //background-color: lightgrey;
@@ -413,7 +443,7 @@ export default {
 
     .description {
         width: 50%;
-        height: 80%;
+        height: 55vh;
         margin-top: 5%;
         //background-color: pink;
         position: relative;

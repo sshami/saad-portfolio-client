@@ -167,7 +167,7 @@ export default {
       animateText('rise', '.transition-photography-title-text');
   },
   mounted() {
-    // Register an event listener when the Vue component is ready
+    // Register a resize event listener when the Vue component is ready
     window.addEventListener('resize', this.onResize)
     this.openingTransition();
 
@@ -529,7 +529,7 @@ export default {
     }
 
     .block {
-        height: 100%;
+        //height: 100%;
         font-size: 32px;
         color: black;
         margin-left: 50px;
