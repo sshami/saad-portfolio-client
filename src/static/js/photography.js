@@ -60,6 +60,8 @@ function photosetScrollListener(event) {
     } else if (event > photosetTitleTriggerEndPosition && event < menuTriggerPosition && $(".photoset-title.desktop").hasClass("reveal")) {
         $("#photoset-title").removeClass("reveal");
         $("#photos-container").removeClass("change-bg-color");
+    } else if (event > photosetTitleTriggerEndPosition && event < menuTriggerPosition && !$("#hero").hasClass("hide")) {
+        $("#hero").addClass("hide");
     } else if (event >= menuTriggerPosition && !$("#album-menu").hasClass("show")){
         $("#album-menu").addClass("show");
         $("#album-menu-contents").addClass("swipe-in");

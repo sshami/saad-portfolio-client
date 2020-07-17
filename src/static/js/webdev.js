@@ -42,10 +42,14 @@ function webdevScrollListener(event) {
     if (event <  webTitleTriggerStartPosition && $("#intro").hasClass("hide")) {
         $("#webdev-container").removeClass("change-bg-color");
         $("#intro").removeClass("hide");
+        $("#mobile-web-left").addClass("fix");
+        $("#mobile-web-right").addClass("fix");
         $("#page-title").removeClass("reveal");
     } else if (webTitleTriggerStartPosition <= event && event < webTitleTriggerEndPosition && !$(".page-title.desktop").hasClass("reveal")) {
         $("#webdev-container").addClass("change-bg-color");
         $("#intro").addClass("hide");
+        $("#mobile-web-left").removeClass("fix");
+        $("#mobile-web-right").removeClass("fix");
         $("#page-title").addClass("reveal");
     } else if (event > webTitleTriggerEndPosition && $(".page-title.desktop").hasClass("reveal")) {
         $("#page-title").removeClass("reveal");
