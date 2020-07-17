@@ -125,8 +125,14 @@ export default {
     $("#mobile-web-left").addClass("fix");
     $("#mobile-web-right").addClass("fix");
   },
+  beforeDestroy() {
+    // Unregister the event listener before destroying this Vue instance
+    window.removeEventListener('resize', this.onResize)
+    removePageScrollEvent();
+  },
   destroyed() {
       this.closingTransition()
+      destroyHorizontalScroll();
   },
   methods: {
     /* Opening Transition */
