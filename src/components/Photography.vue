@@ -529,7 +529,7 @@ export default {
     }
 
     .block {
-        //height: 100%;
+        height: 100%;
         font-size: 32px;
         color: black;
         margin-left: 50px;
