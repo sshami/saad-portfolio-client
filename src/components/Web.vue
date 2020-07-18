@@ -69,7 +69,7 @@
                         <img src="../assets/web/temp/lauren-mobile-home.png">
                     </div> -->
                 </div>
-                <div class="description text-left">
+                <div class="description shift-left">
                     <div class="description-text">
                         <h1>Smart Mirror</h1>
                         <p class="desc">Froth robust robusta caramelization et trifecta siphon variety. 
@@ -196,6 +196,7 @@ export default {
     $violet-blue: #F4F6FD;
     $violet-blue-dark: #CED9FD;
     $neutral-pink: #fddecc;
+    $gray: #717171;
     $light-gray: #A2A2A2;
 
     @font-face {
@@ -229,6 +230,29 @@ export default {
         width: 40px;
         left: 0;
         z-index: 10;
+
+        /* 1050px and down */
+        @media only screen and (max-width: 1050px) {
+            background-color: transparent;
+            position: relative;
+            height: 40px;
+            width: 400px;
+            margin: 0px auto;
+            margin-top: 50px;
+            margin-bottom: 50px;
+
+            /* 415px to 330px */
+            @media only screen and (max-width: 415px) and (min-width: 331px) {
+                width: 300px;
+            }
+
+            /* 330px and down */
+            @media only screen and (max-width: 330px) {
+                width: 250px;
+            }
+
+        }
+
     }
 
     .web-page-title {
@@ -238,6 +262,18 @@ export default {
         width: 400px;
         text-transform: uppercase;
         transform: rotate(-90deg);
+
+        /* 1050px and down */
+        @media only screen and (max-width: 1050px) {
+            position: relative;
+            top: auto;
+            left: auto;
+            width: auto;
+            transform: inherit;
+            color: $gray;
+            margin-top: 100px;
+        }
+
     }
 
     .webdev-container {
@@ -335,6 +371,14 @@ export default {
                         transform: translateY(20px) rotate(-3deg);
                     }
                 }
+
+            }
+
+            /* 1050px and down */
+            @media only screen and (max-width: 1050px) {
+                position: relative;
+                max-width: 85vw;
+                height: 100vh;
             }
         }
 
@@ -445,6 +489,13 @@ export default {
                 top: 0;
             }
         }
+
+        /* 800px and down */
+        @media only screen and (max-width: 800px) {
+            width: 100%;
+            height: 100%;
+        }
+
     }
 
     .description {
@@ -459,8 +510,9 @@ export default {
         justify-content: center;
         align-items: center; 
 
-        &.text-left {
-            justify-content: unset;
+        &.shift-left {
+            justify-content: normal;
+
         }
 
         .description-text {
@@ -484,6 +536,25 @@ export default {
                 margin-top: 40px;
                 line-height: 2.5;
             }
+
+            /* 800px and down */
+            @media only screen and (max-width: 800px) {
+                margin-top: 0px;
+                width: 100%;
+            }
+
+        }
+
+        /* 800px and down */
+        @media only screen and (max-width: 800px) {
+            width: 100%;
+            height: 100%;
+            margin-top: 0px;
+            display: block;
+            padding: 40px;
+            justify-content: unset;
+            align-items: unset;
+            text-align: center;
         }
     }
 

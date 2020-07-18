@@ -186,6 +186,12 @@ export default {
 
       &.shift {
         margin-left: 60px;
+
+      /* 1050px and down */
+      @media only screen and (max-width: 1050px) {
+            margin: 5px 0px 5px 15px;
+        }
+
       }
 
     }
