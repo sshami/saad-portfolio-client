@@ -54,6 +54,8 @@ function webdevScrollListener(event) {
     } else if (event > webTitleTriggerEndPosition && $(".page-title.desktop").hasClass("reveal")) {
         $("#page-title").removeClass("reveal");
         $("#webdev-container").removeClass("change-bg-color");
+    } else if (event > webTitleTriggerEndPosition && !$("#intro").hasClass("hide")) {
+        $("#intro").addClass("hide");
     }
 }
 
