@@ -199,14 +199,6 @@ export default {
     $gray: #717171;
     $light-gray: #A2A2A2;
 
-    @font-face {
-      font-family: 'aguero_serif_freeregular';
-      src: url("../assets/fonts/aguero-serif-kit/aguero_serif-webfont.woff2") format('woff2'),
-          url("../assets/fonts/aguero-serif-kit/aguero_serif-webfont.woff") format('woff');
-      font-weight: normal;
-      font-style: normal;
-    }
-
     @mixin aspect-ratio($width, $height) {
         position: relative;
         &:before {
@@ -382,6 +374,10 @@ export default {
             }
         }
 
+        &.title-desktop {
+            margin-right: 500px;
+        }
+
         &.end {
             /* 1050px and down */
             @media only screen and (max-width: 1050px) {
@@ -399,28 +395,28 @@ export default {
     }
 
     .page-title {
-        font-size: calc(10.50vw + 10.50vh);
+        font-size: calc(9.50vw + 9.50vh);
         line-height: 1.3;
         text-transform: uppercase;
         align-items: center;
         justify-content: center;
         text-align: center;
-        font-family: 'aguero_serif_freeregular', serif;
+        font-family: 'made-bon-voyage-regular', serif;
         color: $violet-blue-dark;
         transition: all 1s ease;
         letter-spacing: 30px;
         
         &.desktop {
-            font-size: calc(12.0vw + 12.0vh);
+            font-size: calc(9.0vw + 9.0vh);
             margin-left: 45vw;
             width: 100vw;
 
             @media only screen and (max-width: 1530px) and (min-width: 1251px) {
-                font-size: calc(11vw + 11vh);
+                font-size: calc(9vw + 9vh);
             }
 
             @media only screen and (max-width: 1250px) and (min-width: 1051px) {
-                font-size: calc(10vw + 10vh);
+                font-size: calc(8vw + 8vh);
             }
 
             /* 1050px and down */

@@ -88,14 +88,6 @@ export default {
     $violet-blue: #F4F6FD;
     $neutral-pink: #fddecc;
 
-    @font-face {
-      font-family: 'aguero_serif_freeregular';
-      src: url("../../assets/fonts/aguero-serif-kit/aguero_serif-webfont.woff2") format('woff2'),
-          url("../../assets/fonts/aguero-serif-kit/aguero_serif-webfont.woff") format('woff');
-      font-weight: normal;
-      font-style: normal;
-    }
-
     @mixin aspect-ratio($width, $height) {
     position: relative;
     &:before {
@@ -233,23 +225,23 @@ export default {
         overflow: hidden;
 
         > .hover-title {
-            font-family: 'aguero_serif_freeregular', serif;
-            font-size: 13vw;
+            font-family: 'made-bon-voyage-regular', serif;
+            font-size: 7.5vw;
             text-transform: uppercase;
             opacity: 0;
             transition: all 1s ease;
-            top: 75%;
+            top: 80%;
 
 
             &--photography {
                 position: absolute;
-                left: 35.5%;
+                left: 32.5%;
                 letter-spacing: 10px;
             }
 
             &--webdev {
                 position: absolute;
-                left: 6%;
+                left: 4.8%;
                 letter-spacing: 5px;
             }
 

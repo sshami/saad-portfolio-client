@@ -170,6 +170,14 @@ export default {
     //   font-style: normal;
     // }
 
+    @font-face {
+      font-family: 'made-bon-voyage-regular';
+      src: url("./assets/fonts/made-bon-voyage-kit/made_bon_voyage_regular_personal_use-webfont.woff2") format('woff2'),
+          url("./assets/fonts/made-bon-voyage-kit/made_bon_voyage_regular_personal_use-webfont.woff") format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
     .title-logo {
       float:left;
       margin: 5px 0px 5px 15px;

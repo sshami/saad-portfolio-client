@@ -326,14 +326,6 @@ export default {
     $gray: #717171;
     $gray-dark: #545454;
 
-    @font-face {
-      font-family: 'aguero_serif_freeregular';
-      src: url("../assets/fonts/aguero-serif-kit/aguero_serif-webfont.woff2") format('woff2'),
-          url("../assets/fonts/aguero-serif-kit/aguero_serif-webfont.woff") format('woff');
-      font-weight: normal;
-      font-style: normal;
-    }
-
     .page {
         height: 100%;
         /* fixed position so it doesn't jitter when loading new route/page */
@@ -393,20 +385,20 @@ export default {
     }
 
     .photoset-title {
-        font-size: calc(12.50vw + 12.50vh);
+        font-size: calc(8.50vw + 8.50vh);
         line-height: 1.3;
         text-transform: uppercase;
         align-items: center;
         justify-content: center;
         text-align: center;
-        font-family: 'aguero_serif_freeregular', serif;
+        font-family: 'made-bon-voyage-regular', serif;
         color: $neutral-pink-dark;
         transition: all 1s ease;
         letter-spacing: 30px;
         transition: all 1s ease;
         
         &.desktop {
-            font-size: calc(12.70vw + 12.70vh);
+            font-size: calc(8.70vw + 8.70vh);
             margin-left: 40vw;
             width: 100vw;
 
@@ -423,8 +415,7 @@ export default {
         &.mobile {
             display: none;
             margin-left: unset;
-            margin-top: 14vh;
-            font-size: calc(9.5vw + 9.5vh);
+            font-size: calc(4vw + 4vh);
             color: $gray;
             padding: 20px;
 
@@ -433,9 +424,9 @@ export default {
             @media only screen and (max-width: 1050px) {
                 display: block;
 
-                /* 430px and down */
-                @media only screen and (max-width: 430px) {
-                    font-size: calc(6vw + 5vh);
+                /* 700px and down */
+                @media only screen and (max-width: 730px) {
+                    font-size: calc(3vw + 3vh);
                     letter-spacing: 12px;
                 }
             }
@@ -535,12 +526,17 @@ export default {
         margin-left: 50px;
         max-height: 3000px;
         z-index: 5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 50px;
 
         /* 1050px and down */
         @media only screen and (max-width: 1050px) {
             padding: auto;
-            margin-left: unset;
-            max-height: unset;
+            margin-left: auto;
+            margin-right: auto;
+            max-height: auto;
             padding: 0px 0px 90px 0px;
 
             &.title-desktop {
@@ -607,9 +603,9 @@ export default {
         }
 
         h1 {
-            font-family: 'aguero_serif_freeregular', serif;
+            font-family: 'made-bon-voyage-regular', serif;
             font-weight: lighter;
-            font-size: calc(3vw + 3vh);
+            font-size: calc(2vw + 2vh);
             letter-spacing: 8px;
         }
 
