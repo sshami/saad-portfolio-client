@@ -17,78 +17,38 @@
                 </div>
             </div>
             <div id="page-title-container" class="block title-desktop">
-                <div id="page-title" class="page-title desktop">Web/App Development</div>
+                <div id="page-title" class="page-title desktop">{{ page_content.title }}</div>
             </div>
-            <div class="block">
-                <div class="project-display">
-                    <div class="display-images">
-                            <img src="../assets/web/temp/lauren-desktop-home.png" class="laptop">
-                            <img src="../assets/web/temp/lauren-mobile-home.png" class="mobile">
+
+
+            <template v-for="project in page_content.featured_projects">
+                <div class="block" :key="project.id">    
+                    <div class="project-display">
+                        <div class="display-images">
+                            <template v-if="project.value.display_image.type == 'WebProject'">
+                                <img :src="project.value.display_image.images.demo_laptop_display" class="laptop">
+                                <img :src="project.value.display_image.images.demo_mobile_display" class="mobile">
+                            </template>
+                            <template v-if="project.value.display_image.type == 'StandardProject'">
+                                <img :src="project.value.display_image.images.demo_display" class="standard">
+                            </template>
+                        </div>
                     </div>
-                    <!-- <div class="mobile">
-                        <img src="../assets/web/temp/lauren-mobile-home.png">
-                    </div> -->
-                </div>
-                <div class="description">
-                    <div class="description-text">
-                        <h1>Lauren Emily Castle</h1>
-                        <p class="url">laurenemilycastle.com</p>
-                        <p class="desc">Lauren Emily Castle’s website is a collection of her portraits 
-                        captured in collaboration with various photographers, hair/makeup artists, 
-                        and clothing designers. Her website was built using the Django web framework 
-                        along with the Wagtail CMS.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="block">
-                <div class="project-display">
-                    <div class="display-images">
-                            <img src="../assets/web/temp/saad-desktop-home.png" class="laptop">
-                            <img src="../assets/web/temp/saad-mobile-home2.png" class="mobile">
-                    </div>
-                    <!-- <div class="mobile">
-                        <img src="../assets/web/temp/lauren-mobile-home.png">
-                    </div> -->
-                </div>
-                <div class="description">
-                    <div class="description-text">
-                        <h1>Saad</h1>
-                        <p class="url">saadcreative.com</p>
-                        <p class="desc">Froth robust robusta caramelization et trifecta siphon variety. 
-                        Carajillo plunger pot, aroma a, beans coffee, spoon white latte roast coffee brewed. 
-                        Seasonal, doppio that redeye con panna eu decaffeinated ristretto doppio organic and java.</p>
+
+                    <div class="description" v-bind:class="[(project.value.display_image.type == 'StandardProject' ? 'shift-left' : '')]">
+                        <div class="description-text">
+                            <h1>{{ project.value.title }}</h1>
+                            <p class="url" v-if="project.value.web_url">{{ project.value.web_url | removeHttp }}</p>
+                            <p class="desc">{{ project.value.summary }}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="block">
-                <div class="project-display">
-                    <div class="display-images">
-                            <img src="../assets/web/temp/smart-mirror-reflect.png" class="standard">
-                    </div>
-                    <!-- <div class="mobile">
-                        <img src="../assets/web/temp/lauren-mobile-home.png">
-                    </div> -->
-                </div>
-                <div class="description shift-left">
-                    <div class="description-text">
-                        <h1>Smart Mirror</h1>
-                        <p class="desc">Froth robust robusta caramelization et trifecta siphon variety. 
-                        Carajillo plunger pot, aroma a, beans coffee, spoon white latte roast coffee brewed. 
-                        Seasonal, doppio that redeye con panna eu decaffeinated ristretto doppio organic and java.</p>
-                    </div>
-                </div>
-            </div>
+            </template>
+
             <div class="block end" id="end">
                 <div id="slide-space" class="slide-space">
                 </div>
             </div>
-            <!-- <img data-v-96abf462="" src="http://45.55.51.168/mediafiles/original_images/1M5A5199-1500.jpg" class="photo--web">
-            <img data-v-96abf462="" src="http://45.55.51.168/mediafiles/original_images/1M5A5199-1500.jpg" class="photo--web">
-            <img data-v-96abf462="" src="http://45.55.51.168/mediafiles/original_images/1M5A5199-1500.jpg" class="photo--web">
-            <img data-v-96abf462="" src="http://45.55.51.168/mediafiles/original_images/1M5A5199-1500.jpg" class="photo--web">
-            <img data-v-96abf462="" src="http://45.55.51.168/mediafiles/original_images/1M5A5199-1500.jpg" class="photo--web">
-            <img data-v-96abf462="" src="http://45.55.51.168/mediafiles/original_images/1M5A5199-1500.jpg" class="photo--web">
-            <img data-v-96abf462="" src="http://45.55.51.168/mediafiles/original_images/1M5A5199-1500.jpg" class="photo--web"> -->
         </div>
     </div>
 </template>
@@ -98,9 +58,15 @@
 import $ from 'jquery'
 import { animateText } from '../static/js/anime-animations.js'
 import { initHorizontalScroll, getHorizontalScroll, calculateAllTriggers, createPageScrollEvent, removePageScrollEvent, destroyHorizontalScroll } from '../static/js/webdev.js'
+import api from '../common/api-instance.js'
 
 export default {
   name: 'WebDevelopment',
+  data: function () {
+      return {
+          page_content : {}
+      }
+  },
   beforeMount() {
       /* animate opening swipe-in transition */
       $("#transition-screen-web-in").addClass("swipe");
@@ -111,6 +77,12 @@ export default {
     // Register a resize event listener when the Vue component is ready
     window.addEventListener('resize', this.onResize)
     this.openingTransition();
+
+    // TODO: NEED TO ENSURE THAT PAGE CONTENT DATA IS PULLED FIRST 
+    // BEFORE ENABLING HORIZONTAL SCROLL AND ADDING SCROLL EVENT
+
+    /* Pull page content data */
+    this.pullPageContent();
 
     /* Setup horizontal scrolling view if desktop */
     if (window.innerWidth > 1050){
@@ -186,7 +158,31 @@ export default {
                 destroyHorizontalScroll();
             }
         }
+    },
+    getPageContentData() {
+        api.get('/webdev/',
+        {
+            headers: {
+                //'Authorization': 'Bearer ' + 'add jwt token here'
+            }
+        })
+        .then(response => (this.page_content = response.data[0]))
+        .catch(error => {
+            // TODO: use vue js logging
+            console.log("There was an error: " + error);
+        })
+    },
+    pullPageContent() {
+        this.getPageContentData();
     }
+  },
+  filters: {
+      removeHttp : function (value) {
+          if (!value) return '';
+          value = value.toString();
+          value = value.replace(/(^\w+:|^)\/\//, '');
+          return value.replace("/","");
+      }
   }
 }
 </script>
