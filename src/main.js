@@ -4,6 +4,7 @@ import App from './App.vue'
 import Homepage from './components/Homepage.vue'
 import Photography from './components/Photography.vue'
 import Web from './components/Web.vue'
+import WebDetail from './components/WebDetail.vue'
 import 'popper.js'
 import 'bootstrap'
 import 'socicon'
@@ -15,7 +16,8 @@ Vue.use(VueRouter);
 const routes = [
   { path:'/', component: Homepage, name: 'homepage'},
   { path:'/photography/:albumSlug?', component: Photography, name: 'photography'},
-  { path:'/web', component: Web, name: 'web'}
+  { path:'/web', component: Web, name: 'web'},
+  { path: '/web/:projectSlug?', component: WebDetail, name: 'webdetail'}
 ];
 
 const router = new VueRouter({
