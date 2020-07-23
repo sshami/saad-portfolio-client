@@ -2,9 +2,9 @@
     <div class="page">
         <div id="web-page-title"  class="web-page-title-container">
             <div class="row web-page-title">
-                <div class="col" style="padding: 0px; margin-top: 6px;"><div id="draw-line-page-wl" class="draw-line left"></div></div>
+                <div class="col" style="padding: 0px; margin-top: 6px;"><div id="draw-line-page-wl" class="draw-line left draw"></div></div>
                 <div class="col-auto"><h1>Web Development</h1></div>
-                <div class="col" style="padding: 0px; margin-top: 6px;"><div id="draw-line-page-wr" class="draw-line"></div></div>
+                <div class="col" style="padding: 0px; margin-top: 6px;"><div id="draw-line-page-wr" class="draw-line draw"></div></div>
             </div>
         </div>
         <div class="content">
@@ -108,8 +108,9 @@
 </template>
 
 <script>
+
 export default {
-    name: "WebDetail"
+    name: "WebDetail",
 }
 </script>
 
