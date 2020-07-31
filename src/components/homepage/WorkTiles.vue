@@ -32,7 +32,9 @@
                 <div class="col-1"></div>
             </div>
             <div id="photography-display" class="photography-display">
-                <img src="../../assets/home/1M5A4102-tile-peach.jpg" alt="Photography Tile Image">
+                <img src="../../assets/home/1M5A4102-tile-peach.jpg" alt="Photography Tile Image" class="demo-img--large">
+                <img src="../../assets/home/1M5A4102-tile-peach-md.jpg" alt="Photography Tile Image" class="demo-img--medium">
+                <img src="../../assets/home/1M5A4102-tile-peach-sm.jpg" alt="Photography Tile Image" class="demo-img--small">
             </div>
             <div class="explore-btn">
                 <h2>Explore</h2>
@@ -268,8 +270,39 @@ export default {
         transition:all 4s ease;
         opacity: 0%;
 
-        img {
+        .demo-img {
             width: 100%;
+
+            &--large {
+                @extend .demo-img;
+                display: none;
+
+                /* 2200px and up */
+                @media only screen and (min-width: 2200px) {
+                    display: block;
+                }
+            }
+
+            &--medium {
+                @extend .demo-img;
+                display: none;
+
+                /* 2199px to 1051px */
+                @media only screen and (max-width: 2199px) and (min-width: 1051px) {
+                    display: block;
+                }
+            }
+
+            &--small {
+                @extend .demo-img;
+                display: none;
+
+                /* 1050px and down */
+                @media only screen and (max-width: 1050px) {
+                    display: block;
+                }
+            }
+
         }
 
         &.fade-in {

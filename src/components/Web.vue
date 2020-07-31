@@ -12,8 +12,13 @@
             <span id="start"></span>
             <div id="intro" class="block intro">
                 <div class="intro-photos-container">
-                    <img src="../assets/home/web-mobile-lc3d.png" id="mobile-web-left" class="mobile-web-left">
-                    <img src="../assets/home/web-mobile-ss3d.png" id="mobile-web-right" class="mobile-web-right">
+                    <img src="../assets/home/web-mobile-lc3d.png" id="mobile-web-left" class="mobile-web-left--large">
+                    <img src="../assets/home/web-mobile-lc3d-md.png" id="mobile-web-left" class="mobile-web-left--medium">
+                    <img src="../assets/home/web-mobile-lc3d-sm.png" id="mobile-web-left" class="mobile-web-left--small">
+
+                    <img src="../assets/home/web-mobile-ss3d.png" id="mobile-web-right" class="mobile-web-right--large">
+                    <img src="../assets/home/web-mobile-ss3d-md.png" id="mobile-web-right" class="mobile-web-right--medium">
+                    <img src="../assets/home/web-mobile-ss3d-sm.png" id="mobile-web-right" class="mobile-web-right--small">
                 </div>
             </div>
             <div id="page-title-container" class="block title-desktop">
@@ -346,6 +351,37 @@ export default {
                     &.fix {
                         transform: translateY(40px) rotate(5deg);
                     }
+
+                    &--large {
+                        @extend .mobile-web-left;
+                        display: none;
+
+                        /* 2200px and up */
+                        @media only screen and (min-width: 2200px) {
+                            display: block;
+                        }
+
+                    }
+
+                    &--medium {
+                        @extend .mobile-web-left;
+                        display: none;
+
+                        /* 2199px to 1051px */
+                        @media only screen and (max-width: 2199px) and (min-width: 1051px) {
+                            display: block;
+                        }
+                    }
+
+                    &--small {
+                        @extend .mobile-web-left;
+                        display: none;
+
+                        /* 1050px and down */
+                        @media only screen and (max-width: 1050px) {
+                            display: block;
+                        }
+                    }
                 }
 
                 .mobile-web-right {
@@ -357,6 +393,37 @@ export default {
 
                     &.fix {
                         transform: translateY(20px) rotate(-3deg);
+                    }
+
+                    &--large {
+                        @extend .mobile-web-right;
+                        display: none;
+
+                        /* 2200px and up */
+                        @media only screen and (min-width: 2200px) {
+                            display: block;
+                        }
+
+                    }
+
+                    &--medium {
+                        @extend .mobile-web-right;
+                        display: none;
+
+                        /* 2199px to 1051px */
+                        @media only screen and (max-width: 2199px) and (min-width: 1051px) {
+                            display: block;
+                        }
+                    }
+
+                    &--small {
+                        @extend .mobile-web-right;
+                        display: none;
+
+                        /* 1050px and down */
+                        @media only screen and (max-width: 1050px) {
+                            display: block;
+                        }
                     }
                 }
 
