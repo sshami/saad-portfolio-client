@@ -5,11 +5,21 @@
         <div id="header-splash" class="col-lg-12 header-splash">
             <div id="flatlay-container" class="flatlay-container">
                 <div id="flatlay-items" class="flatlay-items">
-                    <!-- TODO: Resize header flatlay images according to screen size -->
-                    <img src="../../assets/home/intro-head/laptop-sm.jpg" alt="Laptop" id="laptop" class="flatlay laptop" >
-                    <img src="../../assets/home/intro-head/camera.jpg" alt="Camera" id="camera" class="flatlay camera">
-                    <img src="../../assets/home/intro-head/coffee.jpg" alt="Coffee" id="coffee" class="flatlay coffee">
-                    <img src="../../assets/home/intro-head/plant.png" alt="Plant" id="plant" class="flatlay plant">
+                    <img src="../../assets/home/intro-head/laptop-lg.jpg" alt="Laptop" id="laptop" class="flatlay laptop--large" >
+                    <img src="../../assets/home/intro-head/laptop-md.jpg" alt="Laptop" id="laptop" class="flatlay laptop--medium" >
+                    <img src="../../assets/home/intro-head/laptop-mobile.jpg" alt="Laptop" id="laptop" class="flatlay laptop--small" >
+
+                    <img src="../../assets/home/intro-head/camera-lg.jpg" alt="Camera" id="camera" class="flatlay camera--large">
+                    <img src="../../assets/home/intro-head/camera-md.jpg" alt="Camera" id="camera" class="flatlay camera--medium">
+                    <img src="../../assets/home/intro-head/camera-mobile.jpg" alt="Camera" id="camera" class="flatlay camera--small">
+
+                    <img src="../../assets/home/intro-head/coffee-lg.jpg" alt="Coffee" id="coffee" class="flatlay coffee--large">
+                    <img src="../../assets/home/intro-head/coffee-md.jpg" alt="Coffee" id="coffee" class="flatlay coffee--medium">
+                    <img src="../../assets/home/intro-head/coffee-mobile.jpg" alt="Coffee" id="coffee" class="flatlay coffee--small">
+
+                    <img src="../../assets/home/intro-head/plant-lg.png" alt="Plant" id="plant" class="flatlay plant--large">
+                    <img src="../../assets/home/intro-head/plant-md.png" alt="Plant" id="plant" class="flatlay plant--medium">
+                    <img src="../../assets/home/intro-head/plant-mobile.png" alt="Plant" id="plant" class="flatlay plant--small">
                 </div>
             </div>
                     <div id="flatlay-bio" class="row flatlay-bio flatlay">
@@ -132,6 +142,37 @@ export default {
                 &.shift {
                     transform: translateY(-55%);
                 }
+
+                &--large {
+                    @extend .laptop;
+                    display: none;
+
+                    /* 2200px and up */
+                    @media only screen and (min-width: 2200px) {
+                        display: block;
+                    }
+
+                }
+
+                &--medium {
+                    @extend .laptop;
+                    display: none;
+
+                    /* 2199px to 1051px */
+                    @media only screen and (max-width: 2199px) and (min-width: 1051px) {
+                        display: block;
+                    }
+                }
+
+                &--small {
+                    @extend .laptop;
+                    display: none;
+
+                    /* 1050px and down */
+                    @media only screen and (max-width: 1050px) {
+                        display: block;
+                    }
+                }
             }
 
             .camera {
@@ -152,6 +193,37 @@ export default {
                     /* 767px and down */
                     @media only screen and (max-width: 767px) {
                         transform: translateX(-300%);
+                    }
+                }
+
+                &--large {
+                    @extend .camera;
+                    display: none;
+
+                    /* 2200px and up */
+                    @media only screen and (min-width: 2200px) {
+                        display: block;
+                    }
+
+                }
+
+                &--medium {
+                    @extend .camera;
+                    display: none;
+
+                    /* 2199px to 1051px */
+                    @media only screen and (max-width: 2199px) and (min-width: 1051px) {
+                        display: block;
+                    }
+                }
+
+                &--small {
+                    @extend .camera;
+                    display: none;
+
+                    /* 1050px and down */
+                    @media only screen and (max-width: 1050px) {
+                        display: block;
                     }
                 }
             }
@@ -177,6 +249,37 @@ export default {
                     }
 
                 }
+
+                &--large {
+                    @extend .coffee;
+                    display: none;
+
+                    /* 2200px and up */
+                    @media only screen and (min-width: 2200px) {
+                        display: block;
+                    }
+
+                }
+
+                &--medium {
+                    @extend .coffee;
+                    display: none;
+
+                    /* 2199px to 1051px */
+                    @media only screen and (max-width: 2199px) and (min-width: 1051px) {
+                        display: block;
+                    }
+                }
+
+                &--small {
+                    @extend .coffee;
+                    display: none;
+
+                    /* 1050px and down */
+                    @media only screen and (max-width: 1050px) {
+                        display: block;
+                    }
+                }
             }
 
             .plant {
@@ -199,6 +302,37 @@ export default {
                         transform: translateX(300%);
                     }
 
+                }
+
+                &--large {
+                    @extend .plant;
+                    display: none;
+
+                    /* 2200px and up */
+                    @media only screen and (min-width: 2200px) {
+                        display: block;
+                    }
+
+                }
+
+                &--medium {
+                    @extend .plant;
+                    display: none;
+
+                    /* 2199px to 1051px */
+                    @media only screen and (max-width: 2199px) and (min-width: 1051px) {
+                        display: block;
+                    }
+                }
+
+                &--small {
+                    @extend .plant;
+                    display: none;
+
+                    /* 1050px and down */
+                    @media only screen and (max-width: 1050px) {
+                        display: block;
+                    }
                 }
             }
 

@@ -9,10 +9,14 @@
                 <div class="col-1"></div>
             </div>
             <div id="mobile-lc" class="mobile-lc">
-                <img src="../../assets/home/web-mobile-lc3d.png" alt="Lauren Castle Mobile Website">
+                <img src="../../assets/home/web-mobile-lc3d.png" alt="Lauren Castle Mobile Website" class="demo-img--large">
+                <img src="../../assets/home/web-mobile-lc3d-md.png" alt="Lauren Castle Mobile Website" class="demo-img--medium">
+                <img src="../../assets/home/web-mobile-lc3d-sm.png" alt="Lauren Castle Mobile Website" class="demo-img--small">
             </div>
             <div id="mobile-ss" class="mobile-ss">
-                <img src="../../assets/home/web-mobile-ss3d.png" alt="Saad Mobile Website">
+                <img src="../../assets/home/web-mobile-ss3d.png" alt="Saad Mobile Website" class="demo-img--large">
+                <img src="../../assets/home/web-mobile-ss3d-md.png" alt="Saad Mobile Website" class="demo-img--medium">
+                <img src="../../assets/home/web-mobile-ss3d-sm.png" alt="Saad Mobile Website" class="demo-img--small">
             </div>
             <div class="explore-btn">
                 <h2>Explore</h2>
@@ -158,9 +162,39 @@ export default {
         transition:all 4s ease;
         opacity: 0%;
 
-        img {
+        .demo-img {
             width: 48%;
             margin-left: 12%;
+
+            &--large {
+                @extend .demo-img;
+                display: none;
+
+                /* 2200px and up */
+                @media only screen and (min-width: 2200px) {
+                    display: block;
+                }
+            }
+
+            &--medium {
+                @extend .demo-img;
+                display: none;
+
+                /* 2199px to 1051px */
+                @media only screen and (max-width: 2199px) and (min-width: 1051px) {
+                    display: block;
+                }
+            }
+
+            &--small {
+                @extend .demo-img;
+                display: none;
+
+                /* 1050px and down */
+                @media only screen and (max-width: 1050px) {
+                    display: block;
+                }
+            }
         }
 
         &.fade-in {
@@ -180,10 +214,40 @@ export default {
         transition:all 4s ease;
         opacity: 0%;
 
-        img {
+        .demo-img {
             width: 56%;
             float: right;
             margin-right: 9%;
+
+            &--large {
+                @extend .demo-img;
+                display: none;
+
+                /* 2200px and up */
+                @media only screen and (min-width: 2200px) {
+                    display: block;
+                }
+            }
+
+            &--medium {
+                @extend .demo-img;
+                display: none;
+
+                /* 2199px to 1051px */
+                @media only screen and (max-width: 2199px) and (min-width: 1051px) {
+                    display: block;
+                }
+            }
+
+            &--small {
+                @extend .demo-img;
+                display: none;
+
+                /* 1050px and down */
+                @media only screen and (max-width: 1050px) {
+                    display: block;
+                }
+            }
         }
 
         &.fade-in {
