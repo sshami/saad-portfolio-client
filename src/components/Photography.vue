@@ -105,19 +105,14 @@ export default {
                     url: "havana-richmond"
                 },
                 {
-                    title: "U-Street DC",
-                    hero_image_url: "https://66.media.tumblr.com/728144270027a1ebaee50adddbe1aa1f/tumblr_o8ksctWTL51v57djwo1_500.jpg",
-                    url: "u-street-dc"
+                    title: "Union Market",
+                    hero_image_url: "https://64.media.tumblr.com/f4cdb87d7940d0033ffd0aeeb7545e80/tumblr_o8ktllkayC1v57djwo1_500.jpg",
+                    url: "union-market"
                 },
                 {
-                    title: "Cherry Blossom Shoot",
-                    hero_image_url: "https://66.media.tumblr.com/9278c4fa179cd64869f71808e443b3a4/tumblr_o8ks03623v1v57djwo1_500.jpg",
-                    url: "cherry-blossom"
-                },
-                {
-                    title: "Courtney RVA",
-                    hero_image_url: "https://66.media.tumblr.com/6571c9e32092b669ca7b4fed6889e768/tumblr_pdxq43aYEj1v57djwo1_500.jpg",
-                    url: "courtney-rva"
+                    title: "DIY Studio",
+                    hero_image_url: "https://64.media.tumblr.com/0a82fa7ce59404e7a713ded2fd5aa81d/tumblr_pkf8ro270V1v57djwo1_500.jpg",
+                    url: "diy-studio"
                 },
 
             ],
