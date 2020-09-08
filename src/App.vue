@@ -87,6 +87,7 @@ export default {
     // TODO: Figure out how to make these global
     $base-cream: #FFFCF4;
     $violet-blue: #F4F6FD;
+    $violet-blue-dark: #CED9FD;
     $neutral-pink: #fddecc;
     $neutral-pink-dark: #fbc6a7;
 
@@ -579,6 +580,10 @@ export default {
 
         &.color-pink-dark {
           background-color: $neutral-pink-dark
+        }
+
+        &.color-blue-dark {
+          background-color: $violet-blue-dark;
         }
     }
 

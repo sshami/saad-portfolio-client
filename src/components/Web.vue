@@ -46,7 +46,14 @@
                             <p class="url" v-if="project.value.web_url">{{ project.value.web_url | removeHttp }}</p>
                             <p class="desc">{{ project.value.summary }}</p>
                         </div>
+                        <router-link :to="{ name: 'webdetail', params: { projectSlug: project.value.slug }}">
+                            <a class="read-more-btn square-btn color-blue-dark">
+                                Read More
+                                <img src="../assets/icons/arrow.svg" alt="Arrow">
+                            </a>
+                        </router-link>
                     </div>
+
                 </div>
             </template>
 
@@ -334,6 +341,7 @@ export default {
             will-change: transform;
             //background-color: lightgrey;
             padding: 10px;
+            pointer-events: none;
 
             &.hide {
                 opacity: 0;
@@ -565,7 +573,7 @@ export default {
         position: relative;
         float: left;
         padding: 50px;
-        display: flex;
+        //display: flex;
         justify-content: center;
         align-items: center; 
 
@@ -615,6 +623,14 @@ export default {
             align-items: unset;
             text-align: center;
         }
+    }
+
+    .read-more-btn {
+        font-size: 13px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        padding: 10px;
     }
 
 </style>
