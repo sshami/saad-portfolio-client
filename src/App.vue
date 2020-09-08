@@ -491,6 +491,7 @@ export default {
       word-spacing: 5px;
       letter-spacing: 3px;
       text-transform: uppercase;
+      margin-bottom: 40px;
     }
 
     .rising-bio-title .letter {

@@ -10,97 +10,59 @@
         <div class="content">
             <div class="intro-display row">
                     <div class="project-title">
-                        <h1>Saad</h1>
-                        <p class="url">saadcreative.com</p>
+                        <h1>{{ page_content.title }}</h1>
+                        <p class="url" v-if="page_content.project_listing.url">{{ page_content.project_listing.url | removeHttp }}</p>
                     </div>
-                <div class="display-images">
-                    <img src="../assets/web/temp/saad-desktop-home.png" class="laptop">
-                    <img src="../assets/web/temp/saad-mobile-home2.png" class="mobile">
-                </div>
+                <template v-if="page_content.project_listing.type == 'WebProject'">
+                    <div class="display-images">
+                        <img :src="page_content.project_listing.images.demo_laptop_display" class="laptop--large">
+                        <img :src="page_content.project_listing.images.demo_mobile_display" class="mobile--large">
+                        <img :src="page_content.project_listing.images.demo_laptop_display_small" class="laptop--small">
+                        <img :src="page_content.project_listing.images.demo_mobile_display_small" class="mobile--small">
+                    </div>
+                </template>
             </div>
             <div class="project-description row">
                 <div class="description-content">
-                    <div class="section">
-                        <div class="text">
-                            <h2>Purpose</h2>
-                            <p>Froth robust robusta caramelization et trifecta siphon variety. Carajillo plunger pot, aroma a, beans coffee, spoon white latte roast coffee brewed. 
-            Seasonal, doppio that redeye con panna eu decaffeinated ristretto doppio organic and java.</p>
-                        </div>
-                    </div>
-                    <div class="section">
-                            <div class="text">
-                                <h2>UI + UX Design</h2>
-                                <p>Plunger pot trifecta grinder, single shot, qui variety robusta grinder, aged breve cream est americano. 
-                                    Spoon plunger pot aftertaste medium cappuccino ut barista iced, ristretto cream coffee latte crema. </p>
-                            </div>
-                            <div class="content-image row">
-                                <div class="image-left col-md-6">
-                                    <img src="../assets/web/temp/demo-image-left.png">
-                                </div>
-                                <div class="image-right col-md-6">
-                                    <img src="../assets/web/temp/demo-image-right.png">
-                                </div>
-                                <div class="caption col-md-12">
-                                    <p>To go and, coffee café au lait, iced americano in, organic turkish froth.</p>
+                    <template v-for="(section, index) in page_content.body">
+                        <template v-if="section.type == 'paragraph'">
+                            <div class="section" :key="index">
+                                <div class="text" :key="index">
+                                    <span class="html" v-html="section.content"></span>
                                 </div>
                             </div>
-                            <div class="text">
-                                <p>Bar irish extraction trifecta foam dark carajillo as half and half cinnamon brewed caramelization aftertaste 
-                                    half and half. Chicory medium, spoon, dark cappuccino trifecta sweet, milk mazagran macchiato barista dripper
-                                    sit steamed cappuccino dark that aromatic french press.</p>
+                        </template>
+                        <template v-if="section.type == 'single_image'">
+                            <div class="section" :key="index">
+                                <div class="content-image row">
+                                    <div class="image-single col-md-12" :key="index">
+                                        <img :src="section.image" class="image--large">
+                                        <img :src="section.image_small" class="image--small">
+                                    </div>
+                                    <div class="caption col-md-12" :key="index">
+                                        <p>{{ section.caption }}</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="content-image row">
-                                <div class="image-large col-md-12">
-                                    <img src="../assets/web/temp/demo-image-large.png">
-                                </div>
-                                <div class="caption col-md-12">
-                                    <p>To go and, coffee café au lait, iced americano in, organic turkish froth.</p>
+                        </template>
+                        <template v-if="section.type == 'double_image'">
+                            <div class="section" :key="index">
+                                <div class="content-image row">
+                                    <div class="image-left col-md-6">
+                                        <img :src="section.image_left" class="image--large">
+                                        <img :src="section.image_left_small" class="image--small">
+                                    </div>
+                                    <div class="image-right col-md-6">
+                                        <img :src="section.image_right" class="image--large">
+                                        <img :src="section.image_right_small" class="image--small">
+                                    </div>
+                                    <div class="caption col-md-12">
+                                        <p>{{ section.caption }}</p>
+                                    </div>
                                 </div>
                             </div>
-                    </div>
-                    <div class="section">
-                        <div class="text">
-                            <h2>Client Development</h2>
-                            <p>Instant mug shop, organic, id, grounds robusta macchiato cinnamon robusta froth galão breve, 
-                                that plunger pot saucer, id breve mug blue mountain eu arabica. </p>
-                        </div>
-                        <div class="content-image row">
-                                <div class="image-left col-md-6">
-                                    <img src="../assets/web/temp/demo-image-left2.png">
-                                </div>
-                                <div class="image-right col-md-6">
-                                    <img src="../assets/web/temp/demo-image-right2.png">
-                                </div>
-                        </div>
-                        <div class="text">
-                            <p>Blue mountain decaffeinated sit, to go est percolator arabica cortado, single origin doppio, 
-                                and crema beans as dark, con panna, arabica, decaffeinated turkish cream doppio mocha. 
-                                To go wings siphon spoon aromatic so, americano rich, coffee wings robust breve extraction 
-                                aromatic skinny affogato.  </p>
-                        </div>
-                    </div>
-                    <div class="section">
-                        <div class="text">
-                            <h2>Backend Development</h2>
-                            <p>Doppio iced caramelization cinnamon, milk, breve, lungo flavour, arabica in beans froth, 
-                                caffeine cup, arabica sit milk aroma grinder fair trade rich qui carajillo shop.</p>
-                        </div>
-                        <div class="content-image row">
-                                <div class="image-left col-md-6">
-                                    <img src="../assets/web/temp/demo-image-left3.png">
-                                </div>
-                                <div class="image-right col-md-6">
-                                    <img src="../assets/web/temp/demo-image-right3.png">
-                                </div>
-                        </div>
-                        <div class="text">
-                            <p>Jetto frappuccino sit, strong trifecta siphon, to go caffeine caramelization that turkish aromatic, 
-                                cup french press mazagran, irish, ristretto at latte variety con panna brewed mug java. 
-                                Sit breve, fair trade galão crema affogato french press doppio crema half and half single origin,
-                                arabica espresso irish instant iced. Froth et and, bar café au lait wings cultivar macchiato grinder
-                                black con panna whipped, beans filter, café au lait, cinnamon steamed ristretto that robust.</p>
-                        </div>
-                    </div>
+                        </template>
+                    </template>
                 </div>
             </div>
         </div>
@@ -108,9 +70,49 @@
 </template>
 
 <script>
+import api from '../common/api-instance.js'
 
 export default {
     name: "WebDetail",
+    data: function () {
+      return {
+          page_content : {}
+      }
+    },
+    beforeMount(){
+        this.pullPageContent();
+    },
+    mounted() {
+        
+    },
+    methods: {
+        getPageContentData(project) {
+            api.get('/webdev/projects?project=' + project,
+            {
+                headers: {
+                    //'Authorization': 'Bearer ' + 'add jwt token here'
+                }
+            })
+            .then(response => (this.page_content = response.data[0]))
+            .catch(error => {
+                // TODO: use vue js logging
+                console.log("There was an error: " + error);
+            })
+        },
+        pullPageContent() {
+            var projectSlug = this.$route.params.projectSlug;
+            console.log(projectSlug);
+            this.getPageContentData(projectSlug);
+        }
+    },
+    filters: {
+        removeHttp : function (value) {
+            if (!value) return '';
+            value = value.toString();
+            value = value.replace(/(^\w+:|^)\/\//, '');
+            return value.replace("/","");
+        }
+    }
 }
 </script>
 
@@ -230,6 +232,24 @@ export default {
 
             .laptop {
                 width: 90%;
+
+                &--large {
+                    @extend .laptop;
+                    display: none;
+                    /* 2200px and up */
+                    @media only screen and (min-width: 1050px) {
+                        display: block;
+                    }
+                }
+
+                &--small {
+                    @extend .laptop;
+                    display: none;
+                    /* 1050px and down */
+                    @media only screen and (max-width: 1050px) {
+                        display: block;
+                    }
+                }
             }
 
             .mobile {
@@ -237,6 +257,25 @@ export default {
                 width: 15%;
                 top: 50%;
                 right: 15%;
+
+                &--large {
+                    @extend .mobile;
+                    display: none;
+                    /* 2200px and up */
+                    @media only screen and (min-width: 1050px) {
+                        display: block;
+                    }
+                }
+
+                &--small {
+                    @extend .mobile;
+                    display: none;
+                    /* 1050px and down */
+                    @media only screen and (max-width: 1050px) {
+                        display: block;
+                    }
+                }
+
             }
 
         }
@@ -257,7 +296,7 @@ export default {
             //max-width: 1000px;
 
             .section {
-                margin-bottom: 60px;
+                margin-bottom: 40px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -276,11 +315,31 @@ export default {
                         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.07), 0 6px 20px 0 rgba(0, 0, 0, 0.07);
                     }
 
-                    .image-large {
+                    .image-single {
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         margin-bottom: 50px;
+
+                        .image {
+                            &--large {
+                                @extend .image;
+                                display: none;
+                                /* 2200px and up */
+                                @media only screen and (min-width: 1050px) {
+                                    display: block;
+                                }
+                            }
+
+                            &--small {
+                                @extend .image;
+                                display: none;
+                                /* 1050px and down */
+                                @media only screen and (max-width: 1050px) {
+                                    display: block;
+                                }
+                            }
+                        }
                     }
 
                     .image-left, .image-right {
@@ -288,6 +347,26 @@ export default {
                         align-items: center;
                         justify-content: center;
                         margin-bottom: 50px;
+
+                        .image {
+                            &--large {
+                                @extend .image;
+                                display: none;
+                                /* 2200px and up */
+                                @media only screen and (min-width: 1050px) {
+                                    display: block;
+                                }
+                            }
+
+                            &--small {
+                                @extend .image;
+                                display: none;
+                                /* 1050px and down */
+                                @media only screen and (max-width: 1050px) {
+                                    display: block;
+                                }
+                            }
+                        }
                     }
 
                     .caption {
