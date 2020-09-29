@@ -2,22 +2,26 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
 import Homepage from './components/Homepage.vue'
+import About from './components/About.vue'
 import Photography from './components/Photography.vue'
 import Web from './components/Web.vue'
 import WebDetail from './components/WebDetail.vue'
 import 'popper.js'
 import 'bootstrap'
 import 'socicon'
+import VueTilt from 'vue-tilt.js'
 
 Vue.config.productionTip = false
 
 Vue.use(VueRouter);
+Vue.use(VueTilt);
 
 const routes = [
   { path:'/', component: Homepage, name: 'homepage'},
   { path:'/photography/:albumSlug?', component: Photography, name: 'photography'},
   { path:'/web', component: Web, name: 'web'},
-  { path: '/web/:projectSlug?', component: WebDetail, name: 'webdetail'}
+  { path: '/web/:projectSlug?', component: WebDetail, name: 'webdetail'},
+  { path:'/about', component: About, name: 'about'}
 ];
 
 const router = new VueRouter({
