@@ -1,13 +1,13 @@
 <template>
     <div class="page">
         <div class="content">
-            <div class="title">
-                <h1>About</h1>
-            </div>
             <div class="bio-content row">
                 <div class="bio-photo-container col-12">
                     <img class="logo-head" src="../assets/saad-logo.png" alt="SAAD">
                     <img class="bio-photo" src="../assets/about/placeholder-img.jpg">
+                </div>
+                <div class="title">
+                    <h1>About</h1>
                 </div>
                 <div class="bio-description col-12">
                     <p>I’ve always had a passion for creating. The two things I was really drawn to as a child was… Lorem ipsum dolor sit amet, 
@@ -31,6 +31,14 @@
                             <span class="label">Photography</span>
                             <img src="../assets/icons/arrow.svg" alt="Arrow">
                         </div>
+                    </router-link>
+                </div>
+                <div class="work-brain--mobile" alt="Brain Vector">
+                    <router-link :to="{ name: 'web'}">
+                        <div class="left-brain"></div>
+                    </router-link>
+                    <router-link :to="{ name: 'photography'}">
+                        <div class="right-brain"></div>
                     </router-link>
                 </div>
             </div>
@@ -78,7 +86,7 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 100px;
+        margin-bottom: 80px;
 
         .bio-photo-container {
             max-width: 500px;
@@ -125,6 +133,22 @@ export default {
             transform: perspective(1000px);
             background-image: url("../assets/about/brain-large.png");
             background-size: cover;
+
+            /* 765px and down */
+            @media only screen and (max-width: 765px) {
+                display: none;
+            }
+
+            &--mobile {
+                @extend .work-brain;
+                @include aspect-ratio(12, 12);
+                background-image: url("../assets/about/brain-mobile.png");
+                display: none;
+                /* 765px and down */
+                @media only screen and (max-width: 765px) {
+                    display: block;
+                }
+            }
 
             a {
                 color: #212529;
@@ -181,6 +205,30 @@ export default {
                     text-transform: uppercase;
                     letter-spacing: 5px;
                     margin-left: 20px;
+                }
+            }
+
+            .left-brain {
+                height: 100%;
+                width: 50%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                /* 765px and down */
+                @media only screen and (max-width: 765px) {
+                    display: block;
+                }
+            }
+
+            .right-brain {
+                height: 100%;
+                width: 50%;
+                position: absolute;
+                top: 0;
+                right: 0;
+                /* 765px and down */
+                @media only screen and (max-width: 765px) {
+                    display: block;
                 }
             }
 
