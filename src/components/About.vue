@@ -7,15 +7,10 @@
                     <img class="bio-photo" src="../assets/about/placeholder-img.jpg">
                 </div>
                 <div class="title">
-                    <h1>About</h1>
+                    <h1>{{ page_content.title }}</h1>
                 </div>
                 <div class="bio-description col-12">
-                    <p>I’ve always had a passion for creating. The two things I was really drawn to as a child was… Lorem ipsum dolor sit amet, 
-                        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit 
-                        in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        Lorem ipsum dolor sit amet, consectetur.</p>
+                    <span class="html" v-html="page_content.body"></span>
                 </div>
             </div>
             <div class="work">
@@ -47,11 +42,36 @@
 </template>
 
 <script>
+import api from '../common/api-instance.js'
 
 export default {
     name: "About",
+    data: function () {
+      return {
+          page_content : {}
+      }
+    },
     mounted() {
-    }
+        this.pullPageContent();
+    },
+    methods: {
+        getPageContentData() {
+            api.get('/about/',
+            {
+                headers: {
+                    //'Authorization': 'Bearer ' + 'add jwt token here'
+                }
+            })
+            .then(response => (this.page_content = response.data[0]))
+            .catch(error => {
+                // TODO: use vue js logging
+                console.log("There was an error: " + error);
+            })
+        },
+        pullPageContent() {
+            this.getPageContentData();
+        }
+    },
 }
 </script>
 
@@ -110,7 +130,7 @@ export default {
             justify-content: center;
             flex-direction: column;
 
-            p {
+            .html {
                 max-width: 850px;
             }
 

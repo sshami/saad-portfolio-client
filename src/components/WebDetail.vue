@@ -101,7 +101,6 @@ export default {
         },
         pullPageContent() {
             var projectSlug = this.$route.params.projectSlug;
-            console.log(projectSlug);
             this.getPageContentData(projectSlug);
         }
     },
