@@ -38,6 +38,7 @@
                             <a v-bind:href="homepage_intro.contact_instagram" target="_blank"><span class="socicon-instagram"></span></a>
                             <a v-bind:href="homepage_intro.contact_facebook" target="_blank"><span class="socicon-facebook"></span></a>
                             <a v-bind:href="'mailto:' + homepage_intro.contact_email" target="_blank"><span class="socicon-mail"></span></a>
+                            <a v-bind:href="homepage_intro.contact_linkedin" target="_blank"><span class="socicon-linkedin"></span></a>
                         </div>
                     </div>
         </div>
@@ -382,7 +383,7 @@ export default {
                 }
 
                 span {
-                    padding: 9px;
+                    padding: 12px;
                 }
             }
 

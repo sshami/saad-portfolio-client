@@ -4,7 +4,7 @@
             <div class="bio-content row">
                 <div class="bio-photo-container col-12">
                     <img class="logo-head" src="../assets/saad-logo.png" alt="SAAD">
-                    <img class="bio-photo" src="../assets/about/placeholder-img.jpg">
+                    <img class="bio-photo" :src="page_content.bio_image" />
                 </div>
                 <div class="title">
                     <h1>{{ page_content.title }}</h1>
@@ -36,6 +36,12 @@
                         <div class="right-brain"></div>
                     </router-link>
                 </div>
+            </div>
+            <div class="col-sm-12 bio-social">
+                <a v-bind:href="page_content.contact_instagram" target="_blank"><span class="socicon-instagram"></span></a>
+                <a v-bind:href="page_content.contact_facebook" target="_blank"><span class="socicon-facebook"></span></a>
+                <a v-bind:href="'mailto:' + page_content.contact_email" target="_blank"><span class="socicon-mail"></span></a>
+                <a v-bind:href="page_content.contact_linkedin" target="_blank"><span class="socicon-linkedin"></span></a>
             </div>
         </div>
     </div>
@@ -94,7 +100,7 @@ export default {
     }
 
     .content {
-        padding: 10%;
+        padding: 100px 10% 10% 10%;
     }
 
     .title {
@@ -106,7 +112,12 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 80px;
+        margin-bottom: 70px;
+
+        /* 765px and down */
+        @media only screen and (max-width: 765px) {
+            margin-bottom: 0px;
+        }
 
         .bio-photo-container {
             max-width: 500px;
@@ -121,6 +132,11 @@ export default {
                 position: relative;
                 top: 20px;
                 margin-left: 30%;
+
+                /* 765px and down */
+                @media only screen and (max-width: 765px) {
+                    display: none;
+                }
             }
         }
 
@@ -252,6 +268,24 @@ export default {
                 }
             }
 
+        }
+    }
+
+    .bio-social {
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        padding-top: 20px;
+
+
+        a {
+            color: #212529;
+            text-decoration: none;
+        }
+
+        span {
+            padding: 12px;
         }
     }
 </style>
