@@ -129,14 +129,7 @@ export default {
             console.log(from);
 
             /* pull new data */
-            this.pullPhotoAlbumData();
-
-            /* recalculate photo menu trigger and reset event */
-            setTimeout(function(){
-                removePhotosetScrollEvent();
-                calculateAllTriggers();
-                createPhotosetScrollEvent();
-            }, 500);
+            this.pullPhotoAlbumData(true);
 
             /* programmatically scroll to #start anchor */
             location.href = "#start";
@@ -144,10 +137,6 @@ export default {
             $("#album-menu").removeClass("show");
             $("#album-menu-contents").removeClass("swipe-in");
             $("#hero").removeClass("hide");
-        },
-        /* Watch for when default album is set in order to fetch default album data */
-        default_album: function(val) {
-            this.getPhotoAlbumData(val);
         },
         /* Watch for when title font size changes */
         title_font_size: function(val) {
@@ -171,15 +160,6 @@ export default {
 
     /* Pull photo album data */
     this.pullPhotoAlbumData();
-    
-    /* Setup horizontal scrolling view if desktop */
-    if (window.innerWidth > 1050){
-        initHorizontalScroll();
-        setTimeout(function(){
-            calculateAllTriggers();
-            createPhotosetScrollEvent();
-        }, 1000);
-    }
 
     /* Enable menu hover functions */
     this.albumMenuHover();
@@ -254,48 +234,66 @@ export default {
         }
     },
     /* Get and set photo album data from API endpoint */
+    /* Note: This returns the axios GET promise based function */
     getPhotoAlbumData(slug) {
-        api.get('/photographyalbums/?album=' + slug, 
+        return api.get('/photographyalbums/?album=' + slug, 
         {
             headers: {
                 //'Authorization': 'Bearer ' + 'add jwt token here'
             }
-        })
-        .then( (response) => {
-                // Set photo album data
-                this.photo_album = response.data[0]
-                // Set title font size data
-                this.title_font_size = response.data[0].title_font_size
-            }
-        )
-        .catch(error => {
-            // TODO: use vue js logging
-            console.log("There was an error: " + error);
-        })
+        });
     },
     /* Get and set the default photo album from API endpoint */
+    /* Note: This returns the axios GET promise based function */
     getDefaultPhotoAlbum() {
-        api.get('/photography/',
+        return api.get('/photography/',
         {
             headers: {
                 //'Authorization': 'Bearer ' + 'add jwt token here'
             }
-        })
-        .then(response => (this.default_album = response.data[0].default_album.slug))
-        .catch(error => {
-            // TODO: use vue js logging
-            console.log("There was an error: " + error);
-        })
+        });
     },
     /* Pull photo album data based on route URL */
-    pullPhotoAlbumData() {
-        if (this.$route.params.albumSlug) {
-            // Use album slug in URL to get/set the photo album data
-            var album_slug = this.$route.params.albumSlug
-            this.getPhotoAlbumData(album_slug);
+    pullPhotoAlbumData(routeChange=false) {
+        if (!this.$route.params.albumSlug){
+            /* If there is no album slug defined - get the default album first and then fetch photo album data */
+            this.getDefaultPhotoAlbum().then((response) => {
+                this.default_album = response.data[0].default_album.slug;
+                return this.getPhotoAlbumData(this.default_album);
+            }).then((response) => {
+                    // Set photo album data
+                    this.photo_album = response.data[0]
+                    // Set title font size data
+                    this.title_font_size = response.data[0].title_font_size
+
+                    /* Setup horizontal scrolling view or reset depending on if route was changed  */
+                    if (routeChange){
+                        this.resetHorizontalScroll();
+                    } else {
+                        this.setupHorizontalScroll();
+                    }
+            }).catch(error => {
+                // TODO: use vue js logging
+                console.log("There was an error: " + error);
+            })
         } else {
-            // If no album slug in URL then get/set the default album
-            this.getDefaultPhotoAlbum();
+            /* If there is an album slug defined - fetch photo album data */
+            this.getPhotoAlbumData(this.$route.params.albumSlug).then((response) => {
+                    // Set photo album data
+                    this.photo_album = response.data[0]
+                    // Set title font size data
+                    this.title_font_size = response.data[0].title_font_size
+
+                    /* Setup horizontal scrolling view or reset depending on if route was changed  */
+                    if (routeChange){
+                        this.resetHorizontalScroll();
+                    } else {
+                        this.setupHorizontalScroll();
+                    }
+            }).catch(error => {
+                // TODO: use vue js logging
+                console.log("There was an error: " + error);
+            })
         }
     },
     /* Photo albums menu hover image preview */
@@ -308,6 +306,26 @@ export default {
         }, function(){
             
         });
+    },
+    /* Setup horizontal scrolling and calculate/create scroll trigger events */
+    setupHorizontalScroll() {
+        if (window.innerWidth > 1050){
+            initHorizontalScroll();
+            setTimeout(function(){
+                calculateAllTriggers();
+                createPhotosetScrollEvent();
+            }, 1000);
+        }
+    },
+    /* Reset/recalculate horizontal scrolling trigger events */
+    resetHorizontalScroll() {
+        if (window.innerWidth > 1050){
+            setTimeout(function(){
+                removePhotosetScrollEvent();
+                calculateAllTriggers();
+                createPhotosetScrollEvent();
+            }, 1000);
+        }
     }
   }
 }
