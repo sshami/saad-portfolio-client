@@ -1,47 +1,51 @@
 <template>
     <div class="page">
         <div class="content">
-            <div class="bio-content row">
-                <div class="bio-photo-container col-12">
+            <div id="bio-intro" class="bio-intro row">
+                <div id="bio-photo-container" class="bio-photo-container">
                     <img class="logo-head" src="../assets/saad-logo.png" alt="SAAD">
                     <img class="bio-photo" :src="page_content.bio_image" />
                 </div>
-                <div class="title">
-                    <h1>{{ page_content.title }}</h1>
-                </div>
-                <div class="bio-description col-12">
-                    <span class="html" v-html="page_content.body"></span>
-                </div>
             </div>
-            <div class="work">
-                <div v-tilt class="work-brain" alt="Brain Vector">
-                    <router-link :to="{ name: 'web'}">
-                        <div class="button-left">
-                            <img src="../assets/icons/arrow.svg" alt="Arrow">
-                            <span class="label">Web Development</span>
-                        </div>
-                    </router-link>
-                    <router-link :to="{ name: 'photography'}">
-                        <div class="button-right">
-                            <span class="label">Photography</span>
-                            <img src="../assets/icons/arrow.svg" alt="Arrow">
-                        </div>
-                    </router-link>
+            <div id="bio-content" class="bio-content">
+                <div class="bio-text">
+                    <div class="title">
+                        <h1>{{ page_content.title }}</h1>
+                    </div>
+                    <div class="bio-description col-12">
+                        <span class="html" v-html="page_content.body"></span>
+                    </div>
                 </div>
-                <div class="work-brain--mobile" alt="Brain Vector">
-                    <router-link :to="{ name: 'web'}">
-                        <div class="left-brain"></div>
-                    </router-link>
-                    <router-link :to="{ name: 'photography'}">
-                        <div class="right-brain"></div>
-                    </router-link>
+                <div class="work">
+                    <div v-tilt class="work-brain" alt="Brain Vector">
+                        <router-link :to="{ name: 'web'}">
+                            <div class="button-left">
+                                <img src="../assets/icons/arrow.svg" alt="Arrow">
+                                <span class="label">Web Development</span>
+                            </div>
+                        </router-link>
+                        <router-link :to="{ name: 'photography'}">
+                            <div class="button-right">
+                                <span class="label">Photography</span>
+                                <img src="../assets/icons/arrow.svg" alt="Arrow">
+                            </div>
+                        </router-link>
+                    </div>
+                    <div class="work-brain--mobile" alt="Brain Vector">
+                        <router-link :to="{ name: 'web'}">
+                            <div class="left-brain"></div>
+                        </router-link>
+                        <router-link :to="{ name: 'photography'}">
+                            <div class="right-brain"></div>
+                        </router-link>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-12 bio-social">
-                <a v-bind:href="page_content.contact_instagram" target="_blank"><span class="socicon-instagram"></span></a>
-                <a v-bind:href="page_content.contact_facebook" target="_blank"><span class="socicon-facebook"></span></a>
-                <a v-bind:href="'mailto:' + page_content.contact_email" target="_blank"><span class="socicon-mail"></span></a>
-                <a v-bind:href="page_content.contact_linkedin" target="_blank"><span class="socicon-linkedin"></span></a>
+                <div class="col-sm-12 bio-social">
+                    <a v-bind:href="page_content.contact_instagram" target="_blank"><span class="socicon-instagram"></span></a>
+                    <a v-bind:href="page_content.contact_facebook" target="_blank"><span class="socicon-facebook"></span></a>
+                    <a v-bind:href="'mailto:' + page_content.contact_email" target="_blank"><span class="socicon-mail"></span></a>
+                    <a v-bind:href="page_content.contact_linkedin" target="_blank"><span class="socicon-linkedin"></span></a>
+                </div>
             </div>
         </div>
     </div>
@@ -49,6 +53,8 @@
 
 <script>
 import api from '../common/api-instance.js'
+import { initScrollMagicController, createIntroTimeline, buildScrollMagicScenes, destroyScrollMagic } from '../static/js/aboutpage-scrollmagic.js'
+
 
 export default {
     name: "About",
@@ -59,6 +65,13 @@ export default {
     },
     mounted() {
         this.pullPageContent();
+        /* Build ScrollMagic Scenes */
+        initScrollMagicController();
+        createIntroTimeline();
+        buildScrollMagicScenes();
+    },
+    destroyed() {
+        destroyScrollMagic();
     },
     methods: {
         getPageContentData() {
@@ -101,6 +114,7 @@ export default {
 
     .content {
         padding: 100px 10% 10% 10%;
+        height: 1250px;
     }
 
     .title {
@@ -108,11 +122,12 @@ export default {
         text-align: center;
     }
 
-    .bio-content {
+    .bio-intro {
         display: flex;
         align-items: center;
         justify-content: center;
         margin-bottom: 70px;
+        transition: all 0.5s ease-out;
 
         /* 765px and down */
         @media only screen and (max-width: 765px) {
@@ -122,6 +137,7 @@ export default {
         .bio-photo-container {
             max-width: 500px;
             margin-bottom: 80px;
+            transition: all 0.5s ease-out;
 
             .bio-photo {
                 width: 100%;
@@ -139,7 +155,27 @@ export default {
                 }
             }
         }
+        
+    }
 
+    .bio-content {
+        opacity: 0%;
+        transition: all 0.5s ease-out;
+        position: absolute;
+        top: 900px;
+        padding: 10px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+
+        /* 765px and down */
+        @media only screen and (max-width: 765px) {
+            top: 800px;
+        }
+    }
+
+    .bio-text {
         .bio-description {
             display: flex;
             align-items: center;
@@ -151,7 +187,7 @@ export default {
             }
 
         }
-        
+
     }
 
     .work {
